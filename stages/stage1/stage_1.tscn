@@ -9,7 +9,7 @@
 position = Vector2(576, 920)
 
 [node name="YinyangOrb" parent="." instance=ExtResource("2_msklb")]
-position = Vector2(592, 688)
+position = Vector2(1256, 640)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(-10, 10)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cufr5n30dlusn"]
+[gd_scene load_steps=5 format=3 uid="uid://cufr5n30dlusn"]
 
 [ext_resource type="Script" path="res://entities/Player.gd" id="1_1cxu7"]
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_kvm3v"]
@@ -6,12 +6,25 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpltg"]
 radius = 24.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6vh5"]
+size = Vector2(128, 88)
+
 [node name="Player" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_1cxu7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.375, 0.375)
 texture = ExtResource("2_kvm3v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wpltg")
+
+[node name="SwingCollisionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwingCollisionArea"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_b6vh5")
