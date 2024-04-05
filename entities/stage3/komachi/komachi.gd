@@ -15,7 +15,7 @@ var current_spell := 1
 # Spells
 const SPELL_1_ROTATION_DEGREES := 1.0
 @onready var spell_1_timer: Timer = $"Spell1 Timer"
-var spell_1_shot_coin_preload := preload("res://entities/stage3/komachi_shot_coin.tscn")
+var spell_1_shot_coin_preload := preload("res://entities/stage3/komachi/komachi_shot_coin.tscn")
 
 
 

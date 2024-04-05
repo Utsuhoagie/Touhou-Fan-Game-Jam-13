@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://x4sy7w1lfar7"]
 
-[ext_resource type="PackedScene" uid="uid://56gnvy4cknct" path="res://entities/stage3/player3.tscn" id="1_f4gx4"]
-[ext_resource type="PackedScene" uid="uid://cwo4sjv6kvemh" path="res://entities/stage3/komachi.tscn" id="2_pl1v0"]
+[ext_resource type="PackedScene" uid="uid://56gnvy4cknct" path="res://entities/stage3/player/player3.tscn" id="1_f4gx4"]
+[ext_resource type="PackedScene" uid="uid://cwo4sjv6kvemh" path="res://entities/stage3/komachi/komachi.tscn" id="2_pl1v0"]
 
 [node name="Stage3" type="Node2D"]
 

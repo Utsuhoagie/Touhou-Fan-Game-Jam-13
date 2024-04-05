@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dppnj65y6c4an"]
 
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_i2qmj"]
-[ext_resource type="Script" path="res://entities/stage3/komachi_shot_coin.gd" id="1_qdo6i"]
+[ext_resource type="Script" path="res://entities/stage3/komachi/komachi_shot_coin.gd" id="1_hvmdq"]
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_onyty"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ryx0"]
 radius = 8.0
@@ -10,7 +10,7 @@ radius = 8.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_i2qmj")
+"texture": ExtResource("2_onyty")
 }],
 "loop": true,
 "name": &"default",
@@ -20,7 +20,7 @@ animations = [{
 [node name="Komachi Shot Coin" type="Area2D"]
 collision_layer = 128
 collision_mask = 2
-script = ExtResource("1_qdo6i")
+script = ExtResource("1_hvmdq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4ryx0")

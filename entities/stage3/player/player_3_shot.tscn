@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dh74hqox0fmwo"]
 
-[ext_resource type="Script" path="res://entities/stage3/player_3_shot.gd" id="1_ekmks"]
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_gt3l0"]
+[ext_resource type="Script" path="res://entities/stage3/player/player_3_shot.gd" id="1_i47pq"]
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_ht5gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lk5s"]
 size = Vector2(8, 16)
@@ -10,7 +10,7 @@ size = Vector2(8, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gt3l0")
+"texture": ExtResource("2_ht5gi")
 }],
 "loop": true,
 "name": &"default",
@@ -20,7 +20,7 @@ animations = [{
 [node name="Player3Shot" type="Area2D"]
 collision_layer = 32
 collision_mask = 64
-script = ExtResource("1_ekmks")
+script = ExtResource("1_i47pq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0lk5s")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
-[ext_resource type="Script" path="res://entities/stage3/komachi.gd" id="1_r65lr"]
+[ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 96.0

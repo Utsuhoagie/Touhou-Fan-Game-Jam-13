@@ -11,7 +11,7 @@ var focus_slowdown := 0.5
 @onready var gun_timer: Timer = $GunTimer
 @onready var guns: Node2D = $Guns
 
-var player3_shot_preload = preload("res://entities/stage3/player_3_shot.tscn")
+var player3_shot_preload = preload("res://entities/stage3/player/player_3_shot.tscn")
 
 
 func _ready() -> void:
