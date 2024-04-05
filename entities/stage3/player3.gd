@@ -22,7 +22,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_movement(delta)
 	handle_shoot(delta)
+
 	move_and_slide()
+	clamp_in_screen()
 
 
 func handle_movement(delta: float) -> void:
@@ -50,7 +52,6 @@ func handle_shoot(delta: float) -> void:
 			shot.global_position = gun.global_position
 
 
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	pass
+func clamp_in_screen() -> void:
+	global_position.x = clampf(global_position.x, 32, get_viewport_rect().size.x - 32)
+	global_position.y = clampf(global_position.y, 32, get_viewport_rect().size.y - 32)
