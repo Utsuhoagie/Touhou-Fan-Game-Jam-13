@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0v5llflhppxi"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_278fk"]
-[ext_resource type="Script" path="res://card_tilemap.gd" id="2_xa5n4"]
+[ext_resource type="Script" path="res://entities/stage1/card_tilemap.gd" id="2_xa5n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0208"]
 resource_name = "card_test"
