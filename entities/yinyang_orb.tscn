@@ -1,12 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcgpq1uj22phm"]
+[gd_scene load_steps=4 format=3 uid="uid://bcgpq1uj22phm"]
 
 [ext_resource type="Script" path="res://entities/YinyangOrb.gd" id="1_clwyf"]
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_bfe5t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qud6h"]
-radius = 24.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_po4fh"]
 radius = 24.0
 
 [node name="YinyangOrb" type="CharacterBody2D"]
@@ -21,12 +18,3 @@ texture = ExtResource("2_bfe5t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qud6h")
-
-[node name="CardDetector" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDetector"]
-shape = SubResource("CircleShape2D_po4fh")
-
-[connection signal="body_entered" from="CardDetector" to="." method="_on_card_detector_body_entered"]
