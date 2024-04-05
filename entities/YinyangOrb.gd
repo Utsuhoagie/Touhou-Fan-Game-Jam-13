@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var swing_bounce: float = 500.0
+@export var swing_bounce: float = 1000.0
 
+@onready var card_tilemap = $"../CardTilemap"
 @onready var sprite_2d = $Sprite2D
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -15,7 +16,10 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(velocity * delta)
 	)
 	
+	card_tilemap.check_overlap(position)
+	
 	if collision:
+		var collider: Object = collision.get_collider()
 		velocity = velocity.bounce(collision.get_normal())
 		velocity.y *= 0.9
 	
