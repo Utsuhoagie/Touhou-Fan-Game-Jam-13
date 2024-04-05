@@ -8,7 +8,7 @@ extends CharacterBody2D
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
-	velocity = Vector2(-500, -500)
+	velocity = Vector2(-750, -750)
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -21,11 +21,16 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider: Object = collision.get_collider()
 		velocity = velocity.bounce(collision.get_normal())
-		velocity.y *= 0.9
+		velocity *= 0.9
 	
 	sprite_2d.flip_h = velocity.x < 0
 
 func handle_player_swing(player_pos: Vector2) -> void:
 	var pos_diff: Vector2 = position - player_pos
+	var angle_radians: float = atan2(pos_diff.y, pos_diff.x)
+	angle_radians = remap(angle_radians, -PI, 0, -PI * 0.875, -PI * 0.125)
 	
-	velocity = Vector2(swing_bounce * (pos_diff.x / 50), 0 - swing_bounce)
+	velocity = Vector2(
+		swing_bounce * cos(angle_radians),
+		swing_bounce * sin(angle_radians)
+	)

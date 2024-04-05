@@ -1,9 +1,10 @@
 extends Area2D
 
-const speed: int = 400
+@export var speed: int = 400
 
 @onready var hitbox := $Hitbox
 @onready var swing_collision_area := $SwingCollisionArea
+@onready var swing_cooldown_timer = $SwingCooldownTimer
 @onready var yinyang_orb := $"../YinyangOrb"
 
 var player_size: Vector2i
@@ -18,11 +19,15 @@ func _physics_process(delta: float) -> void:
 	handle_movement(input_map, delta)
 	
 	if (Input.is_action_just_pressed("player_swing")
-	and swing_collision_area.has_overlapping_bodies()):
+	and swing_collision_area.has_overlapping_bodies()
+	and swing_cooldown_timer.time_left == 0.0):
 		yinyang_orb.handle_player_swing(position)
 	
-	if has_overlapping_bodies():
-		die()
+	if Input.is_action_just_pressed("player_shoot"):
+		print("tuday is faiday in karifuonia")
+	
+	#if has_overlapping_bodies():
+		#die()
 		
 	update_animations()
 

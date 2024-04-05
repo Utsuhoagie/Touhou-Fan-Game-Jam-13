@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://entities/stage1/block.gd" id="1_lav3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr7ag"]
-size = Vector2(96, 16)
+size = Vector2(112, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un0y8"]
-size = Vector2(98, 18)
+size = Vector2(114, 18)
 
 [node name="Block" type="StaticBody2D" groups=["blocks"]]
 collision_layer = 8
@@ -14,9 +14,9 @@ collision_mask = 4
 script = ExtResource("1_lav3a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -48.0
+offset_left = -56.0
 offset_top = -8.0
-offset_right = 48.0
+offset_right = 56.0
 offset_bottom = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
