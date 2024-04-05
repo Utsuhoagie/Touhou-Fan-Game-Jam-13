@@ -24,4 +24,4 @@ func _physics_process(delta: float) -> void:
 func handle_player_swing(player_pos: Vector2) -> void:
 	var pos_diff: Vector2 = position - player_pos
 	
-	velocity = Vector2(swing_bounce * (pos_diff.x / 50), swing_bounce)
+	velocity = Vector2(swing_bounce * (pos_diff.x / 50), 0 - swing_bounce)

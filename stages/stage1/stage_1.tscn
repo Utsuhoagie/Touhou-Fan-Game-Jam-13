@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cysbqrfdw3t7j"]
+[gd_scene load_steps=5 format=3 uid="uid://cysbqrfdw3t7j"]
 
+[ext_resource type="PackedScene" uid="uid://d0v5llflhppxi" path="res://pong_tilemap.tscn" id="1_n4e2y"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/player.tscn" id="1_yww8n"]
 [ext_resource type="PackedScene" uid="uid://bcgpq1uj22phm" path="res://entities/yinyang_orb.tscn" id="2_msklb"]
 
+[sub_resource type="TileSet" id="TileSet_2k24a"]
+
 [node name="Stage1" type="Node2D"]
+
+[node name="PongTilemap" parent="." instance=ExtResource("1_n4e2y")]
+tile_set = SubResource("TileSet_2k24a")
 
 [node name="Player" parent="." instance=ExtResource("1_yww8n")]
 position = Vector2(576, 920)
