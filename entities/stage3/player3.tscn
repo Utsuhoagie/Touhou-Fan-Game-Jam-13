@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://56gnvy4cknct"]
+
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_d7b4m"]
+[ext_resource type="Script" path="res://entities/stage3/player3.gd" id="1_x0n5o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v6bp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d7b4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dqrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d7b4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l1067"]
+radius = 8.0
+
+[node name="Player3" type="CharacterBody2D"]
+position = Vector2(120, 56)
+script = ExtResource("1_x0n5o")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.364706)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.375, 0.5)
+sprite_frames = SubResource("SpriteFrames_1v6bp")
+
+[node name="ActualHitboxSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-7.62939e-06, -9.53674e-07)
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_2dqrf")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l1067")
+
+[node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.13
+one_shot = true
+
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="Gun1" type="Node2D" parent="Guns"]
+position = Vector2(-16, -32)
+
+[node name="Gun2" type="Node2D" parent="Guns"]
+position = Vector2(16, -32)
