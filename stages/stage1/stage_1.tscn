@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cysbqrfdw3t7j"]
+
+[ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/player.tscn" id="1_yww8n"]
+[ext_resource type="PackedScene" uid="uid://bcgpq1uj22phm" path="res://entities/yinyang_orb.tscn" id="2_msklb"]
+
+[node name="Stage1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_yww8n")]
+position = Vector2(576, 920)
+
+[node name="YinyangOrb" parent="." instance=ExtResource("2_msklb")]
+position = Vector2(592, 688)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(-10, 10)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(-2, 470)
+polygon = PackedVector2Array(-12, -504, -12, 504, 1316, 504, 1316, -504, 1292, -504, 1292, 480, 12, 480, 12, -504)
