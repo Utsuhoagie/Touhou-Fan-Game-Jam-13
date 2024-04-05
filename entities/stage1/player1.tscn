@@ -34,3 +34,10 @@ shape = SubResource("RectangleShape2D_b6vh5")
 [node name="SwingCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(0, -48)

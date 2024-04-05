@@ -7,6 +7,7 @@ var swing_bounce := 1250
 @onready var card_tilemap: TileMap = $"../CardTilemap"
 @onready var sprite: Sprite2D = $Sprite
 
+
 func _ready() -> void:
 	velocity = Vector2(-750, -750)
 	
