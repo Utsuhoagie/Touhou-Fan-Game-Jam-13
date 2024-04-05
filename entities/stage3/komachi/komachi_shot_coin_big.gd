@@ -1,7 +1,7 @@
 extends Area2D
-class_name KomachiShotCoin
+class_name KomachiShotCoinBig
 
-const BASE_SPEED := 240.0
+const BASE_SPEED := 360.0
 var speed_multiplier: float = 1.0
 var angle: float = 0.0
 

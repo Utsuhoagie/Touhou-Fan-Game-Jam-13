@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=6 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
+
+[sub_resource type="Curve2D" id="Curve2D_0f3pq"]
+_data = {
+"points": PackedVector2Array(1.49831, -56.9357, -1.49831, 56.9357, -320, 0, -322.136, 0, 322.136, 0, 0, 128, 0, 64.4272, 0, -64.4272, 320, 0, 326.631, 2.99661, -326.631, -2.99661, 0, -128, -2.99661, -67.4238, 2.99661, 67.4238, -320, 0)
+}
+point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 96.0
@@ -17,52 +23,82 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Komachi" type="CharacterBody2D"]
+[node name="Komachi" type="Node2D"]
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0f3pq")
+
+[node name="Path Follow" type="PathFollow2D" parent="Path"]
+position = Vector2(-320, 0)
+rotates = false
+
+[node name="Komachi CharacterBody" type="CharacterBody2D" parent="Path/Path Follow"]
 collision_layer = 64
 collision_mask = 34
 script = ExtResource("1_r65lr")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody"]
 shape = SubResource("CircleShape2D_tujep")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="Path/Path Follow/Komachi CharacterBody"]
 modulate = Color(1, 0.45098, 0.45098, 0.443137)
 sprite_frames = SubResource("SpriteFrames_24vcj")
 
-[node name="Spell1 Guns" type="Node2D" parent="."]
+[node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
-[node name="Gun1" type="Node2D" parent="Spell1 Guns"]
+[node name="Waves Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
+wait_time = 1.9
+one_shot = true
+autostart = true
+
+[node name="Waves" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
+
+[node name="Gun1" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(96, 0)
 rotation = -1.5708
 
-[node name="Gun2" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun2" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(72, 64)
 rotation = -0.785398
 
-[node name="Gun3" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun3" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(0, 96)
 
-[node name="Gun4" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun4" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(-72, 64)
 rotation = 0.785398
 
-[node name="Gun5" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun5" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(-96, 0)
 rotation = 1.5708
 
-[node name="Gun6" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun6" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(-72, -64)
 rotation = 2.35619
 
-[node name="Gun7" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun7" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(0, -96)
 rotation = 3.14159
 
-[node name="Gun8" type="Node2D" parent="Spell1 Guns"]
+[node name="Gun8" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
 position = Vector2(72, -64)
 rotation = -2.35619
 
-[node name="Spell1 Timer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="Homing Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
+wait_time = 2.2
 one_shot = true
 autostart = true
+
+[node name="Homing" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
+
+[node name="Gun1" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Homing"]
+position = Vector2(256, 64)
+
+[node name="Gun2" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Homing"]
+position = Vector2(128, -24)
+
+[node name="Gun3" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Homing"]
+position = Vector2(-128, -24)
+
+[node name="Gun4" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Homing"]
+position = Vector2(-256, 56)

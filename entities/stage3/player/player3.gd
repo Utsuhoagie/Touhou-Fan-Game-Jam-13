@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player3
 
-var speed := 36000.0
-var focus_slowdown := 0.5
+var speed := 33000.0
+var focus_slowdown := 0.45
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: CollisionShape2D = $Hitbox

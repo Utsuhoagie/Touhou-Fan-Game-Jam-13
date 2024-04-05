@@ -11,12 +11,16 @@ const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.4
 var current_spell := 1
 
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var path_follow: PathFollow2D = $"../"
+
+@onready var player3: Player3 = $"../../../../Player3" as Player3
 
 # Spells
-const SPELL_1_ROTATION_DEGREES := 1.0
-@onready var spell_1_timer: Timer = $"Spell1 Timer"
+const SPELL_1_WAVES_ROTATION_DEGREES := 1.0
+@onready var spell_1_waves_timer: Timer = $"Spell1 Guns/Waves Timer"
+@onready var spell_1_homing_timer: Timer = $"Spell1 Guns/Homing Timer"
 var spell_1_shot_coin_preload := preload("res://entities/stage3/komachi/komachi_shot_coin.tscn")
-
+var spell_1_shot_coin_big_preload := preload("res://entities/stage3/komachi/komachi_shot_coin_big.tscn")
 
 
 func take_damage(damage: int) -> void:
@@ -38,7 +42,7 @@ func take_damage(damage: int) -> void:
 		print("die")
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	handle_spell(delta)
 
 
@@ -46,19 +50,36 @@ func handle_spell(delta: float) -> void:
 	match current_spell:
 		1:
 			# Spell 1
-			# Circular, overlaid waves.
-			# Each wave has velocities increasing from one end to the other.
+			# Moves slowly
+			# Circular waves: each wave has velocities increasing from one end to the other.
+			# Homing single shots: fast, big bullets
+			path_follow.progress_ratio = path_follow.progress_ratio + 0.05 * delta
+
 			var spell_1_guns: Node2D = $"Spell1 Guns"
 
-			spell_1_guns.global_rotation += SPELL_1_ROTATION_DEGREES
+			if spell_1_waves_timer.is_stopped():
+				spell_1_waves_timer.start()
 
-			if spell_1_timer.is_stopped():
-				spell_1_timer.start()
-
-				for gun in spell_1_guns.get_children():
-					# Shoot 10 coins per wave, start wave from downwards, based on Gun rotation
+				# Shoot 8 coins per wave, start wave from downwards, based on Gun rotation
+				var waves_guns: Node2D = spell_1_guns.get_node("Waves")
+				waves_guns.global_rotation += SPELL_1_WAVES_ROTATION_DEGREES
+				for gun in waves_guns.get_children():
 					for i in range(10):
 						var coin := spell_1_shot_coin_preload.instantiate() as KomachiShotCoin
-						coin.init(0.4 + 0.07 * i, 0.0 + i * 8 + rad_to_deg(gun.global_rotation))
-						coin.global_position = gun.global_position
 						get_tree().current_scene.add_child(coin)
+
+						coin.init(0.45 + 0.07 * i, i * 8 + rad_to_deg(gun.global_rotation))
+						coin.global_position = gun.global_position
+
+			if spell_1_homing_timer.is_stopped():
+				spell_1_homing_timer.start()
+
+				# Shoot 1 big coin, aimed at player
+				var homing_guns: Node2D = spell_1_guns.get_node("Homing")
+				for gun in homing_guns.get_children():
+					var big_coin := spell_1_shot_coin_big_preload.instantiate() as KomachiShotCoinBig
+					get_tree().current_scene.add_child(big_coin)
+
+					var homing_angle := rad_to_deg(gun.get_angle_to(player3.global_position)) - 90.0
+					big_coin.init(1.0, homing_angle)
+					big_coin.global_position = gun.global_position
