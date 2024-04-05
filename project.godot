@@ -71,4 +71,5 @@ player_focus={
 2d_physics/layer_4="Blocks"
 2d_physics/layer_5="Bullets"
 2d_physics/layer_6="Player3Shot"
-2d_physics/layer_7="Enemy"
+2d_physics/layer_7="Komachi"
+2d_physics/layer_8="KomachiShot"

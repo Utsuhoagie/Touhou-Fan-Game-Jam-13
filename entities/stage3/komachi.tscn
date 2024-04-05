@@ -28,3 +28,41 @@ shape = SubResource("CircleShape2D_tujep")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.45098, 0.45098, 0.443137)
 sprite_frames = SubResource("SpriteFrames_24vcj")
+
+[node name="Spell1 Guns" type="Node2D" parent="."]
+
+[node name="Gun1" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(96, 0)
+rotation = -1.5708
+
+[node name="Gun2" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(72, 64)
+rotation = -0.785398
+
+[node name="Gun3" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(0, 96)
+
+[node name="Gun4" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(-72, 64)
+rotation = 0.785398
+
+[node name="Gun5" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(-96, 0)
+rotation = 1.5708
+
+[node name="Gun6" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(-72, -64)
+rotation = 2.35619
+
+[node name="Gun7" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(0, -96)
+rotation = 3.14159
+
+[node name="Gun8" type="Node2D" parent="Spell1 Guns"]
+position = Vector2(72, -64)
+rotation = -2.35619
+
+[node name="Spell1 Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
