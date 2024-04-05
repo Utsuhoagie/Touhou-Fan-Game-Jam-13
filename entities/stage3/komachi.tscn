@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwo4sjv6kvemh"]
+
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
+[ext_resource type="Script" path="res://entities/stage3/komachi.gd" id="1_r65lr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
+radius = 96.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24vcj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5xv0a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Komachi" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 34
+script = ExtResource("1_r65lr")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tujep")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.45098, 0.45098, 0.443137)
+sprite_frames = SubResource("SpriteFrames_24vcj")
