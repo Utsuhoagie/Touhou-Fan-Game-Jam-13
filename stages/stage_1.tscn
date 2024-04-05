@@ -15,11 +15,9 @@ layer_0/tile_data = PackedInt32Array(327689, 0, 0, 327690, 65536, 0, 393225, 0, 
 
 [node name="Player" parent="." instance=ExtResource("2_dmm36")]
 position = Vector2(640, 920)
-speed = 500
 
 [node name="YinyangOrb" parent="." instance=ExtResource("3_hwy0x")]
 position = Vector2(1248, 640)
-swing_bounce = 1250.0
 
 [node name="Block" parent="." instance=ExtResource("4_5ypuo")]
 position = Vector2(192, 240)
