@@ -5,22 +5,21 @@ var speed := 500
 
 @onready var death_timer: Timer = $DeathTimer
 @onready var invincible_timer: Timer = $InvincibleTimer
+@onready var graze_area: Area2D = $GrazeArea
 @onready var gun: Node2D = $Gun
 @onready var gun_timer: Timer = $GunTimer
-@onready var hitbox: CollisionShape2D = $Hitbox
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var swing_collision_area: Area2D = $SwingCollisionArea
 @onready var swing_cooldown_timer: Timer = $SwingCooldownTimer
 @onready var yinyang_orb: YinyangOrb = $"../YinyangOrb"
 
-var alive: bool = true
 var shot_preload = preload("res://entities/stage1/player_1_shot.tscn")
 var player_size: Vector2i
 var viewport_size: Vector2i
 
 
 func _ready() -> void:
-	player_size = hitbox.shape.get_rect().size
+	player_size = $GrazeArea/CollisionShape2D.shape.get_rect().size
 	viewport_size = get_viewport().size
 	
 
@@ -34,12 +33,12 @@ func _physics_process(delta: float) -> void:
 	and swing_cooldown_timer.is_stopped()):
 		swing_cooldown_timer.start()
 		
-		if swing_collision_area.has_overlapping_bodies():
+		if swing_collision_area.overlaps_body(yinyang_orb):
 			yinyang_orb.handle_player_swing(position)
 	
 	handle_shoot()
 	
-	if (has_overlapping_bodies() and death_timer.is_stopped()
+	if (overlaps_body(yinyang_orb) and death_timer.is_stopped()
 	and invincible_timer.is_stopped()):
 		die()
 		
@@ -51,6 +50,13 @@ func die() -> void:
 	await death_timer.timeout
 	
 	invincible_timer.start()
+	
+
+func _on_graze_area_body_exited(body):
+	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
+		return
+	
+	print("damn a graze")
 	
 
 func handle_movement(input_map: float, delta: float) -> void:

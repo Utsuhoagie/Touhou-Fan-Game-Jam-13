@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cufr5n30dlusn"]
+[gd_scene load_steps=24 format=3 uid="uid://cufr5n30dlusn"]
 
 [ext_resource type="Script" path="res://entities/stage1/player1.gd" id="1_1cxu7"]
 [ext_resource type="Texture2D" uid="uid://cgi70rjl1lmwh" path="res://assets/sprites/Character_Combat_Mizuchi.png" id="2_e452u"]
@@ -159,6 +159,10 @@ animations = [{
 radius = 8.0
 height = 64.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_grwig"]
+radius = 40.0
+height = 112.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6vh5"]
 size = Vector2(288, 208)
 
@@ -169,7 +173,7 @@ script = ExtResource("1_1cxu7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3.57628e-07, -44)
-scale = Vector2(2.5, 2.625)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_npyx8")
 animation = &"invincible"
 frame_progress = 0.484289
@@ -177,12 +181,20 @@ frame_progress = 0.484289
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_il02v")
 
+[node name="GrazeArea" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeArea"]
+shape = SubResource("CapsuleShape2D_grwig")
+
 [node name="SwingCollisionArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwingCollisionArea"]
-position = Vector2(0, -64)
+position = Vector2(0, -56)
 shape = SubResource("RectangleShape2D_b6vh5")
 
 [node name="DeathTimer" type="Timer" parent="."]
@@ -201,3 +213,5 @@ one_shot = true
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(0, -72)
+
+[connection signal="body_exited" from="GrazeArea" to="." method="_on_graze_area_body_exited"]

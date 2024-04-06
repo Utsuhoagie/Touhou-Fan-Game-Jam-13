@@ -20,7 +20,6 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(velocity * delta)
 	)
 	if collision:
-		var collider: Object = collision.get_collider()
 		velocity = velocity.bounce(collision.get_normal())
 		velocity *= 0.9
 	
