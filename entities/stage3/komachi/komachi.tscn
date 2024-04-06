@@ -1,13 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=5 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
-
-[sub_resource type="Curve2D" id="Curve2D_0f3pq"]
-_data = {
-"points": PackedVector2Array(1.49831, -56.9357, -1.49831, 56.9357, -320, 0, -322.136, 0, 322.136, 0, 0, 128, 0, 64.4272, 0, -64.4272, 320, 0, 326.631, 2.99661, -326.631, -2.99661, 0, -128, -2.99661, -67.4238, 2.99661, 67.4238, -320, 0)
-}
-point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 96.0
@@ -26,7 +20,6 @@ animations = [{
 [node name="Komachi" type="Node2D"]
 
 [node name="Path" type="Path2D" parent="."]
-curve = SubResource("Curve2D_0f3pq")
 
 [node name="Path Follow" type="PathFollow2D" parent="Path"]
 position = Vector2(-320, 0)
@@ -102,3 +95,11 @@ position = Vector2(-128, -24)
 
 [node name="Gun4" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Homing"]
 position = Vector2(-256, 56)
+
+[node name="Spell2 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
+
+[node name="Circle Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
+wait_time = 1.8
+one_shot = true
+
+[node name="Circle Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]

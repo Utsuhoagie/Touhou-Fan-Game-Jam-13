@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjofggg07iy30"]
+
+[ext_resource type="Script" path="res://entities/stage3/komachi/komachi_shot_coin_medium.gd" id="1_mouqx"]
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_jvog8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbulv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jvog8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ryx0"]
+radius = 16.0
+
+[node name="Komachi Shot Coin Medium" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_mouqx")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.952941, 0.6, 1)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_rbulv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(1.6, 1.6)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ryx0")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
