@@ -33,6 +33,14 @@ func handle_movement(delta: float) -> void:
 
 	velocity = Vector2(x_dir * speed, y_dir * speed) * delta
 
+	match x_dir:
+		-1.0:
+			sprite.play("left")
+		0.0:
+			sprite.play("default")
+		1.0:
+			sprite.play("right")
+
 	if x_dir and y_dir:
 		velocity *= 0.7
 

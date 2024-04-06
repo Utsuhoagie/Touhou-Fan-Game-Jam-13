@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://dh74hqox0fmwo"]
 
 [ext_resource type="Script" path="res://entities/stage3/player/player_3_shot.gd" id="1_i47pq"]
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_ht5gi"]
+[ext_resource type="Texture2D" uid="uid://bnlwrkxf21gor" path="res://assets/sprites/Parsee_Bullet_1.png" id="2_nvvpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lk5s"]
-size = Vector2(8, 16)
+size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_msrki"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ht5gi")
+"texture": ExtResource("2_nvvpe")
 }],
 "loop": true,
 "name": &"default",
@@ -26,12 +26,11 @@ script = ExtResource("1_i47pq")
 shape = SubResource("RectangleShape2D_0lk5s")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.38419e-07, 4.76837e-07)
-scale = Vector2(0.0625, 0.125)
 sprite_frames = SubResource("SpriteFrames_msrki")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(0.8, 1)
+position = Vector2(0, 4.17233e-07)
+scale = Vector2(0.8, 0.8)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

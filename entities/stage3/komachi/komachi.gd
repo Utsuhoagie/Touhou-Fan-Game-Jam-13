@@ -15,7 +15,7 @@ var current_spell := 2 # 1
 @onready var path_follow: PathFollow2D = $"../"
 
 @onready var player3: Player3 = $"../../../../Player3" as Player3
-@onready var original_position: Vector2 = ($"../../../" as Node2D).global_position
+@onready var original_position: Vector2 = Vector2(640, 128) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
 
 # Spell 1
 const SPELL_1_WAVES_ROTATION_DEGREES := 1.0
@@ -31,7 +31,7 @@ var spell_1_homing_recently_shot: Array[int] = []
 const SPELL_2_CIRCLES_ROTATION_DEGREES := 15.0
 const SPELL_2_MAX_COINS_PER_CIRCLE := 30
 const SPELL_2_MAX_CIRCLES := 3
-const SPELL_2_MAX_CIRCLE_WAVES := 1 + 1	# has to add 1, don't know why
+const SPELL_2_MAX_CIRCLE_WAVES := 3 + 1	# has to add 1, don't know why
 const SPELL_2_MELEE_DISTANCE := 240.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
@@ -168,7 +168,7 @@ func handle_spell(delta: float) -> void:
 
 					var target_position := original_position - global_position
 					velocity = target_position * spell_2_melee_deceleration * SPEED * delta
-					spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.02, 0.3, 1.0)
+					spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.014, 0.4, 1.0)
 
 					move_and_slide()
 
