@@ -9,7 +9,7 @@ func _process(delta) -> void:
 	
 
 func _on_body_entered(body) -> void:
-	if body.get_name() == "YinyangOrb":
+	if body.get_name() == "YinyangOrb1":
 		var diff_x: float = body.position.x - position.x
 		var angle_radians: float = remap(diff_x, -32, 32, -PI * 0.625, -PI * 0.375)
 		body.velocity = Vector2(
