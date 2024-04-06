@@ -6,7 +6,7 @@ const SPEED := 150
 var can_take_damage: bool = true
 const MAX_HP := 1000
 const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.95
-const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.4
+const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.9
 @export var current_HP := MAX_HP
 var current_spell: float = 1.0
 
@@ -15,7 +15,7 @@ var current_spell: float = 1.0
 @onready var path_follow: PathFollow2D = $"../"
 
 @onready var player3: Player3 = $"../../../../Player3" as Player3
-@onready var original_position: Vector2 = Vector2(640, 128) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
+@onready var original_position: Vector2 = Vector2(640, 192) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
 
 # Spell 1
 const SPELL_1_WAVES_ROTATION_DEGREES := 1.0
@@ -41,6 +41,17 @@ var spell_2_current_circle_waves_count: int = 0
 var spell_2_melee_deceleration: float = 1.0
 var spell_2_melee_player3_position: Vector2
 var spell_2_melee_is_stopped: bool = false
+
+# Spell 3
+const SPELL_3_RING_COUNT := 6
+var spell_3_path: Curve2D = preload("res://entities/stage3/komachi/spell_3_path.tres")
+@onready var spell_3_guns: Node2D = $"Spell3 Guns"
+@onready var spell_3_fan_gun: Node2D = $"Spell3 Guns/Fan Guns/Gun"
+@onready var spell_3_trident_timer: Timer = $"Spell3 Guns/Fan Guns/Trident Timer"
+@onready var spell_3_coins_timer: Timer = $"Spell3 Guns/Fan Guns/Coins Timer"
+@onready var spell_3_ring_gun: Node2D = $"Spell3 Guns/Ring Guns/Gun"
+@onready var spell_3_ring_timer: Timer = $"Spell3 Guns/Ring Guns/Ring Timer"
+var spell_3_shot_straight_preload := preload("res://entities/stage3/komachi/komachi_shot_straight.tscn")
 
 
 func take_damage(damage: int) -> void:
@@ -131,8 +142,9 @@ func handle_spell(delta: float) -> void:
 			velocity = target_position * SPEED * delta
 			#spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.01, 0.7, 1.0)
 
-			if global_position.distance_to(original_position) <= 5.0:
+			if global_position.distance_to(original_position) <= 10.0:
 				current_spell = 2.0
+				velocity = Vector2.ZERO
 				#spell_2_melee_deceleration = 1.0
 
 		# Spell 2
@@ -244,6 +256,65 @@ func handle_spell(delta: float) -> void:
 						coin_medium.init(j * (360 / SPELL_2_MAX_COINS_PER_CIRCLE) + spell_2_guns.global_rotation_degrees)
 						coin_medium.global_position = spell_2_circle_gun.global_position
 
+
+		# Transition to spell 3
+		# Slowly moves towards original position
+		2.5:
+			var target_position := original_position - global_position
+			velocity = target_position * SPEED * delta
+
+			if global_position.distance_to(original_position) <= 10.0:
+				current_spell = 3.0
+				velocity = Vector2.ZERO
+				path.curve = spell_3_path
+				path_follow.progress_ratio = 0.37
+				position = Vector2.ZERO
+
+		# Spell 3
+		# Fast "trident" pattern outside and in the middle of cone
+		# Slower "fan" waves of coins inside cone
+		# And full ring of big coins, that curve slightly when flying
+		3.0:
+			path_follow.progress_ratio = path_follow.progress_ratio + 0.05 * delta
+
+			if path_follow.progress_ratio >= 0.13 and path_follow.progress_ratio <= 0.63:
+				sprite.play("right")
+			else:
+				sprite.play("left")
+
+			if spell_3_trident_timer.is_stopped():
+				spell_3_trident_timer.start()
+
+				# Trident
+				for i in range(3):
+					var straight: KomachiShotStraight = spell_3_shot_straight_preload.instantiate() as KomachiShotStraight
+					get_tree().current_scene.add_child(straight)
+
+					straight.init(1.0, -30.0 + 30.0 * i)
+					straight.global_position = spell_3_fan_gun.global_position
+
+			if spell_3_coins_timer.is_stopped():
+				spell_3_coins_timer.start()
+
+				for i in range(4):
+					var coin_medium: KomachiShotCoinMedium = spell_2_shot_coin_medium_preload.instantiate() as KomachiShotCoinMedium
+					get_tree().current_scene.add_child(coin_medium)
+
+					var angle := -20.0 + 10.0 * i
+					if angle >= 0.0:
+						angle += 10.0
+					coin_medium.init(angle, false)
+					coin_medium.global_position = spell_3_fan_gun.global_position
+
+			if spell_3_ring_timer.is_stopped():
+				spell_3_ring_timer.start()
+
+				for i in range(SPELL_3_RING_COUNT):
+					var coin_big: KomachiShotCoinBig = spell_1_shot_coin_big_preload.instantiate() as KomachiShotCoinBig
+					get_tree().current_scene.add_child(coin_big)
+
+					coin_big.init(0.6, i * (360 / SPELL_3_RING_COUNT), 0.33)
+					coin_big.global_position = spell_3_ring_gun.global_position
 
 
 func _on_player_kill_hitbox_body_entered(body: Node2D) -> void:

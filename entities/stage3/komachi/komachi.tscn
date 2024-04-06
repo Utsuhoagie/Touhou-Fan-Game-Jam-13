@@ -82,20 +82,19 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixy7q"]
+radius = 81.5843
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lb5d"]
 radius = 24.0
 height = 176.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ixy7q"]
-radius = 81.5843
-
 [node name="Komachi" type="Node2D"]
 
 [node name="Path" type="Path2D" parent="."]
-position = Vector2(0, 7.62939e-06)
 
 [node name="Path Follow" type="PathFollow2D" parent="Path"]
-position = Vector2(-320, 0)
+position = Vector2(-128, -64)
 rotates = false
 
 [node name="Komachi CharacterBody" type="CharacterBody2D" parent="Path/Path Follow"]
@@ -109,6 +108,13 @@ shape = SubResource("CircleShape2D_tujep")
 [node name="Sprite" type="AnimatedSprite2D" parent="Path/Path Follow/Komachi CharacterBody"]
 position = Vector2(0, -7.62939e-06)
 sprite_frames = SubResource("SpriteFrames_24vcj")
+
+[node name="Player Kill Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody"]
+collision_layer = 192
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox"]
+shape = SubResource("CircleShape2D_ixy7q")
 
 [node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
@@ -198,11 +204,26 @@ position = Vector2(-0.397452, 167.55)
 scale = Vector2(0.257686, 1.37124)
 texture = ExtResource("5_d6dj1")
 
-[node name="Player Kill Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody"]
-collision_layer = 192
-collision_mask = 2
+[node name="Spell3 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
-[node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox"]
-shape = SubResource("CircleShape2D_ixy7q")
+[node name="Fan Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns"]
+
+[node name="Trident Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Fan Guns"]
+wait_time = 0.6
+one_shot = true
+
+[node name="Coins Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Fan Guns"]
+wait_time = 1.2
+one_shot = true
+
+[node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Fan Guns"]
+
+[node name="Ring Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns"]
+
+[node name="Ring Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]
+wait_time = 2.8
+one_shot = true
+
+[node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]
 
 [connection signal="body_entered" from="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox" to="Path/Path Follow/Komachi CharacterBody" method="_on_player_kill_hitbox_body_entered"]

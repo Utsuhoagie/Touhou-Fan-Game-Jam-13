@@ -11,7 +11,7 @@
 position = Vector2(640, 872)
 
 [node name="Komachi" parent="." instance=ExtResource("2_pl1v0")]
-position = Vector2(640, 192)
+position = Vector2(649, 193)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource("3_i4yao")

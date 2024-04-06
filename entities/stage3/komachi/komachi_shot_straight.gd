@@ -1,10 +1,8 @@
 extends KomachiBaseShot
-class_name KomachiShotCoinBig
+class_name KomachiShotStraight
 
-const BASE_SPEED := 360.0
+const BASE_SPEED := 420.0
 var speed_multiplier: float = 1.0
-var curve: float = 0.0
-var current_curve: float = curve
 var angle: float = 0.0
 
 
@@ -12,20 +10,17 @@ func _ready() -> void:
 	body_entered.connect(on_body_entered)
 
 
-func init(speed_multiplier: float, angle: float, curve: float = 0.0, color: Color = Color.WHITE) -> void:
+func init(speed_multiplier: float, angle: float) -> void:
 	self.speed_multiplier = speed_multiplier
 	self.angle = angle
-	self.curve = curve
-	randomize_color()
+	sprite.global_rotation_degrees = angle + 180.0
 
 
 func _process(delta: float) -> void:
 	var velocity: Vector2 = Vector2(0, BASE_SPEED * speed_multiplier)\
-		.rotated(deg_to_rad(angle + current_curve))
+		.rotated(deg_to_rad(angle))
 
 	position += velocity * delta
-	current_curve += curve
-	global_rotation_degrees += curve
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

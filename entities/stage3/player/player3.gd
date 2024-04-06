@@ -5,7 +5,7 @@ const MAX_LIVES := 3
 var lives := MAX_LIVES
 var grazes := 0
 
-var speed := 33000.0
+var speed := 27000.0
 var focus_slowdown := 0.45
 
 @onready var sprite: AnimatedSprite2D = $Sprite

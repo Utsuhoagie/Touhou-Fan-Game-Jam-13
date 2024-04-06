@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://hxwjcqgq4sh7"]
+
+[ext_resource type="Script" path="res://entities/stage3/komachi/komachi_shot_straight.gd" id="1_j0bdo"]
+[ext_resource type="Texture2D" uid="uid://dbtxgheb5xrkj" path="res://assets/sprites/Komachi_Bullet2_1.png" id="2_utlgl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbulv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_utlgl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mr7wk"]
+radius = 13.0
+height = 42.0
+
+[node name="Komachi Shot Straight" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_j0bdo")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rbulv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.8, 0.8)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_mr7wk")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

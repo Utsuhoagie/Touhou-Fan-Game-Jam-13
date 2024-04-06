@@ -4,6 +4,7 @@ class_name KomachiShotCoinMedium
 const BASE_SPEED := 900.0
 const MIN_SPEED := 160.0
 const DECELERATION := 0.018
+var has_deceleration: bool
 var speed_multiplier: float = 1.0
 var angle: float = 0.0
 
@@ -12,8 +13,11 @@ func _ready() -> void:
 	body_entered.connect(on_body_entered)
 
 
-func init(angle: float, color: Color = Color.WHITE) -> void:
+func init(angle: float, has_deceleration: bool = true, color: Color = Color.WHITE) -> void:
 	self.angle = angle
+	self.has_deceleration = has_deceleration
+	if not has_deceleration:
+		speed_multiplier = 0.5
 	randomize_color()
 
 
@@ -23,7 +27,7 @@ func _process(delta: float) -> void:
 
 	position += velocity * delta
 
-	if current_speed == BASE_SPEED * speed_multiplier:
+	if has_deceleration and current_speed == BASE_SPEED * speed_multiplier:
 		speed_multiplier -= DECELERATION
 
 
