@@ -54,34 +54,34 @@ autostart = true
 [node name="Waves" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
 
 [node name="Gun1" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(96, 0)
+position = Vector2(64, 0)
 rotation = -1.5708
 
 [node name="Gun2" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(72, 64)
+position = Vector2(48, 48)
 rotation = -0.785398
 
 [node name="Gun3" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(0, 96)
+position = Vector2(0, 64)
 
 [node name="Gun4" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(-72, 64)
+position = Vector2(-48, 48)
 rotation = 0.785398
 
 [node name="Gun5" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(-96, 0)
+position = Vector2(-64, 0)
 rotation = 1.5708
 
 [node name="Gun6" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(-72, -64)
+position = Vector2(-48, -48)
 rotation = 2.35619
 
 [node name="Gun7" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(0, -96)
+position = Vector2(0, -64)
 rotation = 3.14159
 
 [node name="Gun8" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns/Waves"]
-position = Vector2(72, -64)
+position = Vector2(48, -48)
 rotation = -2.35619
 
 [node name="Homing Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]

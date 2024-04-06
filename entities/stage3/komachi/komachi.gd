@@ -21,7 +21,7 @@ const SPELL_1_WAVES_ROTATION_DEGREES := 1.0
 @onready var spell_1_homing_timer: Timer = $"Spell1 Guns/Homing Timer"
 var spell_1_shot_coin_preload := preload("res://entities/stage3/komachi/komachi_shot_coin.tscn")
 var spell_1_shot_coin_big_preload := preload("res://entities/stage3/komachi/komachi_shot_coin_big.tscn")
-
+var spell_1_homing_recently_shot: Array[int] = []
 
 func take_damage(damage: int) -> void:
 	if not can_take_damage:
@@ -73,13 +73,25 @@ func handle_spell(delta: float) -> void:
 
 			if spell_1_homing_timer.is_stopped():
 				spell_1_homing_timer.start()
+				spell_1_homing_recently_shot = []
 
+			if not spell_1_homing_timer.is_stopped():
 				# Shoot 1 big coin, aimed at player
 				var homing_guns: Node2D = spell_1_guns.get_node("Homing")
-				for gun in homing_guns.get_children():
-					var big_coin := spell_1_shot_coin_big_preload.instantiate() as KomachiShotCoinBig
-					get_tree().current_scene.add_child(big_coin)
+				var homing_guns_count: int = homing_guns.get_child_count()
+				var wait_time: float = spell_1_homing_timer.wait_time * 0.6
+				var time_left: float = spell_1_homing_timer.time_left
+				var interval: float = wait_time / homing_guns_count
+				for i in range(homing_guns_count):
+					if i in spell_1_homing_recently_shot:
+						continue
+					if time_left <= wait_time - i * interval and time_left >= wait_time - (i + 1) * interval:
+						var gun := homing_guns.get_child(i)
+						var big_coin := spell_1_shot_coin_big_preload.instantiate() as KomachiShotCoinBig
+						get_tree().current_scene.add_child(big_coin)
 
-					var homing_angle := rad_to_deg(gun.get_angle_to(player3.global_position)) - 90.0
-					big_coin.init(1.0, homing_angle)
-					big_coin.global_position = gun.global_position
+						var homing_angle := rad_to_deg(gun.get_angle_to(player3.global_position)) - 90.0
+						big_coin.init(1.0, homing_angle)
+						big_coin.global_position = gun.global_position
+
+						spell_1_homing_recently_shot.append(i)
