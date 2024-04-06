@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name YinyangOrb
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var swing_bounce := 1100
+var swing_bounce := 1150
 
 @onready var card_tilemap: TileMap = $"../CardTilemap"
 @onready var floor: StaticBody2D = $"../Floor"
