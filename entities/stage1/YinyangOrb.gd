@@ -6,12 +6,13 @@ var swing_bounce := 1150
 
 @onready var card_tilemap: TileMap = $"../CardTilemap"
 @onready var floor: StaticBody2D = $"../Floor"
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var stage_1: Stage1 = get_parent()
 
 
 func _ready() -> void:
 	velocity = Vector2(-750, -750)
+	sprite.play("default")
 	
 
 func _physics_process(delta: float) -> void:
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		if collider == floor:
 			stage_1.combo = 0
 	
-	sprite.flip_h = velocity.x < 0
+	sprite.flip_h = velocity.x > 0
 	
 
 func handle_player_swing(player_pos: Vector2) -> void:

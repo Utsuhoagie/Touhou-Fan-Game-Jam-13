@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7yl7c7lwc57x"]
+[gd_scene load_steps=10 format=3 uid="uid://c7yl7c7lwc57x"]
 
 [ext_resource type="Script" path="res://dialogs/dialog_player.gd" id="1_0vi2j"]
 [ext_resource type="Texture2D" uid="uid://dkjhaqbnbdqnq" path="res://assets/sprites/Character_Dialogue_Mizuchi.png" id="2_b0r6d"]
 [ext_resource type="Texture2D" uid="uid://cjnxwfpc0g3uv" path="res://assets/sprites/Character_Dialogue_Parsee2.png" id="3_x5300"]
 [ext_resource type="Texture2D" uid="uid://djs6ud10qs3gy" path="res://assets/sprites/Character_Dialogue_Komachi.png" id="4_3gxx4"]
+[ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="5_7uhvb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cst0w"]
 atlas = ExtResource("2_b0r6d")
@@ -16,6 +17,9 @@ region = Rect2(0, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0s6tk"]
 atlas = ExtResource("4_3gxx4")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="Theme" id="Theme_uj4m1"]
+Label/fonts/font = ExtResource("5_7uhvb")
 
 [node name="DialogPlayer" type="CanvasLayer"]
 process_mode = 3
@@ -66,6 +70,7 @@ grow_horizontal = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+theme = SubResource("Theme_uj4m1")
 theme_override_font_sizes/font_size = 48
 text = "Parsee?"
 
@@ -73,6 +78,7 @@ text = "Parsee?"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 175)
 layout_mode = 2
+theme = SubResource("Theme_uj4m1")
 theme_override_font_sizes/font_size = 28
 text = "placeholder text, idk what else to write here"
 autowrap_mode = 2
@@ -81,6 +87,7 @@ autowrap_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 40)
 layout_mode = 2
+theme = SubResource("Theme_uj4m1")
 theme_override_font_sizes/font_size = 28
 text = "[Press Enter to proceed]"
 autowrap_mode = 2
