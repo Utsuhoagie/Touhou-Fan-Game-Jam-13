@@ -3,7 +3,7 @@ class_name ScoreLabel
 
 @onready var score_display_timer = $ScoreDisplayTimer
 
-var scroll_speed: int = 50
+var scroll_speed := 50
 
 
 func _process(delta: float):

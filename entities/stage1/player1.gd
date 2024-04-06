@@ -53,7 +53,7 @@ func die() -> void:
 	invincible_timer.start()
 	
 
-func _on_graze_area_body_exited(body):
+func _on_graze_area_body_exited(_body: Node2D):
 	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
 		return
 	
