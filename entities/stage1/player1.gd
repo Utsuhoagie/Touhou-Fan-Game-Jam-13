@@ -50,7 +50,7 @@ func die() -> void:
 	death_timer.start()
 	await death_timer.timeout
 	
-	stage_1.player_lives -= 1
+	stage_1.life_down()
 	invincible_timer.start()
 	
 

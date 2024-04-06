@@ -64,3 +64,11 @@ offset_right = 1215.0
 offset_bottom = 58.0
 theme_override_font_sizes/font_size = 32
 text = "0"
+
+[node name="LifeCountContainer" type="HBoxContainer" parent="."]
+offset_left = 268.0
+offset_top = 16.0
+offset_right = 420.0
+offset_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
