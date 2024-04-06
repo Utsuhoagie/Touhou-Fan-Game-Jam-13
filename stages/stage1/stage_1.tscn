@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cysbqrfdw3t7j"]
+[gd_scene load_steps=8 format=3 uid="uid://cysbqrfdw3t7j"]
 
 [ext_resource type="PackedScene" uid="uid://d0v5llflhppxi" path="res://entities/stage1/card_tilemap.tscn" id="1_dh076"]
+[ext_resource type="Script" path="res://stages/stage1/stage_1.gd" id="1_gnrit"]
+[ext_resource type="PackedScene" uid="uid://cedxc3uohkfft" path="res://stages/stage1/stage_1ui.tscn" id="1_k8nao"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/stage1/player1.tscn" id="2_dmm36"]
 [ext_resource type="PackedScene" uid="uid://bcgpq1uj22phm" path="res://entities/stage1/yinyang_orb.tscn" id="3_hwy0x"]
 [ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/stage1/block.tscn" id="4_5ypuo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trjt0"]
-size = Vector2(1328, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbwp"]
+size = Vector2(1328, 56)
 
 [node name="Stage1" type="Node2D"]
+script = ExtResource("1_gnrit")
+
+[node name="Stage1UI" parent="." instance=ExtResource("1_k8nao")]
 
 [node name="CardTilemap" parent="." instance=ExtResource("1_dh076")]
 layer_0/tile_data = PackedInt32Array(327689, 0, 0, 327690, 65536, 0, 393225, 0, 1, 393226, 65536, 1, 458760, 0, 0, 524295, 0, 0, 589830, 0, 0, 655365, 0, 0, 458763, 65536, 0, 524300, 65536, 0, 589837, 65536, 0, 655374, 65536, 0, 589828, 65536, 0, 524291, 65536, 0, 458754, 65536, 0, 393217, 65536, 0, 327680, 65536, 0, 589839, 0, 0, 524304, 0, 0, 458769, 0, 0, 393234, 0, 0, 327699, 0, 0, 786433, 0, 1, 786434, 65536, 1, 786449, 0, 0, 786450, 65536, 0, 786441, 0, 1, 786442, 65536, 0)
@@ -55,8 +60,11 @@ collision_mask = 22
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls"]
 position = Vector2(-2, 470)
-polygon = PackedVector2Array(-12, -352, -12, 504, 1316, 504, 1316, -352, 1292, -352, 1292, 480, 12, 480, 12, -352)
+polygon = PackedVector2Array(-12, -480, -12, 480, 12, 480, 12, -352, 1292, -352, 1292, 480, 1316, 480, 1316, -480)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(650, 54)
-shape = SubResource("RectangleShape2D_trjt0")
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(-8, 1024)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(648, -36)
+shape = SubResource("RectangleShape2D_mqbwp")

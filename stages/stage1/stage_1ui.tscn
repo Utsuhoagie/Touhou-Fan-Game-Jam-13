@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cedxc3uohkfft"]
+
+[ext_resource type="Script" path="res://stages/stage1/stage_1ui.gd" id="1_kie0t"]
+
+[node name="Stage1UI" type="CanvasLayer"]
+script = ExtResource("1_kie0t")
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 192.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+
+[node name="GrazeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_top = 42.0
+offset_right = 192.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 32
+text = "Graze: 0"
+
+[node name="ComboLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 608.0
+offset_right = 800.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Combo: 0"
+
+[node name="MaxComboLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 608.0
+offset_top = 42.0
+offset_right = 821.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 32
+text = "MaxCombo: 0"

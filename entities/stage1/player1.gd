@@ -3,6 +3,7 @@ class_name Player1
 
 var speed := 500
 
+@onready var stage_1: Stage1 = get_parent()
 @onready var death_timer: Timer = $DeathTimer
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var graze_area: Area2D = $GrazeArea
@@ -56,7 +57,8 @@ func _on_graze_area_body_exited(body):
 	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
 		return
 	
-	print("damn a graze")
+	stage_1.graze_count += 1
+	stage_1.score += 1000
 	
 
 func handle_movement(input_map: float, delta: float) -> void:

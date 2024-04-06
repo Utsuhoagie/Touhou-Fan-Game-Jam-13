@@ -5,7 +5,9 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var swing_bounce := 1250
 
 @onready var card_tilemap: TileMap = $"../CardTilemap"
+@onready var floor: StaticBody2D = $"../Floor"
 @onready var sprite: Sprite2D = $Sprite
+@onready var stage_1: Stage1 = get_parent()
 
 
 func _ready() -> void:
@@ -20,8 +22,12 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(velocity * delta)
 	)
 	if collision:
+		var collider: Object = collision.get_collider()
 		velocity = velocity.bounce(collision.get_normal())
 		velocity *= 0.9
+		
+		if collider == floor:
+			stage_1.combo = 0
 	
 	sprite.flip_h = velocity.x < 0
 	

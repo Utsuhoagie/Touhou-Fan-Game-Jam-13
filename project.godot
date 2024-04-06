@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Touhou Fan Game Jam 13"
-run/main_scene="res://stages/stage_1.tscn"
+run/main_scene="res://stages/stage1/stage_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
