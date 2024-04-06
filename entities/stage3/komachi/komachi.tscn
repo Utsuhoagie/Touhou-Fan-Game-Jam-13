@@ -116,6 +116,10 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox"]
 shape = SubResource("CircleShape2D_ixy7q")
 
+[node name="Bomb Damage Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
 [node name="Waves Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
@@ -227,3 +231,4 @@ one_shot = true
 [node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]
 
 [connection signal="body_entered" from="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox" to="Path/Path Follow/Komachi CharacterBody" method="_on_player_kill_hitbox_body_entered"]
+[connection signal="timeout" from="Path/Path Follow/Komachi CharacterBody/Bomb Damage Timer" to="Path/Path Follow/Komachi CharacterBody" method="_on_bomb_damage_timer_timeout"]

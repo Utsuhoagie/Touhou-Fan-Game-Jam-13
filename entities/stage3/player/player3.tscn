@@ -167,6 +167,25 @@ position = Vector2(-16, -32)
 [node name="Gun2" type="Node2D" parent="Guns"]
 position = Vector2(16, -32)
 
+[node name="Bomb Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="Bomb Homing Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="Bomb Guns" type="Node2D" parent="."]
+
+[node name="Gun1" type="Node2D" parent="Bomb Guns"]
+position = Vector2(0, -72)
+
+[node name="Gun2" type="Node2D" parent="Bomb Guns"]
+position = Vector2(72, 48)
+
+[node name="Gun3" type="Node2D" parent="Bomb Guns"]
+position = Vector2(-72, 48)
+
 [node name="Graze Hitbox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 128
@@ -176,4 +195,6 @@ shape = SubResource("CapsuleShape2D_kdcms")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="Invincible Timer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="Bomb Timer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="Bomb Homing Timer" to="." method="_on_bomb_homing_timer_timeout"]
 [connection signal="area_entered" from="Graze Hitbox" to="." method="_on_graze_hitbox_area_entered"]

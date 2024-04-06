@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://dg61xv38pyeqg"]
+
+[ext_resource type="Texture2D" uid="uid://c32eb3n1h4p7e" path="res://assets/sprites/Ying-Yang_Orb.png" id="1_ftb45"]
+[ext_resource type="Script" path="res://entities/stage3/player/bomb_orb.gd" id="1_uw4t7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw600"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80qiq"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqeu2"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2oxv"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ybv6"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8recj"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnlrc"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujgy0"]
+atlas = ExtResource("1_ftb45")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebe62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw600")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80qiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqeu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2oxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ybv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8recj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnlrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujgy0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nq2c"]
+radius = 72.0
+
+[node name="Bomb Orb" type="Area2D"]
+collision_layer = 32
+collision_mask = 192
+script = ExtResource("1_uw4t7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_ebe62")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8nq2c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.8, 0.8)

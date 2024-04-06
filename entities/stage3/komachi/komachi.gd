@@ -13,6 +13,7 @@ var current_spell: float = 1.0
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var path: Path2D = $"../../"
 @onready var path_follow: PathFollow2D = $"../"
+@onready var bomb_damage_timer: Timer = $"Bomb Damage Timer"
 
 @onready var player3: Player3 = $"../../../../Player3" as Player3
 @onready var original_position: Vector2 = Vector2(640, 192) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
@@ -54,19 +55,26 @@ var spell_3_path: Curve2D = preload("res://entities/stage3/komachi/spell_3_path.
 var spell_3_shot_straight_preload := preload("res://entities/stage3/komachi/komachi_shot_straight.tscn")
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, is_bomb: bool = false) -> void:
 	if not can_take_damage:
 		return
 
 	current_HP -= damage
 
+	if is_bomb:
+		bomb_damage_timer.start()
+		can_take_damage = false
+
+
 	if current_HP <= HP_THRESHOLD_SPELL_2 and current_spell == 1.0:
+		can_take_damage = false
 		current_spell = 1.5
 	elif current_HP <= HP_THRESHOLD_SPELL_3 and current_spell == 2.0:
+		can_take_damage = false
 		current_spell = 2.5
 	elif current_HP <= 0 and current_spell == 3.0:
-		current_spell = -1
 		can_take_damage = false
+		current_spell = -1
 		print("die")
 
 
@@ -153,6 +161,7 @@ func handle_spell(delta: float) -> void:
 		# After charging finishes, charge at player, then wait.
 		# Then do big melee scythe slash.
 		2.0:
+			can_take_damage = true
 			path.curve = null
 
 			var melee_timer: Timer = spell_2_guns.get_node("Melee Timer") as Timer
@@ -275,6 +284,7 @@ func handle_spell(delta: float) -> void:
 		# Slower "fan" waves of coins inside cone
 		# And full ring of big coins, that curve slightly when flying
 		3.0:
+			can_take_damage = true
 			path_follow.progress_ratio = path_follow.progress_ratio + 0.05 * delta
 
 			if path_follow.progress_ratio >= 0.13 and path_follow.progress_ratio <= 0.63:
@@ -320,3 +330,7 @@ func handle_spell(delta: float) -> void:
 func _on_player_kill_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player3:
 		body.die()
+
+
+func _on_bomb_damage_timer_timeout() -> void:
+	can_take_damage = true

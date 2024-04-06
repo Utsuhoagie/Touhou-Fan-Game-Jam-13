@@ -7,8 +7,9 @@
 
 [node name="Stage3" type="Node2D"]
 
-[node name="Player3" parent="." instance=ExtResource("1_f4gx4")]
+[node name="Player3" parent="." node_paths=PackedStringArray("komachi_node") instance=ExtResource("1_f4gx4")]
 position = Vector2(640, 872)
+komachi_node = NodePath("../Komachi")
 
 [node name="Komachi" parent="." instance=ExtResource("2_pl1v0")]
 position = Vector2(649, 193)
