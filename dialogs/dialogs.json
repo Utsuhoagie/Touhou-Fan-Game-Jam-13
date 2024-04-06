@@ -1,0 +1,30 @@
+{
+	"intro": [],
+	"post_stage1": [
+		{
+			"character": "0",
+			"sprite": 0,
+			"text": "The walls are now cleared. \n...who's that in the distance?"
+		},
+		{
+			"character": "1",
+			"sprite": 0,
+			"text": "You're not supposed to break out of this prison, Mizuchi."
+		},
+		{
+			"character": "0",
+			"sprite": 1,
+			"text": "Not like this prison can hold me in anyway."
+		},
+		{
+			"character": "1",
+			"sprite": 0,
+			"text": "Well I can."
+		},
+		{
+			"character": "0",
+			"sprite": 0,
+			"text": "Oh really? I'd like to see you try."
+		}
+	]
+}
