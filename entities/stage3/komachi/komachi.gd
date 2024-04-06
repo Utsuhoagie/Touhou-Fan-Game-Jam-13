@@ -32,7 +32,7 @@ var spell_1_homing_recently_shot: Array[int] = []
 const SPELL_2_CIRCLES_ROTATION_DEGREES := 15.0
 const SPELL_2_MAX_COINS_PER_CIRCLE := 30
 const SPELL_2_MAX_CIRCLES := 3
-const SPELL_2_MAX_CIRCLE_WAVES := 3 + 1	# has to add 1, don't know why
+const SPELL_2_MAX_CIRCLE_WAVES := 1 + 1	# has to add 1, don't know why
 const SPELL_2_MELEE_DISTANCE := 180.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
@@ -42,6 +42,7 @@ var spell_2_current_circle_waves_count: int = 0
 var spell_2_melee_deceleration: float = 1.0
 var spell_2_melee_player3_position: Vector2
 var spell_2_melee_is_stopped: bool = false
+var spell_2_melee_finished: bool = false
 
 # Spell 3
 const SPELL_3_RING_COUNT := 6
@@ -170,7 +171,7 @@ func handle_spell(delta: float) -> void:
 				sprite.play("left")
 			elif velocity.x > 0:
 				sprite.play("right")
-			else:
+			elif velocity.x == 0 and spell_2_current_circle_waves_count < SPELL_2_MAX_CIRCLE_WAVES:
 				sprite.play("default")
 
 			if spell_2_current_circle_waves_count == SPELL_2_MAX_CIRCLE_WAVES:
@@ -194,6 +195,7 @@ func handle_spell(delta: float) -> void:
 						velocity = Vector2.ZERO
 						spell_2_melee_deceleration = 1.0
 						spell_2_melee_is_stopped = true
+						sprite.play("default")
 					#move_and_slide()
 
 				elif time_left_ratio >= 0.71:
@@ -204,10 +206,21 @@ func handle_spell(delta: float) -> void:
 					var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
 					var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
 					var melee_hitbox_sprite: Sprite2D = melee_hitbox.get_node("Sprite") as Sprite2D
+
+					if sprite.animation != "attack" and not spell_2_melee_finished:
+						sprite.play("attack")
+					if sprite.animation == "attack" and sprite.frame == 3:
+						sprite.play("default")
+						melee_hitbox_sprite.visible = false
+						spell_2_melee_finished = true
+						return
+					if spell_2_melee_finished:
+						return
 					melee_hitbox_collision.disabled = false
 					melee_hitbox_sprite.visible = true
-					melee_hitbox.global_rotation_degrees += 10.0
-					melee_hitbox.global_rotation_degrees = clampf(melee_hitbox.global_rotation_degrees, -90.0, 90.0)
+					melee_hitbox.global_rotation_degrees = clampf(melee_hitbox.global_rotation_degrees - 10.0, -140.0, 0.0)
+
+
 
 				elif time_left_ratio >= 0.15:
 					print("returning to %s" % original_position)
@@ -216,7 +229,7 @@ func handle_spell(delta: float) -> void:
 					var melee_hitbox_sprite: Sprite2D = melee_hitbox.get_node("Sprite") as Sprite2D
 					melee_hitbox_sprite.visible = false
 					melee_hitbox_collision.disabled = true
-					melee_hitbox.global_rotation_degrees = -90.0
+					melee_hitbox.global_rotation_degrees = 0.0
 
 					var target_position := original_position - global_position
 					velocity = target_position * spell_2_melee_deceleration * SPEED * delta
@@ -227,6 +240,7 @@ func handle_spell(delta: float) -> void:
 				else:
 					spell_2_melee_deceleration = 1.0
 					spell_2_melee_is_stopped = false
+					spell_2_melee_finished = false
 					spell_2_current_circle_waves_count = 0
 					velocity = Vector2.ZERO
 
@@ -237,7 +251,7 @@ func handle_spell(delta: float) -> void:
 				spell_2_circle_timer.start()
 				spell_2_current_circle_count = 0
 				spell_2_current_circle_waves_count += 1
-				spell_2_guns.global_rotation += SPELL_2_CIRCLES_ROTATION_DEGREES
+				spell_2_guns.get_node("Circle Gun").global_rotation += SPELL_2_CIRCLES_ROTATION_DEGREES
 
 			if spell_2_current_circle_waves_count == SPELL_2_MAX_CIRCLE_WAVES:
 				return

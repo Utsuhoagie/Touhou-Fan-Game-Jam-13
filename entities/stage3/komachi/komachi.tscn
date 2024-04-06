@@ -1,12 +1,29 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=22 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
 [ext_resource type="Texture2D" uid="uid://dkjeau3m3y6xk" path="res://assets/sprites/Character_Boss_Komachi.png" id="2_ono5v"]
+[ext_resource type="Texture2D" uid="uid://dkm51vggf8t61" path="res://assets/sprites/Character_Boss_Komachi2.png" id="2_r57g1"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi_melee_hitbox.gd" id="4_e2dmd"]
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="5_d6dj1"]
+[ext_resource type="Texture2D" uid="uid://4sty4iwtufay" path="res://assets/sprites/Scythe.png" id="5_j1gkb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 72.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul76i"]
+atlas = ExtResource("2_r57g1")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2jkf"]
+atlas = ExtResource("2_r57g1")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um8qa"]
+atlas = ExtResource("2_r57g1")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqt2p"]
+atlas = ExtResource("2_r57g1")
+region = Rect2(384, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmath"]
 atlas = ExtResource("2_ono5v")
@@ -42,6 +59,23 @@ region = Rect2(384, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_24vcj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul76i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2jkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um8qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqt2p")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cmath")
@@ -108,6 +142,7 @@ shape = SubResource("CircleShape2D_tujep")
 [node name="Sprite" type="AnimatedSprite2D" parent="Path/Path Follow/Komachi CharacterBody"]
 position = Vector2(0, -7.62939e-06)
 sprite_frames = SubResource("SpriteFrames_24vcj")
+animation = &"attack"
 
 [node name="Player Kill Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody"]
 collision_layer = 192
@@ -192,21 +227,21 @@ wait_time = 3.2
 one_shot = true
 
 [node name="Melee Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
-rotation = -1.5708
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("4_e2dmd")
 
 [node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
-position = Vector2(-0.000600529, 168)
+position = Vector2(-128, 40)
+rotation = 1.309
 shape = SubResource("CapsuleShape2D_2lb5d")
 disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
 visible = false
-position = Vector2(-0.397452, 167.55)
-scale = Vector2(0.257686, 1.37124)
-texture = ExtResource("5_d6dj1")
+position = Vector2(-136, 48)
+rotation = -0.785398
+texture = ExtResource("5_j1gkb")
 
 [node name="Spell3 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
