@@ -8,7 +8,7 @@ const MAX_HP := 1000
 const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.95
 const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.4
 @export var current_HP := MAX_HP
-var current_spell := 1
+var current_spell: float = 1.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var path: Path2D = $"../../"
@@ -49,12 +49,11 @@ func take_damage(damage: int) -> void:
 
 	current_HP -= damage
 
-	if current_HP <= HP_THRESHOLD_SPELL_2 and current_spell == 1:
-		current_spell = 2
-		global_position = original_position
-	elif current_HP <= HP_THRESHOLD_SPELL_3 and current_spell == 2:
-		current_spell = 3
-	elif current_HP <= 0 and current_spell == 3:
+	if current_HP <= HP_THRESHOLD_SPELL_2 and current_spell == 1.0:
+		current_spell = 1.5
+	elif current_HP <= HP_THRESHOLD_SPELL_3 and current_spell == 2.0:
+		current_spell = 2.5
+	elif current_HP <= 0 and current_spell == 3.0:
 		current_spell = -1
 		can_take_damage = false
 		print("die")
@@ -75,7 +74,7 @@ func handle_spell(delta: float) -> void:
 		# Moves slowly
 		# Circular waves: each wave has velocities increasing from one end to the other.
 		# Homing, staggered single shots: fast, big bullets.
-		1:
+		1.0:
 			if not path.curve:
 				path.curve = spell_1_path
 			path_follow.progress_ratio = path_follow.progress_ratio + 0.05 * delta
@@ -125,12 +124,23 @@ func handle_spell(delta: float) -> void:
 						spell_1_homing_recently_shot.append(i)
 
 
+		# Transition to spell 2
+		# Slowly moves towards original position
+		1.5:
+			var target_position := original_position - global_position
+			velocity = target_position * SPEED * delta
+			#spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.01, 0.7, 1.0)
+
+			if global_position.distance_to(original_position) <= 5.0:
+				current_spell = 2.0
+				#spell_2_melee_deceleration = 1.0
+
 		# Spell 2
 		# Stationary and shooting fast, but decelerating medium coins in circles
 		# Once every few seconds, charge up and pause circles.
 		# After charging finishes, charge at player, then wait.
 		# Then do big melee scythe slash.
-		2:
+		2.0:
 			path.curve = null
 
 			var melee_timer: Timer = spell_2_guns.get_node("Melee Timer") as Timer
@@ -234,3 +244,8 @@ func handle_spell(delta: float) -> void:
 						coin_medium.init(j * (360 / SPELL_2_MAX_COINS_PER_CIRCLE) + spell_2_guns.global_rotation_degrees)
 						coin_medium.global_position = spell_2_circle_gun.global_position
 
+
+
+func _on_player_kill_hitbox_body_entered(body: Node2D) -> void:
+	if body is Player3:
+		body.die()

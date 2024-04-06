@@ -3,6 +3,7 @@ class_name Player3
 
 const MAX_LIVES := 3
 var lives := MAX_LIVES
+var grazes := 0
 
 var speed := 33000.0
 var focus_slowdown := 0.45
@@ -23,11 +24,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	handle_animation()
 	handle_movement(delta)
 	handle_shoot(delta)
 
 	move_and_slide()
 	clamp_in_screen()
+
+
+func handle_animation() -> void:
+	if hitbox.disabled and sprite.animation != "die":
+		sprite.visible = !sprite.visible
+	else:
+		sprite.visible = true
 
 
 func handle_movement(delta: float) -> void:
@@ -59,6 +68,9 @@ func handle_movement(delta: float) -> void:
 
 
 func handle_shoot(delta: float) -> void:
+	if hitbox.disabled:
+		return
+
 	if Input.is_action_pressed("player_shoot") and gun_timer.is_stopped():
 		gun_timer.start()
 		for gun in guns.get_children():
@@ -81,14 +93,18 @@ func die() -> void:
 		get_tree().paused = true
 
 
-
 func _on_sprite_animation_finished() -> void:
 	if sprite.animation == "die":
 		sprite.play("invincible")
 		($"Invincible Timer" as Timer).start()
 
 
-
 func _on_invincible_timer_timeout() -> void:
 	sprite.play("default")
 	hitbox.disabled = false
+
+
+func _on_graze_hitbox_area_entered(area: Area2D) -> void:
+	if area is KomachiBaseShot and not hitbox.disabled:
+		grazes += 1
+		print(grazes)
