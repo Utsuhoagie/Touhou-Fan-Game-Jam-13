@@ -1,38 +1,38 @@
 [gd_scene load_steps=13 format=3 uid="uid://bcgpq1uj22phm"]
 
-[ext_resource type="Script" path="res://entities/stage1/YinyangOrb.gd" id="1_clwyf"]
-[ext_resource type="Texture2D" uid="uid://c32eb3n1h4p7e" path="res://assets/sprites/Ying-Yang_Orb.png" id="2_vmbl0"]
+[ext_resource type="Script" path="res://entities/stage1/YinyangOrb1.gd" id="1_qbokn"]
+[ext_resource type="Texture2D" uid="uid://c32eb3n1h4p7e" path="res://assets/sprites/Ying-Yang_Orb.png" id="2_ydnm4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c37s3"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0soyj"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjyj2"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxltg"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck73b"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxirh"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixsc5"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_llxsi"]
-atlas = ExtResource("2_vmbl0")
+atlas = ExtResource("2_ydnm4")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2t6u"]
@@ -70,10 +70,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qud6h"]
 radius = 32.0
 
-[node name="YinyangOrb" type="CharacterBody2D"]
+[node name="YinyangOrb1" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 11
-script = ExtResource("1_clwyf")
+script = ExtResource("1_qbokn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

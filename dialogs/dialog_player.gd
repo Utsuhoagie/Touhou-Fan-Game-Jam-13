@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	var dialogs_file = FileAccess.open(dialogs_file_path, FileAccess.READ)
 	dialogs_dict = JSON.parse_string(dialogs_file.get_as_text())
-	if not dialogs_dict[dialog_key]:
+	if not dialog_key in dialogs_dict:
 		return print("ERROR: dialog key doesn't exist in dialogs.json")
 	
 

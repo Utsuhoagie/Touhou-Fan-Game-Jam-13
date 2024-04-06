@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjikxgwdsit6w"]
+[gd_scene load_steps=3 format=3 uid="uid://cjikxgwdsit6w"]
 
+[ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="1_56ygn"]
 [ext_resource type="Script" path="res://entities/stage1/score_label.gd" id="1_kmqma"]
 
 [node name="ScoreLabel" type="Label"]
@@ -7,6 +8,7 @@ offset_left = -20.0
 offset_top = -11.0
 offset_right = 20.0
 offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("1_56ygn")
 script = ExtResource("1_kmqma")
 
 [node name="ScoreDisplayTimer" type="Timer" parent="."]

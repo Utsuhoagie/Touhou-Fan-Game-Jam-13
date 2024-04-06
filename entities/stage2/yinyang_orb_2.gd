@@ -1,13 +1,14 @@
 extends CharacterBody2D
-class_name YinyangOrb
+class_name YinyangOrb2
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var swing_bounce := 1150
 
-@onready var card_tilemap: TileMap = $"../CardTilemap"
 @onready var floor: StaticBody2D = $"../Floor"
+@onready var guns: Node2D = $Guns
+@onready var gun_timer: Timer = $GunTimer
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var stage_1: Stage1 = get_parent()
+@onready var stage_2: Stage2 = get_parent()
 
 
 func _ready() -> void:
@@ -17,7 +18,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	card_tilemap.check_overlap(position)
 	
 	var collision: KinematicCollision2D = (
 		move_and_collide(velocity * delta)
@@ -28,7 +28,12 @@ func _physics_process(delta: float) -> void:
 		velocity *= 0.9
 		
 		if collider == floor:
-			stage_1.combo = 0
+			stage_2.combo = 0
+	
+	if gun_timer.is_stopped():
+		gun_timer.start()
+		for gun in guns.get_children():
+			pass
 	
 	sprite.flip_h = velocity.x > 0
 	

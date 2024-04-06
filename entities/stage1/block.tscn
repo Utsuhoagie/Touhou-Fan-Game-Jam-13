@@ -1,23 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr0xderkkf2qk"]
+[gd_scene load_steps=11 format=3 uid="uid://cr0xderkkf2qk"]
 
 [ext_resource type="Script" path="res://entities/stage1/block.gd" id="1_lav3a"]
+[ext_resource type="Texture2D" uid="uid://75qejev6mynn" path="res://assets/sprites/Prison_Wall.png" id="2_8m38r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn227"]
+atlas = ExtResource("2_8m38r")
+region = Rect2(0, 0, 112, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbrhi"]
+atlas = ExtResource("2_8m38r")
+region = Rect2(112, 0, 112, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujw5o"]
+atlas = ExtResource("2_8m38r")
+region = Rect2(224, 0, 112, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuehb"]
+atlas = ExtResource("2_8m38r")
+region = Rect2(336, 0, 112, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uao2c"]
+atlas = ExtResource("2_8m38r")
+region = Rect2(448, 0, 112, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0bif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn227")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbrhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujw5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuehb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uao2c")
+}],
+"loop": true,
+"name": &"break",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr7ag"]
-size = Vector2(112, 16)
+size = Vector2(112, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un0y8"]
-size = Vector2(114, 18)
+size = Vector2(114, 34)
 
 [node name="Block" type="StaticBody2D" groups=["blocks"]]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_lav3a")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -56.0
-offset_top = -8.0
-offset_right = 56.0
-offset_bottom = 8.0
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.499999)
+scale = Vector2(1, 1.40625)
+sprite_frames = SubResource("SpriteFrames_r0bif")
+animation = &"break"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cr7ag")
@@ -28,5 +72,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_un0y8")
+
+[node name="BreakTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

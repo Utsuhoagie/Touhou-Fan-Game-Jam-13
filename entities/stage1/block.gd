@@ -3,6 +3,8 @@ class_name Block
 
 @export var hp := 1
 
+@onready var break_timer = $BreakTimer
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var stage_1: Stage1 = get_parent()
 
 var score_label_preload = preload("res://entities/stage1/score_label.tscn")
@@ -18,6 +20,10 @@ func _on_area_2d_body_entered(_body: Node2D):
 		score_label.text = str(score)
 		score_label.global_position = global_position
 		stage_1.add_child(score_label)
+		
+		sprite.play("break")
+		break_timer.start()
+		await break_timer.timeout
 		
 		stage_1.blocks_remaining -= 1
 		queue_free()
