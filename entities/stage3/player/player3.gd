@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player3
 
+const MAX_LIVES := 3
+var lives := MAX_LIVES
+
 var speed := 33000.0
 var focus_slowdown := 0.45
 
@@ -28,6 +31,10 @@ func _process(delta: float) -> void:
 
 
 func handle_movement(delta: float) -> void:
+	if sprite.animation == "die":
+		velocity = Vector2.ZERO
+		return
+
 	var x_dir := Input.get_axis("player_left", "player_right")
 	var y_dir := Input.get_axis("player_up", "player_down")
 
@@ -63,3 +70,25 @@ func handle_shoot(delta: float) -> void:
 func clamp_in_screen() -> void:
 	global_position.x = clampf(global_position.x, 32, get_viewport_rect().size.x - 32)
 	global_position.y = clampf(global_position.y, 32, get_viewport_rect().size.y - 32)
+
+
+func die() -> void:
+	lives -= 1
+	sprite.play("die")
+	hitbox.set_deferred("disabled", true)
+
+	if lives == 0:
+		get_tree().paused = true
+
+
+
+func _on_sprite_animation_finished() -> void:
+	if sprite.animation == "die":
+		sprite.play("invincible")
+		($"Invincible Timer" as Timer).start()
+
+
+
+func _on_invincible_timer_timeout() -> void:
+	sprite.play("default")
+	hitbox.disabled = false

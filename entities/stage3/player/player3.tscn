@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://56gnvy4cknct"]
+[gd_scene load_steps=18 format=3 uid="uid://56gnvy4cknct"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_d7b4m"]
 [ext_resource type="Script" path="res://entities/stage3/player/player3.gd" id="1_x0n5o"]
@@ -11,6 +11,26 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojd7k"]
 atlas = ExtResource("2_up5ow")
 region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58ayg"]
+atlas = ExtResource("2_up5ow")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5tm5"]
+atlas = ExtResource("2_up5ow")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhov7"]
+atlas = ExtResource("2_up5ow")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lim7b"]
+atlas = ExtResource("2_up5ow")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecsmw"]
+atlas = ExtResource("2_up5ow")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76e5k"]
 atlas = ExtResource("2_up5ow")
@@ -40,6 +60,37 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 1.2
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58ayg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5tm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhov7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lim7b")
+}, {
+"duration": 6.0,
+"texture": null
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecsmw")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"invincible",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -79,12 +130,17 @@ animations = [{
 radius = 8.0
 
 [node name="Player3" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 192
 script = ExtResource("1_x0n5o")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1v6bp")
+animation = &"die"
+frame = 4
+frame_progress = 1.0
 
 [node name="ActualHitboxSprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -94,6 +150,10 @@ sprite_frames = SubResource("SpriteFrames_2dqrf")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_l1067")
+
+[node name="Invincible Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="GunTimer" type="Timer" parent="."]
 wait_time = 0.13
@@ -106,3 +166,6 @@ position = Vector2(-16, -32)
 
 [node name="Gun2" type="Node2D" parent="Guns"]
 position = Vector2(16, -32)
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="Invincible Timer" to="." method="_on_invincible_timer_timeout"]

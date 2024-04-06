@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Komachi
 
-const SPEED := 120
+const SPEED := 150
 
 var can_take_damage: bool = true
 const MAX_HP := 1000
@@ -32,7 +32,7 @@ const SPELL_2_CIRCLES_ROTATION_DEGREES := 15.0
 const SPELL_2_MAX_COINS_PER_CIRCLE := 30
 const SPELL_2_MAX_CIRCLES := 3
 const SPELL_2_MAX_CIRCLE_WAVES := 3 + 1	# has to add 1, don't know why
-const SPELL_2_MELEE_DISTANCE := 240.0
+const SPELL_2_MELEE_DISTANCE := 180.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
 var spell_2_shot_coin_medium_preload := preload("res://entities/stage3/komachi/komachi_shot_coin_medium.tscn")
@@ -62,6 +62,11 @@ func take_damage(damage: int) -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_spell(delta)
+	detect_player_hit()
+
+
+func detect_player_hit() -> void:
+	var collided := move_and_slide()
 
 
 func handle_spell(delta: float) -> void:
@@ -147,42 +152,46 @@ func handle_spell(delta: float) -> void:
 				var time_left: float = melee_timer.time_left
 				var time_left_ratio: float = time_left / wait_time
 
-				if time_left_ratio >= 0.8 and not spell_2_melee_is_stopped:
+				if time_left_ratio >= 0.75 and not spell_2_melee_is_stopped:
 					print("charging at player")
 
 					if global_position.distance_to(spell_2_melee_player3_position) >= SPELL_2_MELEE_DISTANCE:
 						var target_position := spell_2_melee_player3_position - global_position
 						velocity = target_position * spell_2_melee_deceleration * SPEED * delta
-						spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.02, 0.4, 1.0)
+						spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.012, 0.65, 1.0)
 					else:
 						velocity = Vector2.ZERO
 						spell_2_melee_deceleration = 1.0
 						spell_2_melee_is_stopped = true
-					move_and_slide()
+					#move_and_slide()
 
-				elif time_left_ratio >= 0.7:
+				elif time_left_ratio >= 0.71:
 					print("preparing melee")
 
 				elif time_left_ratio >= 0.5:
 					print("melee")
 					var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
 					var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
+					var melee_hitbox_sprite: Sprite2D = melee_hitbox.get_node("Sprite") as Sprite2D
 					melee_hitbox_collision.disabled = false
+					melee_hitbox_sprite.visible = true
 					melee_hitbox.global_rotation_degrees += 10.0
 					melee_hitbox.global_rotation_degrees = clampf(melee_hitbox.global_rotation_degrees, -90.0, 90.0)
 
-				elif time_left_ratio >= 0.2:
+				elif time_left_ratio >= 0.15:
 					print("returning to %s" % original_position)
 					var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
 					var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
+					var melee_hitbox_sprite: Sprite2D = melee_hitbox.get_node("Sprite") as Sprite2D
+					melee_hitbox_sprite.visible = false
 					melee_hitbox_collision.disabled = true
 					melee_hitbox.global_rotation_degrees = -90.0
 
 					var target_position := original_position - global_position
 					velocity = target_position * spell_2_melee_deceleration * SPEED * delta
-					spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.014, 0.4, 1.0)
+					spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.012, 0.5, 1.0)
 
-					move_and_slide()
+					#move_and_slide()
 
 				else:
 					spell_2_melee_deceleration = 1.0

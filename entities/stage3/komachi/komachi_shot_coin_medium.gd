@@ -8,6 +8,10 @@ var speed_multiplier: float = 1.0
 var angle: float = 0.0
 
 
+func _ready() -> void:
+	body_entered.connect(on_body_entered)
+
+
 func init(angle: float, color: Color = Color.WHITE) -> void:
 	self.angle = angle
 	randomize_color()
@@ -25,3 +29,8 @@ func _process(delta: float) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+
+func on_body_entered(body: Node2D) -> void:
+	if body is Player3:
+		body.die()

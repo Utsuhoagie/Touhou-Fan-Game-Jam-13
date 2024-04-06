@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://x4sy7w1lfar7"]
+[gd_scene load_steps=5 format=3 uid="uid://x4sy7w1lfar7"]
 
 [ext_resource type="PackedScene" uid="uid://56gnvy4cknct" path="res://entities/stage3/player/player3.tscn" id="1_f4gx4"]
 [ext_resource type="PackedScene" uid="uid://cwo4sjv6kvemh" path="res://entities/stage3/komachi/komachi.tscn" id="2_pl1v0"]
+[ext_resource type="Script" path="res://stages/ParallaxBackground.gd" id="3_i4yao"]
+[ext_resource type="Texture2D" uid="uid://cd3sseujebxxc" path="res://assets/sprites/BG_3.png" id="4_0dfgi"]
 
 [node name="Stage3" type="Node2D"]
 
@@ -10,3 +12,14 @@ position = Vector2(640, 872)
 
 [node name="Komachi" parent="." instance=ExtResource("2_pl1v0")]
 position = Vector2(640, 192)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_i4yao")
+
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 3840)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BG"]
+position = Vector2(640, -960)
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("4_0dfgi")

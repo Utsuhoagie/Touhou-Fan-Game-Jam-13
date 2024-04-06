@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=16 format=3 uid="uid://cwo4sjv6kvemh"]
 
-[ext_resource type="Curve2D" uid="uid://b0ubpgo0e2xdh" path="res://entities/stage3/komachi/spell_1_path.tres" id="1_chwdh"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
 [ext_resource type="Texture2D" uid="uid://dkjeau3m3y6xk" path="res://assets/sprites/Character_Boss_Komachi.png" id="2_ono5v"]
+[ext_resource type="Script" path="res://entities/stage3/komachi/komachi_melee_hitbox.gd" id="4_e2dmd"]
+[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="5_d6dj1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
-radius = 96.0
+radius = 80.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmath"]
 atlas = ExtResource("2_ono5v")
@@ -83,13 +84,12 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lb5d"]
 radius = 24.0
-height = 160.0
+height = 176.0
 
 [node name="Komachi" type="Node2D"]
 
 [node name="Path" type="Path2D" parent="."]
 position = Vector2(0, 7.62939e-06)
-curve = ExtResource("1_chwdh")
 
 [node name="Path Follow" type="PathFollow2D" parent="Path"]
 position = Vector2(-320, 0)
@@ -104,6 +104,7 @@ script = ExtResource("1_r65lr")
 shape = SubResource("CircleShape2D_tujep")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Path/Path Follow/Komachi CharacterBody"]
+position = Vector2(0, -7.62939e-06)
 sprite_frames = SubResource("SpriteFrames_24vcj")
 
 [node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
@@ -168,21 +169,28 @@ position = Vector2(-256, 56)
 [node name="Spell2 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
 [node name="Circle Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
-wait_time = 1.8
+wait_time = 1.6
 one_shot = true
 
 [node name="Circle Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
 
 [node name="Melee Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
-wait_time = 5.0
+wait_time = 3.2
 one_shot = true
 
 [node name="Melee Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
 rotation = -1.5708
 collision_layer = 128
 collision_mask = 2
+script = ExtResource("4_e2dmd")
 
 [node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
-position = Vector2(-7.6932e-06, 176)
+position = Vector2(-0.000600529, 168)
 shape = SubResource("CapsuleShape2D_2lb5d")
 disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
+visible = false
+position = Vector2(-0.397452, 167.55)
+scale = Vector2(0.257686, 1.37124)
+texture = ExtResource("5_d6dj1")
