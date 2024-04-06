@@ -118,6 +118,6 @@ collision_layer = 128
 collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
-position = Vector2(6.29444e-06, 144)
+position = Vector2(-7.6932e-06, 176)
 shape = SubResource("CapsuleShape2D_2lb5d")
 disabled = true
