@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Komachi
 
-const SPEED := 1200
+const SPEED := 120
 
 var can_take_damage: bool = true
 const MAX_HP := 1000
@@ -31,10 +31,16 @@ var spell_1_homing_recently_shot: Array[int] = []
 const SPELL_2_CIRCLES_ROTATION_DEGREES := 15.0
 const SPELL_2_MAX_COINS_PER_CIRCLE := 30
 const SPELL_2_MAX_CIRCLES := 3
+const SPELL_2_MAX_CIRCLE_WAVES := 1 + 1	# has to add 1, don't know why
+const SPELL_2_MELEE_DISTANCE := 270.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
 var spell_2_shot_coin_medium_preload := preload("res://entities/stage3/komachi/komachi_shot_coin_medium.tscn")
 var spell_2_current_circle_count: int = 0
+var spell_2_current_circle_waves_count: int = 0
+var spell_2_melee_deceleration: float = 1.0
+var spell_2_melee_player3_position: Vector2
+var spell_2_melee_is_stopped: bool = false
 
 
 func take_damage(damage: int) -> void:
@@ -116,10 +122,72 @@ func handle_spell(delta: float) -> void:
 		# Then do big melee scythe slash.
 		2:
 			path.curve = null
+
+			var melee_timer: Timer = spell_2_guns.get_node("Melee Timer") as Timer
+			if spell_2_current_circle_waves_count == SPELL_2_MAX_CIRCLE_WAVES:
+				if melee_timer.is_stopped():
+					melee_timer.start()
+					spell_2_melee_player3_position = player3.global_position
+					spell_2_guns.global_rotation_degrees = 0.0
+
+				var wait_time: float = melee_timer.wait_time
+				var time_left: float = melee_timer.time_left
+				var time_left_ratio: float = time_left / wait_time
+
+				if time_left_ratio >= 0.8 and not spell_2_melee_is_stopped:
+					print("charging at player")
+
+					if global_position.distance_to(spell_2_melee_player3_position) >= SPELL_2_MELEE_DISTANCE:
+						var target_position := spell_2_melee_player3_position - global_position
+						velocity = target_position * spell_2_melee_deceleration * SPEED * delta
+						spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.02, 0.4, 1.0)
+					else:
+						velocity = Vector2.ZERO
+						spell_2_melee_deceleration = 1.0
+						spell_2_melee_is_stopped = true
+
+					move_and_slide()
+
+				elif time_left_ratio >= 0.7:
+					print("preparing melee")
+
+				elif time_left_ratio >= 0.5:
+					print("melee")
+					var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
+					var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
+					melee_hitbox_collision.disabled = false
+					melee_hitbox.global_rotation_degrees += 10.0
+					melee_hitbox.global_rotation_degrees = clampf(melee_hitbox.global_rotation_degrees, -90.0, 90.0)
+
+				elif time_left_ratio >= 0.2:
+					print("returning to %s" % original_position)
+					var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
+					var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
+					melee_hitbox_collision.disabled = true
+					melee_hitbox.global_rotation_degrees = -90.0
+
+					var target_position := original_position - global_position
+					velocity = target_position * spell_2_melee_deceleration * SPEED * delta
+					spell_2_melee_deceleration = clampf(spell_2_melee_deceleration - 0.02, 0.3, 1.0)
+
+					move_and_slide()
+
+				else:
+					spell_2_melee_deceleration = 1.0
+					spell_2_melee_is_stopped = false
+					spell_2_current_circle_waves_count = 0
+
+				return
+
+
 			if spell_2_circle_timer.is_stopped():
 				spell_2_circle_timer.start()
 				spell_2_current_circle_count = 0
+				spell_2_current_circle_waves_count += 1
 				spell_2_guns.global_rotation += SPELL_2_CIRCLES_ROTATION_DEGREES
+
+			if spell_2_current_circle_waves_count == SPELL_2_MAX_CIRCLE_WAVES:
+				return
 
 			if not spell_2_circle_timer.is_stopped():
 				var spell_2_circle_gun: Node2D = spell_2_guns.get_child(1) as Node2D
@@ -128,6 +196,8 @@ func handle_spell(delta: float) -> void:
 				var interval: float = (wait_time * 0.45) / SPELL_2_MAX_CIRCLES
 
 				if spell_2_current_circle_count == SPELL_2_MAX_CIRCLES:
+					#spell_2_current_circle_waves_count += 1
+					#print("------ wait %s, left %s, interval %s" % [wait_time, time_left, interval])
 					return
 
 				var t_big: float = wait_time - spell_2_current_circle_count * interval

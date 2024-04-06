@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=6 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
@@ -16,6 +16,10 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lb5d"]
+radius = 24.0
+height = 160.0
 
 [node name="Komachi" type="Node2D"]
 
@@ -103,3 +107,17 @@ wait_time = 1.8
 one_shot = true
 
 [node name="Circle Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
+
+[node name="Melee Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Melee Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns"]
+rotation = -1.5708
+collision_layer = 128
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Path/Path Follow/Komachi CharacterBody/Spell2 Guns/Melee Hitbox"]
+position = Vector2(6.29444e-06, 144)
+shape = SubResource("CapsuleShape2D_2lb5d")
+disabled = true
