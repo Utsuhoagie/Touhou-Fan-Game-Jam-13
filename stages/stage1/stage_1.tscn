@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cysbqrfdw3t7j"]
+[gd_scene load_steps=9 format=3 uid="uid://cysbqrfdw3t7j"]
 
 [ext_resource type="PackedScene" uid="uid://d0v5llflhppxi" path="res://entities/stage1/card_tilemap.tscn" id="1_dh076"]
 [ext_resource type="Script" path="res://stages/stage1/stage_1.gd" id="1_gnrit"]
 [ext_resource type="PackedScene" uid="uid://cedxc3uohkfft" path="res://stages/stage1/stage_1ui.tscn" id="1_k8nao"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/stage1/player1.tscn" id="2_dmm36"]
 [ext_resource type="PackedScene" uid="uid://bcgpq1uj22phm" path="res://entities/stage1/yinyang_orb.tscn" id="3_hwy0x"]
+[ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="3_iui7n"]
 [ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/stage1/block.tscn" id="4_5ypuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbwp"]
@@ -15,8 +16,12 @@ script = ExtResource("1_gnrit")
 
 [node name="Stage1UI" parent="." instance=ExtResource("1_k8nao")]
 
+[node name="DialogPlayer" parent="." instance=ExtResource("3_iui7n")]
+visible = false
+dialog_key = "post_stage1"
+
 [node name="CardTilemap" parent="." instance=ExtResource("1_dh076")]
-layer_0/tile_data = PackedInt32Array(327689, 0, 0, 327690, 65536, 0, 393225, 0, 1, 393226, 65536, 1, 458760, 0, 0, 524295, 0, 0, 589830, 0, 0, 655365, 0, 0, 458763, 65536, 0, 524300, 65536, 0, 589837, 65536, 0, 655374, 65536, 0, 589828, 65536, 0, 524291, 65536, 0, 458754, 65536, 0, 393217, 65536, 0, 327680, 65536, 0, 589839, 0, 0, 524304, 0, 0, 458769, 0, 0, 393234, 0, 0, 327699, 0, 0, 786433, 0, 1, 786434, 65536, 1, 786449, 0, 0, 786450, 65536, 0, 786441, 0, 1, 786442, 65536, 0)
+layer_0/tile_data = PackedInt32Array(327689, 1, 0, 327690, 1, 0, 393225, 1, 0, 393226, 1, 0, 458760, 1, 0, 524295, 1, 0, 589830, 1, 0, 655365, 1, 0, 458763, 1, 0, 524300, 1, 0, 589837, 1, 0, 655374, 1, 0, 589828, 1, 0, 524291, 1, 0, 458754, 1, 0, 393217, 1, 0, 327680, 1, 0, 589839, 1, 0, 524304, 1, 0, 458769, 1, 0, 393234, 1, 0, 327699, 1, 0, 786433, 1, 0, 786434, 1, 0, 786449, 1, 0, 786450, 1, 0, 786441, 1, 0, 786442, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_dmm36")]
 position = Vector2(640, 920)

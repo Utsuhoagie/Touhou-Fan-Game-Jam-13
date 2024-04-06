@@ -1,6 +1,7 @@
 extends Node2D
 class_name Stage1
 
+@onready var dialog_player: DialogPlayer = $DialogPlayer
 @onready var stage_1_ui: Stage1UI = $Stage1UI
 
 var player_lives: int = 5
@@ -20,6 +21,9 @@ func _ready() -> void:
 	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
 	stage_1_ui.update_high_score(high_score)
 	stage_1_ui.life_init(player_lives)
+	
+	#get_tree().paused = true
+	#dialog_player.start_dialog()
 	
 
 func _process(delta: float) -> void:
@@ -47,7 +51,7 @@ func _process(delta: float) -> void:
 func game_over() -> void:
 	print("game over")
 	get_tree().paused = true
-	
+	dialog_player.start_dialog()
 
 func life_down() -> void:
 	player_lives -= 1
@@ -56,6 +60,9 @@ func life_down() -> void:
 	if player_lives <= 0:
 		game_over()
 	
+
 func stage_complete() -> void:
 	print("stage 1 complete")
 	get_tree().paused = true
+	dialog_player.start_dialog()
+	

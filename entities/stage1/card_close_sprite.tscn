@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://np3nib31eyeh"]
+
+[ext_resource type="Texture2D" uid="uid://cq6w7apyrnlgs" path="res://assets/sprites/Seal_Card-Sheet.png" id="1_18udr"]
+[ext_resource type="Script" path="res://entities/stage1/card_close_sprite.gd" id="2_opisc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xumu3"]
+atlas = ExtResource("1_18udr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enfwk"]
+atlas = ExtResource("1_18udr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpvvs"]
+atlas = ExtResource("1_18udr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45mqw"]
+atlas = ExtResource("1_18udr")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u1cr"]
+atlas = ExtResource("1_18udr")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnaiw"]
+atlas = ExtResource("1_18udr")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s03c8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xumu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enfwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpvvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45mqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u1cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnaiw")
+}],
+"loop": true,
+"name": &"close",
+"speed": 10.0
+}]
+
+[node name="CardCloseSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_s03c8")
+animation = &"close"
+autoplay = "close"
+frame_progress = 0.83182
+script = ExtResource("2_opisc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
