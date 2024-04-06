@@ -1,8 +1,8 @@
 extends Area2D
 class_name Player1Shot
 
-var speed := 2000
-var shot_bounce := 500
+var speed := 1500
+var shot_bounce := 625
 
 func _process(delta) -> void:
 	position.y -= speed * delta
