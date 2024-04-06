@@ -8,7 +8,7 @@ const MAX_HP := 1000
 const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.95
 const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.4
 @export var current_HP := MAX_HP
-var current_spell := 2 # 1
+var current_spell := 1
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var path: Path2D = $"../../"
@@ -75,6 +75,11 @@ func handle_spell(delta: float) -> void:
 				path.curve = spell_1_path
 			path_follow.progress_ratio = path_follow.progress_ratio + 0.05 * delta
 
+			if path_follow.progress_ratio >= 0.5:
+				sprite.play("left")
+			else:
+				sprite.play("right")
+
 			if spell_1_waves_timer.is_stopped():
 				spell_1_waves_timer.start()
 
@@ -124,6 +129,14 @@ func handle_spell(delta: float) -> void:
 			path.curve = null
 
 			var melee_timer: Timer = spell_2_guns.get_node("Melee Timer") as Timer
+
+			if velocity.x < 0:
+				sprite.play("left")
+			elif velocity.x > 0:
+				sprite.play("right")
+			else:
+				sprite.play("default")
+
 			if spell_2_current_circle_waves_count == SPELL_2_MAX_CIRCLE_WAVES:
 				if melee_timer.is_stopped():
 					melee_timer.start()
@@ -145,7 +158,6 @@ func handle_spell(delta: float) -> void:
 						velocity = Vector2.ZERO
 						spell_2_melee_deceleration = 1.0
 						spell_2_melee_is_stopped = true
-
 					move_and_slide()
 
 				elif time_left_ratio >= 0.7:
@@ -176,6 +188,7 @@ func handle_spell(delta: float) -> void:
 					spell_2_melee_deceleration = 1.0
 					spell_2_melee_is_stopped = false
 					spell_2_current_circle_waves_count = 0
+					velocity = Vector2.ZERO
 
 				return
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0idkwvj1erdi"]
 
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi_shot_coin_big.gd" id="1_fkakv"]
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="2_775nf"]
+[ext_resource type="Texture2D" uid="uid://bhcg71uoo5hlg" path="res://assets/sprites/Komachi_Bullet_3.png" id="2_8a5q0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rbulv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_775nf")
+"texture": ExtResource("2_8a5q0")
 }],
 "loop": true,
 "name": &"default",
@@ -23,16 +23,16 @@ collision_mask = 2
 script = ExtResource("1_fkakv")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.952941, 0.6, 1)
 position = Vector2(-4.76837e-07, -4.76837e-07)
-scale = Vector2(0.33, 0.33)
 sprite_frames = SubResource("SpriteFrames_rbulv")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(4.76837e-07, 4.76837e-07)
 scale = Vector2(2.4, 2.4)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_4ryx0")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

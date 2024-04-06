@@ -1,20 +1,84 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=15 format=3 uid="uid://cwo4sjv6kvemh"]
 
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_5xv0a"]
+[ext_resource type="Curve2D" uid="uid://b0ubpgo0e2xdh" path="res://entities/stage3/komachi/spell_1_path.tres" id="1_chwdh"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
+[ext_resource type="Texture2D" uid="uid://dkjeau3m3y6xk" path="res://assets/sprites/Character_Boss_Komachi.png" id="2_ono5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 96.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmath"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3thby"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03ewn"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p84it"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgq51"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y1k7"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj73w"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fas5"]
+atlas = ExtResource("2_ono5v")
+region = Rect2(384, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_24vcj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5xv0a")
+"texture": SubResource("AtlasTexture_cmath")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3thby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03ewn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p84it")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgq51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y1k7")
+}],
+"loop": true,
+"name": &"left",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj73w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fas5")
+}],
+"loop": true,
+"name": &"right",
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lb5d"]
@@ -24,6 +88,8 @@ height = 160.0
 [node name="Komachi" type="Node2D"]
 
 [node name="Path" type="Path2D" parent="."]
+position = Vector2(0, 7.62939e-06)
+curve = ExtResource("1_chwdh")
 
 [node name="Path Follow" type="PathFollow2D" parent="Path"]
 position = Vector2(-320, 0)
@@ -38,7 +104,6 @@ script = ExtResource("1_r65lr")
 shape = SubResource("CircleShape2D_tujep")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Path/Path Follow/Komachi CharacterBody"]
-modulate = Color(1, 0.45098, 0.45098, 0.443137)
 sprite_frames = SubResource("SpriteFrames_24vcj")
 
 [node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]

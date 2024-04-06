@@ -1,4 +1,4 @@
-extends Area2D
+extends KomachiBaseShot
 class_name KomachiShotCoinMedium
 
 const BASE_SPEED := 900.0
@@ -7,12 +7,10 @@ const DECELERATION := 0.018
 var speed_multiplier: float = 1.0
 var angle: float = 0.0
 
-@onready var sprite: AnimatedSprite2D = $Sprite
-@onready var collision: CollisionShape2D = $Collision
 
-
-func init(angle: float) -> void:
+func init(angle: float, color: Color = Color.WHITE) -> void:
 	self.angle = angle
+	randomize_color()
 
 
 func _process(delta: float) -> void:
