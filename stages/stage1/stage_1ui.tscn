@@ -1,38 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://cedxc3uohkfft"]
+[gd_scene load_steps=3 format=3 uid="uid://cedxc3uohkfft"]
 
 [ext_resource type="Script" path="res://stages/stage1/stage_1ui.gd" id="1_kie0t"]
+[ext_resource type="Texture2D" uid="uid://7kj7bvdv2bky" path="res://assets/sprites/BG_1.png" id="2_n2sc5"]
 
 [node name="Stage1UI" type="CanvasLayer"]
+layer = -1
 script = ExtResource("1_kie0t")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+texture = ExtResource("2_n2sc5")
 
 [node name="ScoreLabel" type="Label" parent="."]
 unique_name_in_owner = true
-offset_right = 192.0
-offset_bottom = 23.0
+offset_left = 504.0
+offset_top = 44.0
+offset_right = 696.0
+offset_bottom = 89.0
 theme_override_font_sizes/font_size = 32
-text = "Score: 0"
+
+[node name="HighScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 504.0
+offset_top = 13.0
+offset_right = 696.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 32
+text = "0"
 
 [node name="GrazeLabel" type="Label" parent="."]
 unique_name_in_owner = true
-offset_top = 42.0
-offset_right = 192.0
-offset_bottom = 87.0
+offset_left = 402.0
+offset_top = 75.0
+offset_right = 594.0
+offset_bottom = 120.0
 theme_override_font_sizes/font_size = 32
 text = "Graze: 0"
 
 [node name="ComboLabel" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 608.0
-offset_right = 800.0
-offset_bottom = 23.0
+offset_left = 793.0
+offset_top = 46.0
+offset_right = 985.0
+offset_bottom = 91.0
 theme_override_font_sizes/font_size = 32
-text = "Combo: 0"
+text = "0"
 
 [node name="MaxComboLabel" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 608.0
-offset_top = 42.0
-offset_right = 821.0
-offset_bottom = 87.0
+offset_left = 793.0
+offset_top = 15.0
+offset_right = 1006.0
+offset_bottom = 60.0
 theme_override_font_sizes/font_size = 32
-text = "MaxCombo: 0"
+text = "0"
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 1002.0
+offset_top = 13.0
+offset_right = 1215.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 32
+text = "0"
