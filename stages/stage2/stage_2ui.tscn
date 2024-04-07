@@ -31,6 +31,28 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GrazeTranslation" type="Label" parent="."]
+offset_left = 1000.0
+offset_top = 608.0
+offset_right = 1192.0
+offset_bottom = 653.0
+theme = SubResource("Theme_fno12")
+theme_override_font_sizes/font_size = 20
+text = "Graze
+"
+vertical_alignment = 1
+
+[node name="LifeTranslation" type="Label" parent="."]
+offset_left = 976.0
+offset_top = 696.0
+offset_right = 1128.0
+offset_bottom = 741.0
+theme = SubResource("Theme_fno12")
+theme_override_font_sizes/font_size = 20
+text = "Mizuchi
+"
+vertical_alignment = 1
+
 [node name="GrazeLabel" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = 1094.0

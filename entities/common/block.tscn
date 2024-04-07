@@ -51,7 +51,7 @@ animations = [{
 size = Vector2(112, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un0y8"]
-size = Vector2(116, 34)
+size = Vector2(122, 36)
 
 [node name="Block" type="StaticBody2D" groups=["blocks"]]
 collision_layer = 8
