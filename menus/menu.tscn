@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="3_0lci1"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
 [ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="5_l8wlq"]
-[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="8_5k2il"]
-[ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="9_1e75l"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="8_5k2il"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/Collect_Item.mp3" id="9_1e75l"]
 
 [sub_resource type="Theme" id="Theme_g0p5h"]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)

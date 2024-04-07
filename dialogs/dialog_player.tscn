@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://djs6ud10qs3gy" path="res://assets/sprites/Character_Dialogue_Komachi.png" id="4_3gxx4"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="5_7uhvb"]
 [ext_resource type="AudioStream" uid="uid://dqnwll23egoiv" path="res://assets/audio/bgm/Stage_2_Intro.ogg" id="6_rj5en"]
-[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="7_10ywd"]
-[ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="7_q27ub"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="7_10ywd"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/Collect_Item.mp3" id="7_q27ub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cst0w"]
 atlas = ExtResource("2_b0r6d")
