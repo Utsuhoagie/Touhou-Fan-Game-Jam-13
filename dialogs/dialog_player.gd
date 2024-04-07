@@ -8,6 +8,7 @@ class_name DialogPlayer
 @onready var character_name: Label = %CharacterName
 @onready var dialog_section: Label = %DialogSection
 @onready var proceed_hint: Label = %ProceedHint
+@onready var transition = $"../Transition"
 
 @onready var mizuchi_sprite = $MizuchiSprite
 @onready var parsee_sprite = $ParseeSprite
@@ -31,6 +32,7 @@ func _ready() -> void:
 	
 	if narration_mode:
 		character_name.hide()
+		await transition.fade_from_black()
 		start_dialog()
 	
 
@@ -42,7 +44,8 @@ func _process(_delta: float) -> void:
 
 func display_dialog(dialog: Array, pointer: int) -> void:
 	if pointer + 1 > dialog.size():
-		return end_dialog()
+		await end_dialog()
+		return
 	
 	var	selected_text: Dictionary = dialog[pointer]
 	var current_sprite: TextureRect
@@ -75,6 +78,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 func end_dialog() -> void:
 	in_progress = false
 	dialog_pointer = 0
+	await transition.fade_to_black()
 	get_tree().change_scene_to_packed(next_scene)
 	
 

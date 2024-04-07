@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7b5b80wpor1v"]
+[gd_scene load_steps=11 format=3 uid="uid://c7b5b80wpor1v"]
 
 [ext_resource type="Texture2D" uid="uid://cr17jlqdx62dr" path="res://assets/sprites/Thumbnail.png" id="1_i118w"]
 [ext_resource type="Script" path="res://menus/menu.gd" id="1_tv4tj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dasil3emafrrv" path="res://menus/options.tscn" id="2_f5p6e"]
 [ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="3_0lci1"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
+[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="5_l8wlq"]
 [ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="8_5k2il"]
 [ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="9_1e75l"]
 
@@ -19,6 +20,8 @@ script = ExtResource("1_tv4tj")
 prologue_scene = ExtResource("2_1q6oc")
 options_scene = ExtResource("2_f5p6e")
 credits_scene = ExtResource("3_0lci1")
+
+[node name="Transition" parent="." instance=ExtResource("5_l8wlq")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = -1
@@ -69,6 +72,7 @@ theme = SubResource("Theme_g0p5h")
 text = "Quit"
 
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("8_5k2il")
 
 [node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]

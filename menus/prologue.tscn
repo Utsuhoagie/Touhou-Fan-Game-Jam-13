@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://6c38xmm1o40d"]
+[gd_scene load_steps=4 format=3 uid="uid://6c38xmm1o40d"]
 
+[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="1_5i13f"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="1_6g78o"]
 [ext_resource type="PackedScene" uid="uid://cysbqrfdw3t7j" path="res://stages/stage1/stage_1.tscn" id="2_n10xk"]
 
 [node name="Prologue" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="Transition" parent="." instance=ExtResource("1_5i13f")]
 
 [node name="DialogPlayer" parent="." instance=ExtResource("1_6g78o")]
 dialog_key = "prologue"

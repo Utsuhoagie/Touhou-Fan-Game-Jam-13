@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name Stage1UI
 
+@onready var animation_player = $AnimationPlayer
 @onready var combo_label: Label = %ComboLabel
 @onready var graze_label: Label = %GrazeLabel
 @onready var high_score_label: Label = %HighScoreLabel
@@ -25,6 +26,9 @@ func update_score(new_score: int) -> void:
 func update_combo(new_combo: int) -> void:
 	combo_label.text = "%02d" % new_combo
 	
+
+func harry_up() -> void:
+	animation_player.play("harry_up")
 
 func life_down() -> void:
 	life_count_container.get_children()[0].queue_free()

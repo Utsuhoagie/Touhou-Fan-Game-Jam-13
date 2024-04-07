@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dt7n6dktaf6x1"]
+[gd_scene load_steps=13 format=3 uid="uid://dt7n6dktaf6x1"]
 
 [ext_resource type="Script" path="res://menus/opening.gd" id="1_2lv24"]
 [ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="1_aqh2l"]
 [ext_resource type="PackedScene" uid="uid://c7b5b80wpor1v" path="res://menus/menu.tscn" id="2_vsquv"]
+[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="3_et88f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjut2"]
 atlas = ExtResource("1_aqh2l")
@@ -35,7 +36,7 @@ region = Rect2(0, 1800, 1200, 900)
 [sub_resource type="SpriteFrames" id="SpriteFrames_6naab"]
 animations = [{
 "frames": [{
-"duration": 10.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_pjut2")
 }, {
 "duration": 1.0,
@@ -64,6 +65,8 @@ animations = [{
 [node name="Opening" type="CanvasLayer"]
 script = ExtResource("1_2lv24")
 menu_scene = ExtResource("2_vsquv")
+
+[node name="Transition" parent="." instance=ExtResource("3_et88f")]
 
 [node name="OpeningSequence" type="AnimatedSprite2D" parent="."]
 position = Vector2(640, 480)

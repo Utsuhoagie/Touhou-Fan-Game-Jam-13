@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cedxc3uohkfft"]
+[gd_scene load_steps=8 format=3 uid="uid://cedxc3uohkfft"]
 
 [ext_resource type="Script" path="res://stages/stage1/stage_1ui.gd" id="1_kie0t"]
 [ext_resource type="Texture2D" uid="uid://7kj7bvdv2bky" path="res://assets/sprites/BG_1.png" id="2_n2sc5"]
@@ -7,6 +7,31 @@
 [sub_resource type="Theme" id="Theme_64ry5"]
 Label/font_sizes/font_size = 27
 Label/fonts/font = ExtResource("3_5vfwx")
+
+[sub_resource type="Animation" id="Animation_753r6"]
+resource_name = "harry_up"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HarryUp:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7, 1, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_rvily"]
+length = 1.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1iyug"]
+_data = {
+"RESET": SubResource("Animation_rvily"),
+"harry_up": SubResource("Animation_753r6")
+}
 
 [node name="Stage1UI" type="CanvasLayer"]
 layer = -1
@@ -83,3 +108,18 @@ offset_right = 420.0
 offset_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1iyug")
+}
+
+[node name="HarryUp" type="Label" parent="."]
+visible = false
+offset_left = 189.0
+offset_top = 440.0
+offset_right = 1118.0
+offset_bottom = 585.0
+theme_override_fonts/font = ExtResource("3_5vfwx")
+theme_override_font_sizes/font_size = 144
+text = "HARRY UP!"

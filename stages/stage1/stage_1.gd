@@ -5,6 +5,7 @@ class_name Stage1
 @onready var card_tilemap: CardTileMap = $CardTilemap
 @onready var dialog_player: DialogPlayer = $DialogPlayer
 @onready var stage_1_ui: Stage1UI = $Stage1UI
+@onready var transition: Transition = $Transition
 @onready var yinyang_orb: YinyangOrb = $YinyangOrb
 
 var player_lives: int = 5
@@ -23,20 +24,18 @@ var blocks_remaining: int
 func _ready() -> void:
 	stage_1_ui.update_high_score(high_score)
 	stage_1_ui.life_init(player_lives)
-	
 	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
-	bgm.play()
 	
-	#get_tree().paused = true
-	#dialog_player.start_dialog()
+	await transition.fade_from_black()
+	bgm.play()
 	
 
 func _process(delta: float) -> void:
 	card_tilemap.check_overlap(yinyang_orb.position)
 	
 	time_left -= 24 * delta
-	if time_left < 200 and not running_out_of_time:
-		print("harry up!")
+	if time_left < 750.0 and not running_out_of_time:
+		stage_1_ui.harry_up()
 		running_out_of_time = true
 	
 	if combo > max_combo:
@@ -56,9 +55,9 @@ func _process(delta: float) -> void:
 		
 
 func game_over() -> void:
-	print("game over")
 	get_tree().paused = true
-	dialog_player.start_dialog()
+	await transition.fade_to_black()
+	
 
 func life_down() -> void:
 	player_lives -= 1
