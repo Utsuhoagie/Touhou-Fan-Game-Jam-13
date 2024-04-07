@@ -1,10 +1,10 @@
 {
 	"prologue": [
 		{
-			"text": "This is a test."
+			"text": "The Chains that bind me have finally become brittle."
 		},
 		{
-			"text": "This is also a test."
+			"text": "It's time to strike!"
 		},
 	],
 	"post_stage1": [
@@ -36,151 +36,166 @@
 		{
 			"character": "0",
 			"sprite": 0,
-			"text": "Not finished, however. People can still recognize me, and I'll be back in that box again. I need a disguise, a new face."
-		},
-		{
-			"character": "0",
-			"sprite": 3,
-			"text": "Mizuchi: I could possess someone, but who though? Someone unsuspecting and easily manipulated."
-		},
-		{
-			"character": "1",
-			"sprite": 0,
-			"text": "(...)"
+			"text": "One step closer to my destination."
 		},
 		{
 			"character": "0",
 			"sprite": 2,
-			"text": "There's my little puppet~ My ticket out of hell."
+			"text": "The hakurei Shrine will regret the day they wronged me!"
 		},
 		{
-			"character": "(narrator)",
-			"sprite": -1,
-			"text": "(Mizuchi apporaches Parsee.)"
+			"character": "1",
+			"sprite": 2,
+			"text": "Halt, Spirit! you are about to leave the underworld."
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "And you are planning to stop me?"
+		},
+		{
+			"character": "1",
+			"sprite": 2,
+			"text": "Vengeful spirits such as yourself are not allowed to walk the surface."
+		},
+		{
+			"character": "1",
+			"sprite": 2,
+			"text": "I see the fire in your eyes still burns bright."
+		},
+		{
+			"character": "1",
+			"sprite": 3,
+			"text": "I wish I had a drive like that."
 		},
 		{
 			"character": "0",
 			"sprite": 1,
-			"text": "Hey beautiful~"
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "Hey! How the hell did you get out here--"
-		},
-		{
-			"character": "0",
-			"sprite": 3,
-			"text": "Where's the tall horned one? I always see you two paired up...did it not work out?~"
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "That is none of your concern! Get back in your cell or--"
+			"text": "Are you complimenting me now?"
 		},
 		{
 			"character": "0",
 			"sprite": 2,
-			"text": "Listen, I can provide more than that tall blonde. I'll help you achieve the impossible and always support your decisions--"
-		},
-		{
-			"character": "0",
-			"sprite": 2,
-			"text": "I'll treat you right~"
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "You must think I'm stupid, because not also me, but everyone in Gensoyko knows what you do to people Mizuchi."
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "--Don't you dare mention my relationship with Yuugi! You should be more concerned on how you'll even cross this bridge with me in the middle of it."
-		},
-		{
-			"character": "0",
-			"sprite": 3,
-			"text": "It's always the jealous ones, but don't worry, I can change your mind once I show you!"
+			"text": "I am going to leave whether you want me or not."
 		}
 	],
 	"post_stage2": [
 		{
 			"character": "0",
-			"sprite": 3,
-			"text": "What did you say earlier? That everyone in Gensoyko knows what I do?"
-		},
-		{
-			"character": "0",
-			"sprite": 4,
-			"text": "My, that's not really fair. You judge before you can even get to know me, I'm not that bad Parsee~"
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "Stay away from me! I won't let you--"
-		},
-		{
-			"character": "0",
-			"sprite": 0,
-			"text": "It's okay, I'll help you give pointers whenever you speak to Yuugi, so guys can finally go on a date finally."
+			"sprite": 1,
+			"text": "Ha! An easy Victory. The first of many."
 		},
 		{
 			"character": "0",
 			"sprite": 2,
-			"text": "Well...more like I go on the date with her~"
+			"text": "But I’m not done with you just yet."
 		},
 		{
 			"character": "1",
-			"sprite": 3,
-			"text": "no....NO!"
+			"sprite": 4,
+			"text": "Stay away from me! I won't let you--"
+		},
+		{
+			"character": "3",
+			"sprite": 1,
+			"text": "Don’t worry, I won’t take you out for long."
+		},
+		{
+			"character": "3",
+			"sprite": 2,
+			"text": "We just need to follow the flow of the Sanzu river upstream till we reach the surface."
 		},
 		{
 			"character": "(narrator)",
 			"sprite": -1,
-			"text": "(Mizuchi possesses Parsee and gains her abilities.)"
+			"text": "(...)"
 		},
 		{
 			"character": "3",
 			"sprite": 0,
-			"text": "Okay that took longer than expected."
+			"text": "Alright, just gotta--"
+		},
+		{
+			"character": "2",
+			"sprite": 1,
+			"text": "Hey Parsee, why aren't you at your post?"
 		},
 		{
 			"character": "3",
+			"sprite": 0,
+			"text": "Umm-- I'm...im on break."
+		},
+		{
+			"character": "2",
+			"sprite": 0,
+			"text": "I know you and Yuugi usually hangout at the riverbank, but there's gotta be a point where you gotta focus on work."
+		},
+		{
+			"character": "2",
+			"sprite": 3,
+			"text": "Is everything okay?"
+		},
+		{
+			"character": "3",
+			"sprite": 0,
+			"text": "Yes, why you ask?"
+		},
+		{
+			"character": "2",
+			"sprite": 0,
+			"text": "Are you perhaps jealous of something or someone?"
+		},
+		{
+			"character": "3",
+			"sprite": 0,
+			"text": "What? Eh... why would I?"
+		},
+		{
+			"character": "2",
 			"sprite": 1,
-			"text": "The Sanzu River, and a boat too! Okay let's get out of here!"
-		}
+			"text": "Ha, you really are an imposter then!"
+		},
+		{
+			"character": "3",
+			"sprite": 5,
+			"text": "Tch! The jig is up, huh?"
+		},
+		{
+			"character": "2",
+			"sprite": 2,
+			"text": "You think a Shinigami would not notice a Vengeful Spirit if she sees one?"
+		},
+		{
+			"character": "2",
+			"sprite": 5,
+			"text": "Now return to your prison at once!"
+		},
 	],
 	"post_stage3": [
 		{
-			"character": "0",
-			"sprite": 0,
-			"text": "The walls are now cleared. \n...who's that in the distance?"
+			"character": "3",
+			"sprite": 3,
+			"text": "FREEDOM AT LAST!~"
 		},
 		{
-			"character": "1",
-			"sprite": 0,
-			"text": "You're not supposed to break out of this prison, Mizuchi."
+			"character": "2",
+			"sprite": 4,
+			"text": "No... this can't be happening..."
 		},
 		{
-			"character": "0",
+			"character": "3",
 			"sprite": 1,
-			"text": "Not like this prison can hold me in anyway."
-		},
-		{
-			"character": "1",
-			"sprite": 0,
-			"text": "Well I can."
+			"text": "You can keep this body here, if you want to feel helpful."
 		},
 		{
 			"character": "0",
-			"sprite": 0,
-			"text": "Oh really? I'd like to see you try."
-		}
-	],
-	"ending": [
+			"sprite": 2,
+			"text": "So long, losers!"
+		},
 		{
-			"text": "This is a test."
-		}
+			"character": "2",
+			"sprite": 4,
+			"text": "Eiki will never forgive me..."
+		},
 	]
 }

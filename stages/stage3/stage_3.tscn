@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://stages/ParallaxBackground.gd" id="4_s4bqw"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="4_uyb5b"]
 [ext_resource type="Texture2D" uid="uid://cd3sseujebxxc" path="res://assets/sprites/BG_3.png" id="5_1qx21"]
-[ext_resource type="PackedScene" uid="uid://bfu8mvftls472" path="res://menus/ending.tscn" id="5_ls7c5"]
+[ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="5_v28b4"]
 [ext_resource type="Texture2D" uid="uid://cwj5yxc02dv44" path="res://assets/sprites/JAM_UI_Stage_3_HUB.png" id="8_4pweo"]
 [ext_resource type="FontFile" uid="uid://q2yhdigwv6d6" path="res://assets/fonts/MagicDecimal-VG4ye.ttf" id="9_1j88m"]
 [ext_resource type="Texture2D" uid="uid://bc70l1w2vgrlp" path="res://assets/sprites/Stage3_Arrow.png" id="12_bhigj"]
@@ -29,7 +29,7 @@ visible = false
 [node name="DialogPlayer" parent="." instance=ExtResource("4_uyb5b")]
 visible = false
 dialog_key = "post_stage3"
-next_scene = ExtResource("5_ls7c5")
+next_scene = ExtResource("5_v28b4")
 
 [node name="Player3" parent="." node_paths=PackedStringArray("komachi_node") instance=ExtResource("2_mn1vv")]
 position = Vector2(640, 824)

@@ -24,6 +24,7 @@ func _ready() -> void:
 	grazes_label.text = str(grazes)
 	lives_label.text = str(lives)
 	bombs_label.text = str(bombs)
+	
 
 
 func _process(delta: float) -> void:

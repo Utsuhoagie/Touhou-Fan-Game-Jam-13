@@ -92,9 +92,6 @@ offset_bottom = 696.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="LifeCountContainer"]
-layout_mode = 2
-
 [node name="You\'re Not Supposed to See This" type="ColorRect" parent="."]
 offset_left = 992.0
 offset_top = 744.0

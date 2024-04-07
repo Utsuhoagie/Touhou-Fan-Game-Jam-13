@@ -64,6 +64,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 	komachi_sprite.hide()
 	mizuchi_sprite.hide()
 	parsee_sprite.hide()
+	fake_parsee_sprite.hide()
 	
 	if not narration_mode:
 		character_name.show()
