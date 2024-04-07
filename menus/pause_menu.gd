@@ -6,6 +6,7 @@ class_name PauseMenu
 @onready var button_hover_sfx = $ButtonHoverSFX
 @onready var continue_button = %ContinueButton
 @onready var pause_sfx = $PauseSFX
+@onready var transition: Transition = $"../Transition"
 
 
 func _ready() -> void:
@@ -35,6 +36,8 @@ func _on_back_button_focus_entered() -> void:
 
 func _on_back_button_pressed() -> void:
 	button_sfx.play()
+	await transition.fade_to_black()
+	get_tree().change_scene_to_file("res://menus/menu.tscn")
 	
 
 func _on_continue_button_pressed() -> void:

@@ -74,6 +74,7 @@ radius = 32.0
 [node name="YinyangOrb" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 11
+platform_wall_layers = 8
 script = ExtResource("1_mxsay")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

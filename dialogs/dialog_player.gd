@@ -35,8 +35,11 @@ func _ready() -> void:
 		return print("ERROR: dialog key doesn't exist in dialogs.json")
 	
 	if narration_mode:
+		hide()
 		character_name.hide()
 		await transition.fade_from_black()
+		
+		show()
 		start_dialog()
 	
 

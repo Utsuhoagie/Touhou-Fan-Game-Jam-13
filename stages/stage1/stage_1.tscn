@@ -20,10 +20,10 @@ script = ExtResource("1_gnrit")
 
 [node name="Transition" parent="." instance=ExtResource("2_jxsx2")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_ymj8o")]
-visible = false
-
 [node name="Stage1UI" parent="." instance=ExtResource("1_k8nao")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_ymj8o")]
+layer = 2
 
 [node name="DialogPlayer" parent="." instance=ExtResource("3_iui7n")]
 visible = false
@@ -70,6 +70,7 @@ position = Vector2(1216, 232)
 position = Vector2(64, 232)
 
 [node name="Walls" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-10, 10)
 collision_mask = 22
 
@@ -78,6 +79,7 @@ position = Vector2(-2, 470)
 polygon = PackedVector2Array(-12, -480, -12, 480, 12, 480, 12, -320, 1292, -320, 1292, 480, 1316, 480, 1316, -480)
 
 [node name="Floor" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-8, 1024)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]

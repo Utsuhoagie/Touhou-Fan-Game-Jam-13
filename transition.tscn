@@ -8,7 +8,7 @@ length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/path = NodePath("Transition/CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/path = NodePath("Transition/CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -39,7 +39,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:color")
+tracks/0/path = NodePath("Transition/CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,14 +63,17 @@ libraries = {
 }
 script = ExtResource("1_lfmk2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 3
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+top_level = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="TransitionTimer" type="Timer" parent="."]
