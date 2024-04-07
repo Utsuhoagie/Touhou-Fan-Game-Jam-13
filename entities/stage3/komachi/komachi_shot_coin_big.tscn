@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0idkwvj1erdi"]
+[gd_scene load_steps=6 format=3 uid="uid://c0idkwvj1erdi"]
 
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi_shot_coin_big.gd" id="1_fkakv"]
 [ext_resource type="Texture2D" uid="uid://bhcg71uoo5hlg" path="res://assets/sprites/Komachi_Bullet_3.png" id="2_8a5q0"]
+[ext_resource type="AudioStream" uid="uid://bskucdlm1nulh" path="res://assets/audio/sfx/new/Big_Coin.wav" id="3_xjvoq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rbulv"]
 animations = [{
@@ -34,6 +35,7 @@ scale = Vector2(2.4, 2.4)
 shape = SubResource("CircleShape2D_4ryx0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xjvoq")
 volume_db = -15.0
 autoplay = true
 

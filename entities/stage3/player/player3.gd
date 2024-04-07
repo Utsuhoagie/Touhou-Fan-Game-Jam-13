@@ -14,9 +14,10 @@ var focus_slowdown := 0.45
 
 @onready var audio_shot_player: AudioStreamPlayer = $"Audio Shot Player"
 @onready var audio_bomb_player: AudioStreamPlayer = $"Audio Bomb Player"
-var player3_shot_sfx := preload("res://assets/audio/sfx/Shooting_Bullet_V3.mp3")
-var player3_bomb_activation_sfx := preload("res://assets/audio/sfx/Player_Bomb_Summon.mp3")
-var player3_bomb_homing_sfx := preload("res://assets/audio/sfx/Player_Bomb_FlyToBoss.mp3")
+@onready var audio_die_player: AudioStreamPlayer = $"Audio Die Player"
+var player3_shot_sfx := preload("res://assets/audio/sfx/new/Player_Shoot.wav")
+var player3_bomb_activation_sfx := preload("res://assets/audio/sfx/new/Player_Bomb_Activate.wav")
+var player3_die_sfx := preload("res://assets/audio/sfx/new/Player_Hit.wav")
 
 @onready var gun_timer: Timer = $GunTimer
 @onready var guns: Node2D = $Guns
@@ -135,6 +136,9 @@ func die() -> void:
 	if is_bombing:
 		return
 
+	audio_die_player.stream = player3_die_sfx
+	audio_die_player.play()
+
 	stage3.decrease_lives()
 	sprite.play("die")
 	hitbox.set_deferred("disabled", true)
@@ -163,9 +167,9 @@ func _on_bomb_timer_timeout() -> void:
 
 func _on_bomb_homing_timer_timeout() -> void:
 	for bomb_gun in bomb_guns.get_children():
-		audio_bomb_player.stream = player3_bomb_homing_sfx
-		audio_bomb_player.volume_db = 0.0
-		audio_bomb_player.play()
+		#audio_bomb_player.stream = player3_bomb_homing_sfx
+		#audio_bomb_player.volume_db = 0.0
+		#audio_bomb_player.play()
 		var bomb: Player3Bomb = bomb_gun.get_child(0) as Player3Bomb
 		bomb.reparent(get_tree().current_scene)
 		bomb.home_on(komachi_node.get_node("Path/Path Follow").global_position, self)

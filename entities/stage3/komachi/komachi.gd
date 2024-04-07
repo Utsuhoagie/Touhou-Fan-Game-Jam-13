@@ -4,7 +4,7 @@ class_name Komachi
 const SPEED := 150
 
 var can_take_damage: bool = true
-const MAX_HP := 3500
+const MAX_HP := 350
 const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.72
 const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.28
 @export var current_HP := MAX_HP
@@ -15,9 +15,13 @@ var current_spell: float = 1.0
 @onready var path_follow: PathFollow2D = $"../"
 @onready var bomb_damage_timer: Timer = $"Bomb Damage Timer"
 @onready var HP_bar: TextureProgressBar = $"HP Bar"
+@onready var audio_player: AudioStreamPlayer = $"Audio Player"
 
 @onready var player3: Player3 = $"../../../../Player3" as Player3
 @onready var original_position: Vector2 = Vector2(640, 192) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
+
+var boss_damage_sfx := preload("res://assets/audio/sfx/new/Boss_Damage.wav")
+var boss_die_sfx := preload("res://assets/audio/sfx/new/Boss_Defeat.wav")
 
 # Spell 1
 const SPELL_1_WAVES_ROTATION_DEGREES := 1.0
@@ -38,6 +42,7 @@ const SPELL_2_MELEE_DISTANCE := 180.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
 var spell_2_shot_coin_medium_preload := preload("res://entities/stage3/komachi/komachi_shot_coin_medium.tscn")
+var spell_2_melee_sfx := preload("res://assets/audio/sfx/new/Melee_Slash.wav")
 var spell_2_current_circle_count: int = 0
 var spell_2_current_circle_waves_count: int = 0
 var spell_2_melee_deceleration: float = 1.0
@@ -70,6 +75,10 @@ func take_damage(damage: int, is_bomb: bool = false) -> void:
 	current_HP -= damage
 	HP_bar.value = current_HP
 
+	audio_player.stream = boss_damage_sfx
+	audio_player.volume_db = -21.0
+	audio_player.play()
+
 	if is_bomb:
 		bomb_damage_timer.start()
 		can_take_damage = false
@@ -84,6 +93,9 @@ func take_damage(damage: int, is_bomb: bool = false) -> void:
 	elif current_HP <= 0 and current_spell == 3.0:
 		can_take_damage = false
 		current_spell = -1
+		audio_player.stream = boss_die_sfx
+		audio_player.volume_db = 0.0
+		audio_player.play()
 		print("die")
 
 
@@ -228,6 +240,9 @@ func handle_spell(delta: float) -> void:
 					melee_hitbox_sprite.visible = true
 					melee_hitbox.global_rotation_degrees = clampf(melee_hitbox.global_rotation_degrees - 10.0, -140.0, 0.0)
 
+					audio_player.stream = spell_2_melee_sfx
+					audio_player.volume_db = 0.0
+					audio_player.play()
 
 
 				elif time_left_ratio >= 0.15:
