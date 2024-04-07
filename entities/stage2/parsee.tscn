@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://fxcx6q1ogitl"]
+[gd_scene load_steps=16 format=3 uid="uid://fxcx6q1ogitl"]
 
 [ext_resource type="Texture2D" uid="uid://b6ysdhd1qtsfp" path="res://assets/sprites/Character_Boss_Parsee.png" id="1_0bhla"]
 [ext_resource type="Script" path="res://entities/stage2/parsee.gd" id="1_nm35u"]
 [ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/common/block.tscn" id="2_0tra6"]
+[ext_resource type="Texture2D" uid="uid://b5nl1a8romycr" path="res://assets/sprites/Komachi_HP_Over.png" id="4_4o682"]
+[ext_resource type="Texture2D" uid="uid://dy2n5alxc2cpa" path="res://assets/sprites/Komachi_HP_Progress.png" id="5_7mwyp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8svbt"]
 atlas = ExtResource("1_0bhla")
@@ -94,38 +96,92 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParseeBody"]
 shape = SubResource("CapsuleShape2D_6drwm")
 
-[node name="Blocks" type="Node2D" parent="."]
+[node name="Ring Timer" type="Timer" parent="ParseeBody"]
+wait_time = 3.2
+one_shot = true
 
-[node name="Block" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Gap Timer" type="Timer" parent="ParseeBody"]
+wait_time = 0.3
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="ParseeBody"]
+wait_time = 5.0
+autostart = true
+
+[node name="Ring Guns" type="Node2D" parent="ParseeBody"]
+
+[node name="Gun1" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(64, 0)
+rotation = -1.5708
+
+[node name="Gun2" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(32, 40)
+rotation = -0.785398
+
+[node name="Gun3" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(0, 64)
+
+[node name="Gun4" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-32, 40)
+rotation = 0.785398
+
+[node name="Gun5" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-64, 0)
+rotation = 1.5708
+
+[node name="Gun6" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-32, -40)
+rotation = 2.35619
+
+[node name="Gun7" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(0, -64)
+rotation = 3.14159
+
+[node name="Gun8" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(32, -40)
+rotation = 3.92699
+
+[node name="Blocks" type="Node2D" parent="ParseeBody"]
+
+[node name="Blocks#Block" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(192, 0)
 rotation = -1.5708
 
-[node name="Block2" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block2" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-192, 0)
 rotation = 1.5708
 
-[node name="Block3" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block3" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-8.39259e-06, -192)
 rotation = 3.14159
 
-[node name="Block4" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block4" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(8.39259e-06, 192)
 
-[node name="Block5" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block5" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, -135.764)
 rotation = -2.35619
 
-[node name="Block6" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block6" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, 135.764)
 rotation = 0.785398
 
-[node name="Block7" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block7" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, -135.764)
 rotation = 2.35619
 
-[node name="Block8" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block8" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, 135.764)
 rotation = -0.785398
 
-[node name="MoveTimer" type="Timer" parent="."]
-one_shot = true
+[node name="HP Bar" type="TextureProgressBar" parent="ParseeBody"]
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 96.0
+value = 80.0
+fill_mode = 5
+texture_over = ExtResource("4_4o682")
+texture_progress = ExtResource("5_7mwyp")
+
+[connection signal="timeout" from="ParseeBody/MoveTimer" to="ParseeBody" method="_on_move_timer_timeout"]

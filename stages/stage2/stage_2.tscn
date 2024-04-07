@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://stages/stage2/stage_2.gd" id="1_omh63"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="2_lstlf"]
-[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="2_upx3h"]
+[ext_resource type="PackedScene" path="res://transition.tscn" id="2_upx3h"]
 [ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_worqk"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/common/player1.tscn" id="4_2rb7j"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="4_81t2u"]
@@ -31,7 +31,7 @@ enable_bullets = true
 position = Vector2(640, 920)
 
 [node name="Parsee" parent="." instance=ExtResource("5_krn3d")]
-position = Vector2(640, 192)
+position = Vector2(640, 256)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(-10, 10)

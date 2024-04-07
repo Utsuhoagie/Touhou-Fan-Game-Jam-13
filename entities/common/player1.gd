@@ -16,15 +16,13 @@ var speed := 500
 @onready var death_sfx: AudioStreamPlayer = $DeathSFX
 @onready var swing_sfx: AudioStreamPlayer = $SwingSFX
 
-var shot_preload = preload("res://entities/common/player_1_shot.tscn")
+var shot_preload = preload ("res://entities/common/player_1_shot.tscn")
 var player_size: Vector2i
 var viewport_size: Vector2i
-
 
 func _ready() -> void:
 	player_size = $GrazeArea/CollisionShape2D.shape.get_rect().size
 	viewport_size = get_viewport().size
-
 
 func _physics_process(delta: float) -> void:
 	if not death_timer.is_stopped(): return
@@ -48,15 +46,14 @@ func _physics_process(delta: float) -> void:
 
 	update_animations(input_map)
 
-
 func die() -> void:
 	death_sfx.play()
+	sprite.play("die")
 	death_timer.start()
 	await death_timer.timeout
 
 	stage.life_down()
 	invincible_timer.start()
-
 
 func _on_graze_area_body_exited(_body: Node2D):
 	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
@@ -65,7 +62,6 @@ func _on_graze_area_body_exited(_body: Node2D):
 	stage.graze_count += 1
 	stage.score += 1000
 
-
 func handle_movement(input_map: float, delta: float) -> void:
 	position.x += input_map * speed * delta
 	position.x = clampf(
@@ -73,7 +69,6 @@ func handle_movement(input_map: float, delta: float) -> void:
 		player_size.x / 2,
 		viewport_size.x - (player_size.x / 2)
 	)
-	
 
 func handle_shoot() -> void:
 	if Input.is_action_pressed("player_shoot") and gun_timer.is_stopped():
@@ -82,7 +77,6 @@ func handle_shoot() -> void:
 		var shot: Player1Shot = shot_preload.instantiate()
 		get_tree().current_scene.add_child(shot)
 		shot.global_position = gun.global_position
-	
 
 func update_animations(input_map: float) -> void:
 	if not death_timer.is_stopped():
@@ -97,4 +91,3 @@ func update_animations(input_map: float) -> void:
 		sprite.play("left")
 	else:
 		sprite.play("idle")
-

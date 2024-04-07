@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Parsee
 
+var can_take_damage: bool = false
+const MAX_HP := 300
+var current_HP := MAX_HP
+
 var rotation_speed_radians: float = 0.5
 
 const SPEED := 30.0
@@ -9,6 +13,7 @@ var random_position: Vector2
 
 @onready var blocks = $"Blocks"
 @onready var sprite = $"Sprite"
+@onready var HP_bar: TextureProgressBar = $"HP Bar"
 
 const SHOT_ANGLE_OFFSET_BASE := 4.5
 @onready var ring_timer: Timer = $"Ring Timer"
@@ -16,6 +21,14 @@ const SHOT_ANGLE_OFFSET_BASE := 4.5
 @onready var ring_guns: Node2D = $"Ring Guns"
 
 var parsee_st2_shot_preload := preload ("res://entities/stage2/parsee_st2_shot.tscn")
+
+
+func _ready() -> void:
+	HP_bar.min_value = 0
+	HP_bar.max_value = MAX_HP
+	HP_bar.value = current_HP
+	(get_tree().current_scene as Stage2).blocks_cleared.connect(on_blocks_cleared)
+
 
 func _physics_process(delta: float) -> void:
 	blocks.rotation += rotation_speed_radians * delta
@@ -35,6 +48,7 @@ func _physics_process(delta: float) -> void:
 			sprite.play("idle")
 		1:
 			sprite.play("right")
+
 
 func _process(delta: float) -> void:
 	if ring_timer.is_stopped():
@@ -64,5 +78,21 @@ func _process(delta: float) -> void:
 					)
 					shot.global_position = gun.global_position
 
+
+func take_damage(damage: int) -> void:
+	if not can_take_damage:
+		return
+
+	current_HP -= damage
+	HP_bar.value = current_HP
+
+	if current_HP <= 0:
+		print("die")
+
+
 func _on_move_timer_timeout() -> void:
 	random_position = Vector2(randi() % 700 + 300, global_position.y)
+
+
+func on_blocks_cleared() -> void:
+	can_take_damage = true
