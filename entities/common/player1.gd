@@ -3,7 +3,7 @@ class_name Player1
 
 var speed := 500
 
-@onready var stage_1: Stage1 = get_parent()
+@onready var stage = get_tree().current_scene
 @onready var death_timer: Timer = $DeathTimer
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var graze_area: Area2D = $GrazeArea
@@ -12,9 +12,11 @@ var speed := 500
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var swing_collision_area: Area2D = $SwingCollisionArea
 @onready var swing_cooldown_timer: Timer = $SwingCooldownTimer
-@onready var yinyang_orb: YinyangOrb1 = $"../YinyangOrb1"
+@onready var yinyang_orb: YinyangOrb = $"../YinyangOrb"
+@onready var shoot_sfx: AudioStreamPlayer = $ShootSFX
+@onready var swing_sfx: AudioStreamPlayer = $SwingSFX
 
-var shot_preload = preload("res://entities/stage1/player_1_shot.tscn")
+var shot_preload = preload("res://entities/common/player_1_shot.tscn")
 var player_size: Vector2i
 var viewport_size: Vector2i
 
@@ -33,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if (Input.is_action_just_pressed("player_swing")
 	and swing_cooldown_timer.is_stopped()):
 		swing_cooldown_timer.start()
+		swing_sfx.play()
 
 		if swing_collision_area.overlaps_body(yinyang_orb):
 			yinyang_orb.handle_player_swing(position)
@@ -50,7 +53,7 @@ func die() -> void:
 	death_timer.start()
 	await death_timer.timeout
 
-	stage_1.life_down()
+	stage.life_down()
 	invincible_timer.start()
 
 
@@ -58,8 +61,8 @@ func _on_graze_area_body_exited(_body: Node2D):
 	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
 		return
 
-	stage_1.graze_count += 1
-	stage_1.score += 1000
+	stage.graze_count += 1
+	stage.score += 1000
 
 
 func handle_movement(input_map: float, delta: float) -> void:
@@ -78,6 +81,7 @@ func handle_shoot() -> void:
 		var shot: Player1Shot = shot_preload.instantiate()
 		get_tree().current_scene.add_child(shot)
 		shot.global_position = gun.global_position
+		shoot_sfx.play()
 
 
 func update_animations(input_map: float) -> void:

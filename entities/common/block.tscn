@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cr0xderkkf2qk"]
 
-[ext_resource type="Script" path="res://entities/stage1/block.gd" id="1_lav3a"]
+[ext_resource type="Script" path="res://entities/common/block.gd" id="1_lav3a"]
 [ext_resource type="Texture2D" uid="uid://75qejev6mynn" path="res://assets/sprites/Prison_Wall.png" id="2_8m38r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn227"]

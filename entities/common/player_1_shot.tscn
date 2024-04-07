@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcjgdn0ggbm08"]
 
-[ext_resource type="Script" path="res://entities/stage1/player_1_shot.gd" id="1_wtxxp"]
-[ext_resource type="Texture2D" uid="uid://bh6rqdttp6jk4" path="res://assets/sprites/Main_Bullet_2.png" id="2_twx2o"]
+[ext_resource type="Script" path="res://entities/common/player_1_shot.gd" id="1_w8usm"]
+[ext_resource type="Texture2D" uid="uid://bh6rqdttp6jk4" path="res://assets/sprites/Main_Bullet_2.png" id="2_hgn7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0wp7"]
 size = Vector2(16, 32)
@@ -9,12 +9,12 @@ size = Vector2(16, 32)
 [node name="Player1Shot" type="Area2D"]
 collision_layer = 16
 collision_mask = 5
-script = ExtResource("1_wtxxp")
+script = ExtResource("1_w8usm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(2.28571, 2.28571)
-texture = ExtResource("2_twx2o")
+texture = ExtResource("2_hgn7p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p0wp7")

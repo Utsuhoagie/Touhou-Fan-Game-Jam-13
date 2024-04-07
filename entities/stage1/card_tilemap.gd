@@ -1,11 +1,11 @@
 extends TileMap
 class_name CardTileMap
 
-@onready var stage_1: Stage1 = get_parent()
+@onready var stage_1: Stage1 = get_tree().current_scene
 
 var cards_remaining: int
 var card_close_sprite_preload = preload("res://entities/stage1/card_close_sprite.tscn")
-var score_label_preload = preload("res://entities/stage1/score_label.tscn")
+var score_label_preload = preload("res://entities/common/score_label.tscn")
 
 func _ready() -> void:
 	cards_remaining = get_used_cells(0).size()

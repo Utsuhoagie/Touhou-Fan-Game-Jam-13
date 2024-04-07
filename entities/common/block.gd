@@ -3,28 +3,28 @@ class_name Block
 
 @export var hp := 1
 
-@onready var break_timer = $BreakTimer
+@onready var break_timer: Timer = $BreakTimer
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var stage_1: Stage1 = get_parent()
+@onready var stage = get_tree().current_scene
 
-var score_label_preload = preload("res://entities/stage1/score_label.tscn")
+var score_label_preload = preload("res://entities/common/score_label.tscn")
 
 func _on_area_2d_body_entered(_body: Node2D):
 	hp -= 1
 	if hp == 0:
-		stage_1.combo += 1
-		var score: int = 200 * stage_1.combo
-		stage_1.score += score
+		stage.combo += 1
+		var score: int = 200 * stage.combo
+		stage.score += score
 		
 		var score_label: ScoreLabel = score_label_preload.instantiate()
 		score_label.text = str(score)
 		score_label.global_position = global_position
-		stage_1.add_child(score_label)
+		stage.add_child(score_label)
 		
 		sprite.play("break")
 		break_timer.start()
 		await break_timer.timeout
 		
-		stage_1.blocks_remaining -= 1
+		stage.blocks_remaining -= 1
 		queue_free()
 	

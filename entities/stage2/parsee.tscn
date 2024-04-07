@@ -1,0 +1,131 @@
+[gd_scene load_steps=14 format=3 uid="uid://fxcx6q1ogitl"]
+
+[ext_resource type="Texture2D" uid="uid://b6ysdhd1qtsfp" path="res://assets/sprites/Character_Boss_Parsee.png" id="1_0bhla"]
+[ext_resource type="Script" path="res://entities/stage2/parsee.gd" id="1_nm35u"]
+[ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/common/block.tscn" id="2_0tra6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8svbt"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ab8u"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5c13"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2oiw"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47bvg"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmfc8"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp2mw"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48dan"]
+atlas = ExtResource("1_0bhla")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cb2vj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8svbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ab8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5c13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2oiw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47bvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmfc8")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp2mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48dan")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6drwm"]
+radius = 40.0
+height = 128.0
+
+[node name="Parsee" type="Node2D"]
+
+[node name="ParseeBody" type="CharacterBody2D" parent="."]
+script = ExtResource("1_nm35u")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="ParseeBody"]
+sprite_frames = SubResource("SpriteFrames_cb2vj")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParseeBody"]
+shape = SubResource("CapsuleShape2D_6drwm")
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(192, 0)
+rotation = -1.5708
+
+[node name="Block2" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(-192, 0)
+rotation = 1.5708
+
+[node name="Block3" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(-8.39259e-06, -192)
+rotation = 3.14159
+
+[node name="Block4" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(8.39259e-06, 192)
+
+[node name="Block5" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(135.764, -135.764)
+rotation = -2.35619
+
+[node name="Block6" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(-135.764, 135.764)
+rotation = 0.785398
+
+[node name="Block7" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(-135.764, -135.764)
+rotation = 2.35619
+
+[node name="Block8" parent="Blocks" instance=ExtResource("2_0tra6")]
+position = Vector2(135.764, 135.764)
+rotation = -0.785398
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true

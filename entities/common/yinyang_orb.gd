@@ -1,14 +1,18 @@
 extends CharacterBody2D
-class_name YinyangOrb2
+class_name YinyangOrb
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var swing_bounce := 1150
+
+@export var enable_bullets: bool
 
 @onready var floor: StaticBody2D = $"../Floor"
 @onready var guns: Node2D = $Guns
 @onready var gun_timer: Timer = $GunTimer
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var stage_2: Stage2 = get_parent()
+@onready var stage = get_parent()
+
+var orb_shot_preload = preload("res://entities/stage2/orb_shot.tscn")
 
 
 func _ready() -> void:
@@ -28,12 +32,14 @@ func _physics_process(delta: float) -> void:
 		velocity *= 0.9
 		
 		if collider == floor:
-			stage_2.combo = 0
+			stage.combo = 0
 	
-	if gun_timer.is_stopped():
+	if enable_bullets and gun_timer.is_stopped():
 		gun_timer.start()
 		for gun in guns.get_children():
-			pass
+			var shot: OrbShot = orb_shot_preload.instantiate()
+			get_tree().current_scene.add_child(shot)
+			shot.global_position = gun.global_position
 	
 	sprite.flip_h = velocity.x > 0
 	
