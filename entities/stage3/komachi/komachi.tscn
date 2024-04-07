@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://cwo4sjv6kvemh"]
+[gd_scene load_steps=24 format=3 uid="uid://cwo4sjv6kvemh"]
 
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi.gd" id="1_r65lr"]
 [ext_resource type="Texture2D" uid="uid://dkjeau3m3y6xk" path="res://assets/sprites/Character_Boss_Komachi.png" id="2_ono5v"]
 [ext_resource type="Texture2D" uid="uid://dkm51vggf8t61" path="res://assets/sprites/Character_Boss_Komachi2.png" id="2_r57g1"]
 [ext_resource type="Script" path="res://entities/stage3/komachi/komachi_melee_hitbox.gd" id="4_e2dmd"]
 [ext_resource type="Texture2D" uid="uid://4sty4iwtufay" path="res://assets/sprites/Scythe.png" id="5_j1gkb"]
+[ext_resource type="Texture2D" uid="uid://b5nl1a8romycr" path="res://assets/sprites/Komachi_HP_Over.png" id="6_bsjs3"]
+[ext_resource type="Texture2D" uid="uid://dy2n5alxc2cpa" path="res://assets/sprites/Komachi_HP_Progress.png" id="7_sc2lt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tujep"]
 radius = 72.0
@@ -264,6 +266,18 @@ wait_time = 2.8
 one_shot = true
 
 [node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]
+
+[node name="HP Bar" type="TextureProgressBar" parent="Path/Path Follow/Komachi CharacterBody"]
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 96.0
+value = 80.0
+fill_mode = 5
+texture_over = ExtResource("6_bsjs3")
+texture_progress = ExtResource("7_sc2lt")
+
+[node name="Audio Player" type="AudioStreamPlayer" parent="Path/Path Follow/Komachi CharacterBody"]
 
 [connection signal="body_entered" from="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox" to="Path/Path Follow/Komachi CharacterBody" method="_on_player_kill_hitbox_body_entered"]
 [connection signal="timeout" from="Path/Path Follow/Komachi CharacterBody/Bomb Damage Timer" to="Path/Path Follow/Komachi CharacterBody" method="_on_bomb_damage_timer_timeout"]

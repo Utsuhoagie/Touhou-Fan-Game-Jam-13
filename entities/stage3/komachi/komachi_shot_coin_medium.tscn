@@ -32,4 +32,8 @@ scale = Vector2(1.3, 1.3)
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4ryx0")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -21.0
+autoplay = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

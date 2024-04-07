@@ -5,8 +5,8 @@ const SPEED := 150
 
 var can_take_damage: bool = true
 const MAX_HP := 1000
-const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.95
-const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.9
+const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.67
+const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.34
 @export var current_HP := MAX_HP
 var current_spell: float = 1.0
 
@@ -14,6 +14,7 @@ var current_spell: float = 1.0
 @onready var path: Path2D = $"../../"
 @onready var path_follow: PathFollow2D = $"../"
 @onready var bomb_damage_timer: Timer = $"Bomb Damage Timer"
+@onready var HP_bar: TextureProgressBar = $"HP Bar"
 
 @onready var player3: Player3 = $"../../../../Player3" as Player3
 @onready var original_position: Vector2 = Vector2(640, 192) # ($"../../../" as Node2D).global_position - Vector2(0, 100.0)
@@ -56,11 +57,18 @@ var spell_3_path: Curve2D = preload("res://entities/stage3/komachi/spell_3_path.
 var spell_3_shot_straight_preload := preload("res://entities/stage3/komachi/komachi_shot_straight.tscn")
 
 
+func _ready() -> void:
+	HP_bar.min_value = 0
+	HP_bar.max_value = MAX_HP
+	HP_bar.value = current_HP
+
+
 func take_damage(damage: int, is_bomb: bool = false) -> void:
 	if not can_take_damage:
 		return
 
 	current_HP -= damage
+	HP_bar.value = current_HP
 
 	if is_bomb:
 		bomb_damage_timer.start()
@@ -283,6 +291,13 @@ func handle_spell(delta: float) -> void:
 		# Transition to spell 3
 		# Slowly moves towards original position
 		2.5:
+			var melee_hitbox: Area2D = spell_2_guns.get_node("Melee Hitbox") as Area2D
+			var melee_hitbox_collision: CollisionShape2D = melee_hitbox.get_node("Collision") as CollisionShape2D
+			var melee_hitbox_sprite: Sprite2D = melee_hitbox.get_node("Sprite") as Sprite2D
+			melee_hitbox_sprite.visible = false
+			melee_hitbox_collision.disabled = true
+			melee_hitbox.global_rotation_degrees = 0.0
+
 			var target_position := original_position - global_position
 			velocity = target_position * SPEED * delta
 

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player3
 
 signal bomb_finished
+signal UI_changed(lives: int, max_lives: int, bombs: int, grazes: int, score: int)
 
 const MAX_LIVES := 3
 var lives := MAX_LIVES
@@ -14,6 +15,12 @@ var focus_slowdown := 0.45
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var actual_hitbox_sprite: AnimatedSprite2D = $ActualHitboxSprite
+
+@onready var audio_shot_player: AudioStreamPlayer = $"Audio Shot Player"
+@onready var audio_bomb_player: AudioStreamPlayer = $"Audio Bomb Player"
+#var player3_shot_sfx := preload("res://assets/audio/Shooting_Bullet_V3.mp3")
+#var player3_bomb_activation_sfx := preload("res://assets/audio/Player_Bomb_Summon.mp3")
+#var player3_bomb_homing_sfx := preload("res://assets/audio/Player_Bomb_FlyToBoss.mp3")
 
 @onready var gun_timer: Timer = $GunTimer
 @onready var guns: Node2D = $Guns
@@ -83,10 +90,14 @@ func handle_shoot(delta: float) -> void:
 		return
 
 	if Input.is_action_pressed("player_bomb") and bomb_timer.is_stopped() and bombs > 0:
+		print("bomb")
 		bombs -= 1
 		is_bombing = true
 		bomb_timer.start()
 		bomb_homing_timer.start()
+		audio_bomb_player.volume_db = -9.0
+		#audio_bomb_player.stream = player3_bomb_activation_sfx
+		audio_bomb_player.play()
 		for bomb_gun in bomb_guns.get_children():
 			var bomb: Player3Bomb = player3_bomb_preload.instantiate()
 			bomb_gun.add_child(bomb)
@@ -101,7 +112,7 @@ func handle_shoot(delta: float) -> void:
 
 			var bomb: Player3Bomb = bomb_gun.get_child(0) as Player3Bomb
 			var further_position := bomb.global_position - (bomb_guns as Node2D).global_position
-			further_position *= 0.0105
+			further_position *= 0.0103
 
 			print("current %s | further %s" % [bomb.global_position, further_position])
 
@@ -109,6 +120,9 @@ func handle_shoot(delta: float) -> void:
 
 
 	if Input.is_action_pressed("player_shoot") and gun_timer.is_stopped():
+		#audio_shot_player.stream = player3_shot_sfx
+		audio_shot_player.play()
+
 		gun_timer.start()
 		for gun in guns.get_children():
 			var shot: Player3Shot = player3_shot_preload.instantiate()
@@ -157,6 +171,9 @@ func _on_bomb_timer_timeout() -> void:
 
 func _on_bomb_homing_timer_timeout() -> void:
 	for bomb_gun in bomb_guns.get_children():
+		#audio_bomb_player.stream = player3_bomb_homing_sfx
+		audio_bomb_player.volume_db = 0.0
+		audio_bomb_player.play()
 		var bomb: Player3Bomb = bomb_gun.get_child(0) as Player3Bomb
 		bomb.reparent(get_tree().current_scene)
 		bomb.home_on(komachi_node.get_node("Path/Path Follow").global_position, self)

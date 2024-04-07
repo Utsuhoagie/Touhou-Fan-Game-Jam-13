@@ -2,7 +2,7 @@ extends Area2D
 class_name Player3Bomb
 
 const DAMAGE := 80
-const SPEED := 2.8
+const SPEED := 3.0
 const FUZZY := 50
 
 @onready var sprite: AnimatedSprite2D = $Sprite as AnimatedSprite2D

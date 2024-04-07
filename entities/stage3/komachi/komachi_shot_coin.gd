@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		.rotated(deg_to_rad(angle))
 
 	position += velocity * delta
+	rotation_degrees += velocity.length() * delta
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

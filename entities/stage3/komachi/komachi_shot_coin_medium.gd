@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 	var velocity: Vector2 = Vector2(0, current_speed).rotated(deg_to_rad(angle))
 
 	position += velocity * delta
+	rotation_degrees += velocity.length() * delta
 
 	if has_deceleration and current_speed == BASE_SPEED * speed_multiplier:
 		speed_multiplier -= DECELERATION

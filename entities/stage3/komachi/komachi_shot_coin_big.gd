@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 	position += velocity * delta
 	current_curve += curve
-	global_rotation_degrees += curve
+	rotation_degrees += curve + velocity.length() * delta * 0.3
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
