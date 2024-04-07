@@ -52,8 +52,8 @@ func _process(delta: float) -> void:
 		game_over()
 
 func game_over() -> void:
-	get_tree().paused = true
 	await transition.fade_to_black()
+	get_tree().change_scene_to_file("res://menus/menu.tscn")
 
 func decrease_blocks(n: int) -> void:
 	blocks_remaining -= 1

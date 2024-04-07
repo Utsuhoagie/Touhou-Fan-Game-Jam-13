@@ -8,6 +8,9 @@
 Label/font_sizes/font_size = 27
 Label/fonts/font = ExtResource("3_5vfwx")
 
+[sub_resource type="Animation" id="Animation_rvily"]
+length = 1.5
+
 [sub_resource type="Animation" id="Animation_753r6"]
 resource_name = "harry_up"
 length = 1.5
@@ -23,9 +26,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false, true, false, true, false, false]
 }
-
-[sub_resource type="Animation" id="Animation_rvily"]
-length = 1.5
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1iyug"]
 _data = {
