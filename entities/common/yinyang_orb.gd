@@ -18,6 +18,8 @@ var orb_shot_preload = preload("res://entities/stage2/orb_shot.tscn")
 
 func _ready() -> void:
 	velocity = Vector2(-750, -750)
+	if get_parent().name == "Stage2":
+		velocity *= 0.5
 	sprite.play("default")
 
 

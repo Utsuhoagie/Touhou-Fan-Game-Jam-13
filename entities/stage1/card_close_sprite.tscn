@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cq6w7apyrnlgs" path="res://assets/sprites/Seal_Card-Sheet.png" id="1_18udr"]
 [ext_resource type="Script" path="res://entities/stage1/card_close_sprite.gd" id="2_opisc"]
+[ext_resource type="AudioStream" uid="uid://cqef8khre6woa" path="res://assets/audio/sfx/new/Small_Coin.wav" id="3_ij77x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xumu3"]
 atlas = ExtResource("1_18udr")
@@ -63,5 +64,11 @@ script = ExtResource("2_opisc")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ij77x")
+volume_db = -5.0
+pitch_scale = 0.75
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

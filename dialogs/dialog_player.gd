@@ -65,7 +65,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 	mizuchi_sprite.hide()
 	parsee_sprite.hide()
 	fake_parsee_sprite.hide()
-	
+
 	if not narration_mode:
 		character_name.show()
 		match selected_text["character"]:

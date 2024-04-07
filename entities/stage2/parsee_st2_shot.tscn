@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjpmuemlndor3"]
+[gd_scene load_steps=5 format=3 uid="uid://cjpmuemlndor3"]
 
 [ext_resource type="Script" path="res://entities/stage2/parsee_st2_shot.gd" id="1_5yw2h"]
 [ext_resource type="Texture2D" uid="uid://dtu8dj62gpa8c" path="res://assets/sprites/Parsee_Bullet_2.png" id="2_uvuxn"]
+[ext_resource type="AudioStream" uid="uid://cqef8khre6woa" path="res://assets/audio/sfx/new/Small_Coin.wav" id="3_q23tw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oa7tl"]
 
@@ -22,6 +23,12 @@ shape = SubResource("CircleShape2D_oa7tl")
 wait_time = 1.5
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q23tw")
+volume_db = -15.0
+pitch_scale = 1.2
+autoplay = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,7 +4,7 @@ class_name Komachi
 const SPEED := 150
 
 var can_take_damage: bool = true
-const MAX_HP := 350
+const MAX_HP := 3500
 const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.72
 const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.28
 @export var current_HP := MAX_HP
