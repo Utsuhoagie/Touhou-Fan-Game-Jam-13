@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://xhppmx2i7skx"]
+[gd_scene load_steps=14 format=3 uid="uid://xhppmx2i7skx"]
 
 [ext_resource type="Script" path="res://entities/common/yinyang_orb.gd" id="1_mxsay"]
 [ext_resource type="Texture2D" uid="uid://c32eb3n1h4p7e" path="res://assets/sprites/Ying-Yang_Orb.png" id="2_vmbl0"]
+[ext_resource type="AudioStream" uid="uid://cugitfvy54dc7" path="res://assets/audio/sfx/Boss_Taking_DMG.mp3" id="3_lcaj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c37s3"]
 atlas = ExtResource("2_vmbl0")
@@ -93,3 +94,6 @@ position = Vector2(16, -48)
 [node name="GunTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lcaj6")

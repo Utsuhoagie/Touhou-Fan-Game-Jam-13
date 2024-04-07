@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cysbqrfdw3t7j"]
+[gd_scene load_steps=12 format=3 uid="uid://cysbqrfdw3t7j"]
 
 [ext_resource type="PackedScene" uid="uid://d0v5llflhppxi" path="res://entities/stage1/card_tilemap.tscn" id="1_dh076"]
 [ext_resource type="Script" path="res://stages/stage1/stage_1.gd" id="1_gnrit"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/common/block.tscn" id="4_5ypuo"]
 [ext_resource type="PackedScene" uid="uid://dg2die0yuvxk6" path="res://stages/stage2/stage_2.tscn" id="4_hg74b"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="5_yiqwg"]
+[ext_resource type="AudioStream" uid="uid://cs55c7vdff30i" path="res://assets/audio/bgm/Stage_1.ogg" id="10_cv04h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbwp"]
 size = Vector2(1328, 56)
@@ -78,3 +79,7 @@ position = Vector2(-8, 1024)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(648, -36)
 shape = SubResource("RectangleShape2D_mqbwp")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_cv04h")

@@ -40,7 +40,7 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
 theme = SubResource("Theme_g0p5h")
 text = "Play"
@@ -56,9 +56,17 @@ text = "Options"
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 focus_neighbor_top = NodePath("../OptionsButton")
-focus_neighbor_bottom = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
 theme = SubResource("Theme_g0p5h")
 text = "Credits"
+
+[node name="QuitButton" type="Button" parent="SelectButtons"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+theme = SubResource("Theme_g0p5h")
+text = "Quit"
 
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_5k2il")
@@ -73,3 +81,5 @@ volume_db = -15.0
 [connection signal="pressed" from="SelectButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="SelectButtons/CreditsButton" to="." method="_on_credits_button_focus_entered"]
 [connection signal="pressed" from="SelectButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="focus_entered" from="SelectButtons/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="pressed" from="SelectButtons/QuitButton" to="." method="_on_quit_button_pressed"]

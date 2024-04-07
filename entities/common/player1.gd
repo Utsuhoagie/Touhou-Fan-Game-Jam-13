@@ -13,7 +13,6 @@ var speed := 500
 @onready var swing_collision_area: Area2D = $SwingCollisionArea
 @onready var swing_cooldown_timer: Timer = $SwingCooldownTimer
 @onready var yinyang_orb: YinyangOrb = $"../YinyangOrb"
-@onready var shoot_sfx: AudioStreamPlayer = $ShootSFX
 @onready var swing_sfx: AudioStreamPlayer = $SwingSFX
 
 var shot_preload = preload("res://entities/common/player_1_shot.tscn")
@@ -72,7 +71,7 @@ func handle_movement(input_map: float, delta: float) -> void:
 		player_size.x / 2,
 		viewport_size.x - (player_size.x / 2)
 	)
-
+	
 
 func handle_shoot() -> void:
 	if Input.is_action_pressed("player_shoot") and gun_timer.is_stopped():
@@ -81,8 +80,7 @@ func handle_shoot() -> void:
 		var shot: Player1Shot = shot_preload.instantiate()
 		get_tree().current_scene.add_child(shot)
 		shot.global_position = gun.global_position
-		shoot_sfx.play()
-
+	
 
 func update_animations(input_map: float) -> void:
 	if not death_timer.is_stopped():

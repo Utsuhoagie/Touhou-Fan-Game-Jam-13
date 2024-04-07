@@ -38,6 +38,15 @@ func _on_credits_button_focus_entered() -> void:
 	button_hover_sfx.play()
 	
 
+func _on_quit_button_pressed() -> void:
+	button_sfx.play()
+	get_tree().quit()
+
+
+func _on_quit_button_focus_entered() -> void:
+	button_hover_sfx.play()
+
+
 func select_button(packed_scene: PackedScene) -> void:
 	print("test")
 	button_sfx.play()

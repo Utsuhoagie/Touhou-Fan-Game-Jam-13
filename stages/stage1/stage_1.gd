@@ -1,6 +1,7 @@
 extends Node2D
 class_name Stage1
 
+@onready var bgm: AudioStreamPlayer = $BGM
 @onready var card_tilemap: CardTileMap = $CardTilemap
 @onready var dialog_player: DialogPlayer = $DialogPlayer
 @onready var stage_1_ui: Stage1UI = $Stage1UI
@@ -20,9 +21,11 @@ var blocks_remaining: int
 
 
 func _ready() -> void:
-	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
 	stage_1_ui.update_high_score(high_score)
 	stage_1_ui.life_init(player_lives)
+	
+	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
+	bgm.play()
 	
 	#get_tree().paused = true
 	#dialog_player.start_dialog()

@@ -1,26 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwqcmlojafmg"]
+[gd_scene load_steps=7 format=3 uid="uid://dwqcmlojafmg"]
 
+[ext_resource type="Texture2D" uid="uid://yugulckugxdw" path="res://assets/sprites/Credits.png" id="1_0nm2f"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="1_1itub"]
+[ext_resource type="Script" path="res://menus/credits.gd" id="1_s0llh"]
 
-[sub_resource type="Theme" id="Theme_76t35"]
-Label/fonts/font = ExtResource("1_1itub")
+[sub_resource type="Animation" id="Animation_isddc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_odgnv"]
+resource_name = "LabelFlash"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ur5k"]
+_data = {
+"LabelFlash": SubResource("Animation_odgnv"),
+"RESET": SubResource("Animation_isddc")
+}
 
 [node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_s0llh")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 960.0
+color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="AspectRatioContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 40.0
+offset_right = 1240.0
+offset_bottom = 900.0
+texture = ExtResource("1_0nm2f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/CenterContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 320.0
+offset_top = 904.0
+offset_right = 960.0
+offset_bottom = 944.0
+theme_override_fonts/font = ExtResource("1_1itub")
+theme_override_font_sizes/font_size = 32
+text = "[Press Enter or Space to return]"
 
-[node name="CreditLabel" type="Label" parent="AspectRatioContainer/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme = SubResource("Theme_76t35")
-theme_override_font_sizes/font_size = 48
-text = "(WIP)"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ur5k")
+}

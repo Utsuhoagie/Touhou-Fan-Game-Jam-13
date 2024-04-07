@@ -6,6 +6,7 @@ var swing_bounce := 1150
 
 @export var enable_bullets: bool
 
+@onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
 @onready var floor: StaticBody2D = $"../Floor"
 @onready var guns: Node2D = $Guns
 @onready var gun_timer: Timer = $GunTimer
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.bounce(collision.get_normal())
 		velocity *= 0.9
 		
+		bounce_sfx.play()
 		if collider == floor:
 			stage.combo = 0
 	
@@ -53,4 +55,5 @@ func handle_player_swing(player_pos: Vector2) -> void:
 		swing_bounce * cos(angle_radians),
 		swing_bounce * sin(angle_radians)
 	)
+	bounce_sfx.play()
 	
