@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fxcx6q1ogitl"]
+[gd_scene load_steps=14 format=3 uid="uid://dip3w7j46he26"]
 
 [ext_resource type="Texture2D" uid="uid://b6ysdhd1qtsfp" path="res://assets/sprites/Character_Boss_Parsee.png" id="1_0bhla"]
 [ext_resource type="Script" path="res://entities/stage2/parsee.gd" id="1_nm35u"]
@@ -94,38 +94,41 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParseeBody"]
 shape = SubResource("CapsuleShape2D_6drwm")
 
-[node name="Blocks" type="Node2D" parent="."]
+[node name="Blocks" type="Node2D" parent="ParseeBody"]
 
-[node name="Block" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(192, 0)
 rotation = -1.5708
 
-[node name="Block2" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block2" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-192, 0)
 rotation = 1.5708
 
-[node name="Block3" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block3" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-8.39259e-06, -192)
 rotation = 3.14159
 
-[node name="Block4" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block4" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(8.39259e-06, 192)
 
-[node name="Block5" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block5" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, -135.764)
 rotation = -2.35619
 
-[node name="Block6" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block6" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, 135.764)
 rotation = 0.785398
 
-[node name="Block7" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block7" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, -135.764)
 rotation = 2.35619
 
-[node name="Block8" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Block8" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, 135.764)
 rotation = -0.785398
 
 [node name="MoveTimer" type="Timer" parent="."]
-one_shot = true
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="ParseeBody" method="_on_move_timer_timeout"]
