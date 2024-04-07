@@ -16,7 +16,7 @@ var blocks_remaining: int
 
 
 func _ready():
-	blocks_remaining = $Parsee/ParseeBody/Blocks.get_child_count()
+	blocks_remaining = $Parsee/Blocks.get_child_count()
 	get_tree().paused = false
 	
 

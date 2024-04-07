@@ -7,7 +7,7 @@ const SPEED := 30.0
 var x_bounds := [300, 1000]
 var random_position: Vector2
 
-@onready var blocks = $"Blocks"
+@onready var blocks: Node2D = $"../Blocks"
 
 
 func _physics_process(delta: float) -> void:
