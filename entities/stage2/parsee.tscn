@@ -141,34 +141,34 @@ rotation = 3.92699
 
 [node name="Blocks" type="Node2D" parent="ParseeBody"]
 
-[node name="Block" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(192, 0)
 rotation = -1.5708
 
-[node name="Block2" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block2" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-192, 0)
 rotation = 1.5708
 
-[node name="Block3" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block3" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-8.39259e-06, -192)
 rotation = 3.14159
 
-[node name="Block4" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block4" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(8.39259e-06, 192)
 
-[node name="Block5" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block5" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, -135.764)
 rotation = -2.35619
 
-[node name="Block6" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block6" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, 135.764)
 rotation = 0.785398
 
-[node name="Block7" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block7" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(-135.764, -135.764)
 rotation = 2.35619
 
-[node name="Block8" parent="Blocks" instance=ExtResource("2_0tra6")]
+[node name="Blocks#Block8" parent="ParseeBody/Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(135.764, 135.764)
 rotation = -0.785398
 
