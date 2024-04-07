@@ -50,106 +50,99 @@
 			"text": "There's my little puppet~ My ticket out of hell."
 		},
 		{
-			"character": "1",
-			"sprite": 2,
-			"text": "(Look at that spirit waltzing by with such rage in her eyes.)"
+			"character": "(narrator)",
+			"text": "(Mizuchi apporaches Parsee.)"
+		},
+		{
+			"character": "0",
+			"sprite": 1,
+			"text": "Hey beautiful~"
 		},
 		{
 			"character": "1",
 			"sprite": 5,
-			"text": "(It fills me with a certain kind of rage within myself that I can never be filled with such ire...)"
-		},
-		{
-			"character": "0",
-			"sprite": 0,
-			"text": "(A Hashihime, huh? I've seen a fair deal of repulsive youkai last time I was out.)"
-		},
-		{
-			"character": "0",
-			"sprite": 0,
-			"text": "(But none perplex me like a Hashihime...)"
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "Hey! Spirits like you aren't supposed to be heading out like that!"
-		},
-		{
-			"character": "0",
-			"sprite": 2,
-			"text": "You know, I feel suddenly compelled to take over your body."
-		},
-		{
-			"character": "1",
-			"sprite": 5,
-			"text": "Take over my what? Well, maybe I would finally have your anger, your vengeance that I am vying for."
+			"text": "Hey! How the hell did you get out here--"
 		},
 		{
 			"character": "0",
 			"sprite": 3,
-			"text": "And I would get to have your body!"
+			"text": "Where's the tall horned one? I always see you two paired up...did it not work out?~"
+		},
+		{
+			"character": "1",
+			"sprite": 5,
+			"text": "That is none of your concern! Get back in your cell or--"
 		},
 		{
 			"character": "0",
 			"sprite": 2,
-			"text": "Maybe we could, strike a deal, you know?"
+			"text": "Listen, I can provide more than that tall blonde. I'll help you achieve the impossible and always support your decisions--"
 		},
 		{
-			"character": "1",
+			"character": "0",
 			"sprite": 2,
-			"text": "A deal, huh? My body for your anger..."
+			"text": "I'll treat you right~"
 		},
 		{
 			"character": "1",
+			"sprite": 5,
+			"text": "You must think I'm stupid, because not also me, but everyone in Gensoyko knows what you do to people Mizuchi."
+		},
+		{
+			"character": "1",
+			"sprite": 5,
+			"text": "--Don't you dare mention my relationship with Yuugi! You should be more concerned on how you'll even cross this bridge with me in the middle of it."
+		},
+		{
+			"character": "0",
 			"sprite": 3,
-			"text": "Wait, but that would mean I would be envious about other people with a body."
-		},
-		{
-			"character": "0",
-			"sprite": 5,
-			"text": "Tch... Hashihimes... never ever pleased, always wanting to have a cake and eat it too."
-		},
-		{
-			"character": "1",
-			"sprite": 2,
-			"text": "And vengeful spirits like you, filled with a never-ending amount of anger."
-		},
-		{
-			"character": "1",
-			"sprite": 2,
-			"text": "Maybe you and I aren't that different after all."
-		},
-		{
-			"character": "0",
-			"sprite": 5,
-			"text": "That's why we two should be in one body once I take it over!"
-		},
+			"text": "It's always the jealous ones, but don't worry, I can change your mind once I show you!"
+		}
 	],
 	"post_stage2": [
 		{
-			"character": "3",
-			"sprite": 0,
-			"text": "Ahh. We really are one and the same figuratively and now literally, huh?"
+			"character": "0",
+			"sprite": 3,
+			"text": "What did you say earlier? That everyone in Gensoyko knows what I do?"
 		},
 		{
-			"character": "3",
-			"sprite": 0,
-			"text": "Now to look for a way out."
-		},
-		{
-			"character": "3",
-			"sprite": 5,
-			"text": "Darn, this ascent looks like it will never end."
-		},
-		{
-			"character": "3",
+			"character": "0",
 			"sprite": 4,
-			"text": "Being this tired after the fight, I don't think I can make it out through that."
+			"text": "My, that's not really fair. You judge before you can even get to know me, I'm not that bad Parsee~"
+		},
+		{
+			"character": "1",
+			"sprite": 5,
+			"text": "Stay away from me! I won't let you--"
+		},
+		{
+			"character": "0",
+			"sprite": 0,
+			"text": "It's okay, I'll help you give pointers whenever you speak to Yuugi, so guys can finally go on a date finally."
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "Well...more like I go on the date with her~"
+		},
+		{
+			"character": "1",
+			"sprite": 3,
+			"text": "no....NO!"
+		},
+		{
+			"character": "(narrator)",
+			"text": "(Mizuchi possesses Parsee and gains her abilities.)"
 		},
 		{
 			"character": "3",
 			"sprite": 0,
-			"text": "How about this river instead? Build a raft, drift away, and hope I end somewhere I want to be."
+			"text": "Okay that took longer than expected."
+		},
+		{
+			"character": "3",
+			"sprite": 1,
+			"text": "The Sanzu River, and a boat too! Okay let's get out of here!"
 		}
 	],
 	"post_stage3": [
