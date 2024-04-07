@@ -2,7 +2,10 @@
 	"prologue": [
 		{
 			"text": "This is a test."
-		}
+		},
+		{
+			"text": "This is also a test."
+		},
 	],
 	"post_stage1": [
 		{
@@ -22,6 +25,7 @@
 		},
 		{
 			"character": "(narrator)",
+			"sprite": -1,
 			"text": "(Mizuchi steps out of her cell, the cell that had kept her in for what must have been forever.)"
 		},
 		{
@@ -51,6 +55,7 @@
 		},
 		{
 			"character": "(narrator)",
+			"sprite": -1,
 			"text": "(Mizuchi apporaches Parsee.)"
 		},
 		{
@@ -132,6 +137,7 @@
 		},
 		{
 			"character": "(narrator)",
+			"sprite": -1,
 			"text": "(Mizuchi possesses Parsee and gains her abilities.)"
 		},
 		{

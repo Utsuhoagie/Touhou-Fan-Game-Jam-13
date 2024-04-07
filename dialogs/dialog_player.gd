@@ -5,6 +5,8 @@ class_name DialogPlayer
 @export var narration_mode: bool
 @export var next_scene: PackedScene
 
+@onready var animation_player = $AnimationPlayer
+@onready var animation_timer: Timer = $AnimationTimer
 @onready var character_name: Label = %CharacterName
 @onready var dialog_section: Label = %DialogSection
 @onready var proceed_hint: Label = %ProceedHint
@@ -63,29 +65,35 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 	mizuchi_sprite.hide()
 	parsee_sprite.hide()
 	
+	if not narration_mode:
+		character_name.show()
+		match selected_text["character"]:
+			"0":
+				character_name.text = "Mizuchi"
+				current_sprite = mizuchi_sprite
+			"1":
+				character_name.text = "Parsee"
+				current_sprite = parsee_sprite
+			"2":
+				character_name.text = "Komachi"
+				current_sprite = komachi_sprite
+			"3":
+				character_name.text = "Parsee?"
+				current_sprite = fake_parsee_sprite
+			_:
+				character_name.hide()
+				
+		
+		if selected_text["sprite"] != -1:
+			current_sprite.texture.region.position.x = selected_text["sprite"] * 128
+			current_sprite.show()
+			
+		
 	dialog_section.text = selected_text["text"]
-	if narration_mode: return
-	
-	character_name.show()
-	match selected_text["character"]:
-		"0":
-			character_name.text = "Mizuchi"
-			current_sprite = mizuchi_sprite
-		"1":
-			character_name.text = "Parsee"
-			current_sprite = parsee_sprite
-		"2":
-			character_name.text = "Komachi"
-			current_sprite = komachi_sprite
-		"3":
-			character_name.text = "Parsee?"
-			current_sprite = fake_parsee_sprite
-		_:
-			character_name.hide()
-			return
-	
-	current_sprite.texture.region.position.x = selected_text["sprite"] * 128
-	current_sprite.show()
+	animation_player.play("show_text")
+	animation_timer.start()
+	await animation_timer.timeout
+	animation_player.play("proceed_flash")
 	
 
 func end_dialog() -> void:

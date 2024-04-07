@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7yl7c7lwc57x"]
+[gd_scene load_steps=20 format=3 uid="uid://c7yl7c7lwc57x"]
 
 [ext_resource type="Script" path="res://dialogs/dialog_player.gd" id="1_0vi2j"]
 [ext_resource type="Texture2D" uid="uid://dkjhaqbnbdqnq" path="res://assets/sprites/Character_Dialogue_Mizuchi.png" id="2_b0r6d"]
@@ -26,8 +26,82 @@ region = Rect2(0, 0, 128, 128)
 atlas = ExtResource("4_3gxx4")
 region = Rect2(0, 0, 128, 128)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kufv3"]
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="Theme" id="Theme_uj4m1"]
 Label/fonts/font = ExtResource("5_7uhvb")
+
+[sub_resource type="Animation" id="Animation_2e6av"]
+resource_name = "show_text"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/PanelContainer/DialogSection:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rx0pj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/PanelContainer/DialogSection:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/PanelContainer/ProceedHint:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c6y4b"]
+resource_name = "proceed_flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/PanelContainer/ProceedHint:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ky5bl"]
+_data = {
+"RESET": SubResource("Animation_rx0pj"),
+"proceed_flash": SubResource("Animation_c6y4b"),
+"show_text": SubResource("Animation_2e6av")
+}
 
 [node name="DialogPlayer" type="CanvasLayer"]
 process_mode = 3
@@ -71,6 +145,7 @@ flip_h = true
 offset_top = 640.0
 offset_right = 1280.0
 offset_bottom = 960.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kufv3")
 
 [node name="PanelContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -92,6 +167,7 @@ text = "Parsee?"
 
 [node name="DialogSection" type="Label" parent="Panel/PanelContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(500, 175)
 layout_mode = 2
 theme = SubResource("Theme_uj4m1")
@@ -101,6 +177,7 @@ autowrap_mode = 2
 
 [node name="ProceedHint" type="Label" parent="Panel/PanelContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(500, 40)
 layout_mode = 2
 theme = SubResource("Theme_uj4m1")
@@ -109,12 +186,27 @@ text = "[Press Enter or Space to proceed]"
 autowrap_mode = 2
 
 [node name="TransitionBGM1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_rj5en")
 
 [node name="TransitionBGM2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 
 [node name="TransitionSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_10ywd")
 
 [node name="DialogSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_q27ub")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_ky5bl")
+}
+
+[node name="AnimationTimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.5
+one_shot = true

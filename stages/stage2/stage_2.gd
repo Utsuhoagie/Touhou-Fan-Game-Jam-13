@@ -52,6 +52,7 @@ func life_down() -> void:
 	if player_lives <= 0:
 		await transition.fade_to_black()
 		get_tree().change_scene_to_file("res://menus/menu.tscn")
+	
 
 func on_defeated() -> void:
 	print("stage 2 complete")
