@@ -1,9 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7b5b80wpor1v"]
+[gd_scene load_steps=19 format=3 uid="uid://c7b5b80wpor1v"]
 
 [ext_resource type="Texture2D" uid="uid://cr17jlqdx62dr" path="res://assets/sprites/Thumbnail.png" id="1_i118w"]
-[ext_resource type="Script" path="res://menu.gd" id="1_tv4tj"]
+[ext_resource type="Script" path="res://menus/menu.gd" id="1_tv4tj"]
+[ext_resource type="PackedScene" uid="uid://6c38xmm1o40d" path="res://menus/prologue.tscn" id="2_1q6oc"]
+[ext_resource type="PackedScene" uid="uid://dasil3emafrrv" path="res://menus/options.tscn" id="2_f5p6e"]
+[ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="3_0lci1"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
 [ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="3_tqk1w"]
+[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="8_5k2il"]
+[ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="9_1e75l"]
 
 [sub_resource type="Theme" id="Theme_g0p5h"]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -69,6 +74,9 @@ animations = [{
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_tv4tj")
+prologue_scene = ExtResource("2_1q6oc")
+options_scene = ExtResource("2_f5p6e")
+credits_scene = ExtResource("3_0lci1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = -1
@@ -98,6 +106,7 @@ text = "Play"
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = SubResource("Theme_g0p5h")
+disabled = true
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="SelectButtons"]
@@ -115,6 +124,16 @@ scale = Vector2(1.06667, 1.06667)
 sprite_frames = SubResource("SpriteFrames_q4jlc")
 animation = &"opening"
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5k2il")
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1e75l")
+volume_db = -15.0
+
+[connection signal="focus_entered" from="SelectButtons/PlayButton" to="." method="_on_play_button_focus_entered"]
 [connection signal="pressed" from="SelectButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="SelectButtons/OptionsButton" to="." method="_on_options_button_focus_entered"]
 [connection signal="pressed" from="SelectButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="focus_entered" from="SelectButtons/CreditsButton" to="." method="_on_credits_button_focus_entered"]
 [connection signal="pressed" from="SelectButtons/CreditsButton" to="." method="_on_credits_button_pressed"]

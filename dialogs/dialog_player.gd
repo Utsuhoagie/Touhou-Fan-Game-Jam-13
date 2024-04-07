@@ -2,6 +2,8 @@ extends CanvasLayer
 class_name DialogPlayer
 
 @export var dialog_key: String
+@export var narration_mode: bool
+@export var next_scene: PackedScene
 
 @onready var character_name: Label = %CharacterName
 @onready var dialog_section: Label = %DialogSection
@@ -27,6 +29,10 @@ func _ready() -> void:
 	if not dialog_key in dialogs_dict:
 		return print("ERROR: dialog key doesn't exist in dialogs.json")
 	
+	if narration_mode:
+		character_name.hide()
+		start_dialog()
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and in_progress:
@@ -46,6 +52,8 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 	parsee_sprite.hide()
 	
 	dialog_section.text = selected_text["text"]
+	if narration_mode: return
+	
 	match selected_text["character"]:
 		"0":
 			character_name.text = "Mizuchi"
@@ -67,7 +75,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 func end_dialog() -> void:
 	in_progress = false
 	dialog_pointer = 0
-	hide()
+	get_tree().change_scene_to_packed(next_scene)
 	
 
 func start_dialog() -> void:

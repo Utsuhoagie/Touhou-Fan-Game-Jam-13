@@ -17,8 +17,8 @@ var blocks_remaining: int
 
 func _ready():
 	blocks_remaining = $Parsee/Blocks.get_child_count()
+	get_tree().paused = false
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

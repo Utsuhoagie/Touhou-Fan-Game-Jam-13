@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwqcmlojafmg"]
+
+[ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="1_1itub"]
+
+[sub_resource type="Theme" id="Theme_76t35"]
+Label/fonts/font = ExtResource("1_1itub")
+
+[node name="Credits" type="CanvasLayer"]
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+
+[node name="CenterContainer" type="CenterContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="CreditLabel" type="Label" parent="AspectRatioContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_76t35")
+theme_override_font_sizes/font_size = 48
+text = "(WIP)"
