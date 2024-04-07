@@ -170,7 +170,7 @@ size = Vector2(288, 200)
 
 [node name="Player1" type="Area2D"]
 collision_layer = 2
-collision_mask = 132
+collision_mask = 133
 script = ExtResource("1_1cxu7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -186,7 +186,7 @@ shape = SubResource("CapsuleShape2D_il02v")
 [node name="GrazeArea" type="Area2D" parent="."]
 position = Vector2(0, -8)
 collision_layer = 2
-collision_mask = 4
+collision_mask = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeArea"]
 position = Vector2(0, -8)
@@ -225,4 +225,5 @@ pitch_scale = 2.0
 [node name="SwingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_blfjs")
 
+[connection signal="area_exited" from="GrazeArea" to="." method="_on_graze_area_area_exited"]
 [connection signal="body_exited" from="GrazeArea" to="." method="_on_graze_area_body_exited"]

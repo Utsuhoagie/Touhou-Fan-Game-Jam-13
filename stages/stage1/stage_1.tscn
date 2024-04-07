@@ -38,6 +38,7 @@ position = Vector2(1248, 640)
 
 [node name="Player1" parent="." instance=ExtResource("2_dmm36")]
 position = Vector2(640, 920)
+clamp_x = 1280
 
 [node name="Block" parent="." instance=ExtResource("4_5ypuo")]
 position = Vector2(192, 232)

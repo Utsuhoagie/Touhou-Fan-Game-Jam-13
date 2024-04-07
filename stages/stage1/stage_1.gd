@@ -18,6 +18,7 @@ var time_left: float = 3000.0
 
 var all_cards_turned: bool = false
 var running_out_of_time: bool = false
+var stage_is_complete: bool = false
 var blocks_remaining: int
 
 func _ready() -> void:
@@ -45,7 +46,8 @@ func _process(delta: float) -> void:
 	stage_1_ui.update_max_combo(max_combo)
 	stage_1_ui.update_time_left(time_left)
 
-	if blocks_remaining == 0 and all_cards_turned:
+	if blocks_remaining == 0 and all_cards_turned and not stage_is_complete:
+		stage_is_complete = true
 		stage_complete()
 
 	if time_left <= 0:

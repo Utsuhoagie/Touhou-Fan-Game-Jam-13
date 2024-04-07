@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcxq7gxjv5cu8"]
+
+[ext_resource type="Script" path="res://stages/stage2/stage_2ui.gd" id="1_g2q4q"]
+[ext_resource type="Texture2D" uid="uid://l1ob8ryqty36" path="res://assets/sprites/JAM_UI_Lvl_3.png" id="1_tsnxh"]
+[ext_resource type="FontFile" uid="uid://q2yhdigwv6d6" path="res://assets/fonts/MagicDecimal-VG4ye.ttf" id="2_kwlmc"]
+
+[sub_resource type="Theme" id="Theme_fno12"]
+Label/font_sizes/font_size = 27
+Label/fonts/font = ExtResource("2_kwlmc")
+
+[sub_resource type="Theme" id="Theme_jvye3"]
+Label/font_sizes/font_size = 27
+Label/fonts/font = ExtResource("2_kwlmc")
+
+[node name="Stage2UI" type="CanvasLayer"]
+script = ExtResource("1_g2q4q")
+
+[node name="Overlay" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+texture = ExtResource("1_tsnxh")
+
+[node name="HighScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 1016.0
+offset_top = 176.0
+offset_right = 1208.0
+offset_bottom = 221.0
+theme = SubResource("Theme_fno12")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GrazeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 1094.0
+offset_top = 571.0
+offset_right = 1286.0
+offset_bottom = 616.0
+theme = SubResource("Theme_fno12")
+text = "0"
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 1016.0
+offset_top = 256.0
+offset_right = 1208.0
+offset_bottom = 301.0
+theme = SubResource("Theme_fno12")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 285.0
+offset_bottom = 117.0
+theme = SubResource("Theme_jvye3")
+text = "0"
+vertical_alignment = 1
+
+[node name="LifeCountContainer" type="HBoxContainer" parent="."]
+offset_left = 1096.0
+offset_top = 656.0
+offset_right = 1248.0
+offset_bottom = 696.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="LifeCountContainer"]
+layout_mode = 2
+
+[node name="You\'re Not Supposed to See This" type="ColorRect" parent="."]
+offset_left = 992.0
+offset_top = 744.0
+offset_right = 1088.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)

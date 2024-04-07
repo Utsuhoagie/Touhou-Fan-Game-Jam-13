@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dg2die0yuvxk6"]
+[gd_scene load_steps=17 format=3 uid="uid://dg2die0yuvxk6"]
 
 [ext_resource type="Script" path="res://stages/stage2/stage_2.gd" id="1_omh63"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="2_lstlf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_worqk"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/common/player1.tscn" id="4_2rb7j"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="4_81t2u"]
+[ext_resource type="PackedScene" uid="uid://dcxq7gxjv5cu8" path="res://stages/stage2/stage_2ui.tscn" id="4_kksee"]
 [ext_resource type="PackedScene" uid="uid://x4sy7w1lfar7" path="res://stages/stage3/stage_3.tscn" id="5_e3f85"]
 [ext_resource type="PackedScene" uid="uid://fxcx6q1ogitl" path="res://entities/stage2/parsee.tscn" id="5_krn3d"]
 [ext_resource type="AudioStream" uid="uid://dtubrtj4rxtey" path="res://assets/audio/bgm/Stage_2.ogg" id="8_hjjpj"]
@@ -26,17 +27,20 @@ script = ExtResource("1_omh63")
 [node name="PauseMenu" parent="." instance=ExtResource("2_worqk")]
 visible = false
 
+[node name="Stage2UI" parent="." instance=ExtResource("4_kksee")]
+
 [node name="DialogPlayer" parent="." instance=ExtResource("2_lstlf")]
 visible = false
 dialog_key = "post_stage2"
 next_scene = ExtResource("5_e3f85")
 
 [node name="YinyangOrb" parent="." instance=ExtResource("4_81t2u")]
-position = Vector2(1248, 640)
+position = Vector2(888, 640)
 enable_bullets = true
 
 [node name="Player1" parent="." instance=ExtResource("4_2rb7j")]
 position = Vector2(640, 920)
+clamp_x = 928
 
 [node name="Parsee" parent="." instance=ExtResource("5_krn3d")]
 position = Vector2(640, 256)
@@ -47,7 +51,7 @@ collision_mask = 22
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Walls"]
 position = Vector2(-2, 470)
-polygon = PackedVector2Array(-12, -480, -12, 480, 12, 480, 12, -456, 1292, -448, 1292, 480, 1316, 480, 1316, -480)
+polygon = PackedVector2Array(-12, -480, -12, 480, 12, 480, 12, -456, 940, -456, 940, 480, 1316, 480, 1316, -480)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(-8, 1024)

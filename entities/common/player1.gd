@@ -3,6 +3,8 @@ class_name Player1
 
 var speed := 500
 
+@export var clamp_x: int
+
 @onready var stage = get_tree().current_scene
 @onready var death_timer: Timer = $DeathTimer
 @onready var invincible_timer: Timer = $InvincibleTimer
@@ -18,11 +20,9 @@ var speed := 500
 
 var shot_preload = preload ("res://entities/common/player_1_shot.tscn")
 var player_size: Vector2i
-var viewport_size: Vector2i
 
 func _ready() -> void:
 	player_size = $GrazeArea/CollisionShape2D.shape.get_rect().size
-	viewport_size = get_viewport().size
 
 func _physics_process(delta: float) -> void:
 	if not death_timer.is_stopped(): return
@@ -62,12 +62,20 @@ func _on_graze_area_body_exited(_body: Node2D):
 	stage.graze_count += 1
 	stage.score += 1000
 
+func _on_graze_area_area_exited(_area: Area2D):
+	if not death_timer.is_stopped() or not invincible_timer.is_stopped():
+		return
+
+	stage.graze_count += 1
+	stage.score += 1000
+	
+
 func handle_movement(input_map: float, delta: float) -> void:
 	position.x += input_map * speed * delta
 	position.x = clampf(
 		position.x,
 		player_size.x / 2,
-		viewport_size.x - (player_size.x / 2)
+		clamp_x - (player_size.x / 2)
 	)
 
 func handle_shoot() -> void:

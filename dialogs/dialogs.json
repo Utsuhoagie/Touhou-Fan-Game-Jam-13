@@ -17,14 +17,69 @@
 		},
 		{
 			"character": "0",
-			"sprite": 2,
+			"sprite": 0,
 			"text": "(A Hashihime, huh? I've seen a fair deal of repulsive youkai last time I was out.)"
 		},
 		{
 			"character": "0",
-			"sprite": 2,
+			"sprite": 0,
 			"text": "(But none perplex me like a Hashihime...)"
-		}
+		},
+		{
+			"character": "1",
+			"sprite": 5,
+			"text": "Hey! Spirits like you aren't supposed to be heading out like that!"
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "You know, I feel suddenly compelled to take over your body."
+		},
+		{
+			"character": "1",
+			"sprite": 5,
+			"text": "Take over my what? Well, maybe I would finally have your anger, your vengeance that I am vying for."
+		},
+		{
+			"character": "0",
+			"sprite": 3,
+			"text": "And I would get to have your body!"
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "Maybe we could, strike a deal, you know?"
+		},
+		{
+			"character": "1",
+			"sprite": 2,
+			"text": "A deal, huh? My body for your anger..."
+		},
+		{
+			"character": "1",
+			"sprite": 3,
+			"text": "Wait, but that would mean I would be envious about other people with a body."
+		},
+		{
+			"character": "0",
+			"sprite": 5,
+			"text": "Tch... Hashihimes... never ever pleased, always wanting to have a cake and eat it too."
+		},
+		{
+			"character": "1",
+			"sprite": 2,
+			"text": "And vengeful spirits like you, filled with a never-ending amount of anger."
+		},
+		{
+			"character": "1",
+			"sprite": 2,
+			"text": "Maybe you and I aren't that different after all."
+		},
+		{
+			"character": "0",
+			"sprite": 5,
+			"text": "That's why we two should be in one body once I take it over!"
+		},
 	],
 	"post_stage2": [
 		{
