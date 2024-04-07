@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://dt7n6dktaf6x1"]
+
+[ext_resource type="Script" path="res://menus/opening.gd" id="1_2lv24"]
+[ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="1_aqh2l"]
+[ext_resource type="PackedScene" uid="uid://c7b5b80wpor1v" path="res://menus/menu.tscn" id="2_vsquv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjut2"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(0, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1kff"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(1200, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4gqk"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(2400, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljlta"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(0, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nnue"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(1200, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rm4t"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(2400, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goeiy"]
+atlas = ExtResource("1_aqh2l")
+region = Rect2(0, 1800, 1200, 900)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6naab"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_pjut2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1kff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4gqk")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ljlta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nnue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rm4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goeiy")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[node name="Opening" type="CanvasLayer"]
+script = ExtResource("1_2lv24")
+menu_scene = ExtResource("2_vsquv")
+
+[node name="OpeningSequence" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 480)
+scale = Vector2(1.06667, 1.06667)
+sprite_frames = SubResource("SpriteFrames_6naab")
+animation = &"opening"

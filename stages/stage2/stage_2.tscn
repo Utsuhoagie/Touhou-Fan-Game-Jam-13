@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg2die0yuvxk6"]
+[gd_scene load_steps=8 format=3 uid="uid://dg2die0yuvxk6"]
 
 [ext_resource type="Script" path="res://stages/stage2/stage_2.gd" id="1_omh63"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="2_lstlf"]
+[ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_worqk"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/common/player1.tscn" id="4_2rb7j"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="4_81t2u"]
 [ext_resource type="PackedScene" uid="uid://fxcx6q1ogitl" path="res://entities/stage2/parsee.tscn" id="5_krn3d"]
@@ -11,6 +12,8 @@ size = Vector2(1328, 56)
 
 [node name="Stage2" type="Node2D"]
 script = ExtResource("1_omh63")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_worqk")]
 
 [node name="DialogPlayer" parent="." instance=ExtResource("2_lstlf")]
 visible = false

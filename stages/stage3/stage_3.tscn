@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://x4sy7w1lfar7"]
+[gd_scene load_steps=7 format=3 uid="uid://x4sy7w1lfar7"]
 
 [ext_resource type="Script" path="res://stages/stage3/stage_3.gd" id="1_t3dqq"]
 [ext_resource type="PackedScene" uid="uid://56gnvy4cknct" path="res://entities/stage3/player/player3.tscn" id="2_mn1vv"]
+[ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_n7umt"]
 [ext_resource type="PackedScene" uid="uid://cwo4sjv6kvemh" path="res://entities/stage3/komachi/komachi.tscn" id="3_8tyfg"]
 [ext_resource type="Script" path="res://stages/ParallaxBackground.gd" id="4_s4bqw"]
 [ext_resource type="Texture2D" uid="uid://cd3sseujebxxc" path="res://assets/sprites/BG_3.png" id="5_1qx21"]
 
 [node name="Stage3" type="Node2D"]
 script = ExtResource("1_t3dqq")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_n7umt")]
+visible = false
 
 [node name="Player3" parent="." node_paths=PackedStringArray("komachi_node") instance=ExtResource("2_mn1vv")]
 position = Vector2(640, 872)
