@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7yl7c7lwc57x"]
+[gd_scene load_steps=18 format=3 uid="uid://c7yl7c7lwc57x"]
 
 [ext_resource type="Script" path="res://dialogs/dialog_player.gd" id="1_0vi2j"]
 [ext_resource type="Texture2D" uid="uid://dkjhaqbnbdqnq" path="res://assets/sprites/Character_Dialogue_Mizuchi.png" id="2_b0r6d"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://djs6ud10qs3gy" path="res://assets/sprites/Character_Dialogue_Komachi.png" id="4_3gxx4"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="5_7uhvb"]
 [ext_resource type="AudioStream" uid="uid://dqnwll23egoiv" path="res://assets/audio/bgm/Stage_2_Intro.ogg" id="6_rj5en"]
-[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="7_10ywd"]
-[ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="7_q27ub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cst0w"]
 atlas = ExtResource("2_b0r6d")
@@ -36,22 +34,6 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Theme" id="Theme_uj4m1"]
 Label/fonts/font = ExtResource("5_7uhvb")
-
-[sub_resource type="Animation" id="Animation_2e6av"]
-resource_name = "show_text"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/PanelContainer/DialogSection:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_rx0pj"]
 length = 0.001
@@ -94,6 +76,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2e6av"]
+resource_name = "show_text"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/PanelContainer/DialogSection:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ky5bl"]
@@ -194,11 +192,9 @@ process_mode = 3
 
 [node name="TransitionSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("7_10ywd")
 
 [node name="DialogSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("7_q27ub")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3

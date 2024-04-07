@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/common/player_1_shot.gd" id="1_w8usm"]
 [ext_resource type="Texture2D" uid="uid://bh6rqdttp6jk4" path="res://assets/sprites/Main_Bullet_2.png" id="2_hgn7p"]
-[ext_resource type="AudioStream" uid="uid://bq2juodb8h3sq" path="res://assets/audio/sfx/Shooting_Bullet_V3.mp3" id="3_5042f"]
+[ext_resource type="AudioStream" uid="uid://2ptquecx4krh" path="res://assets/audio/sfx/new/Player_Shoot.wav" id="3_ee3u4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0wp7"]
 size = Vector2(16, 32)
@@ -21,8 +21,8 @@ texture = ExtResource("2_hgn7p")
 shape = SubResource("RectangleShape2D_p0wp7")
 
 [node name="ShootSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5042f")
-volume_db = -5.0
+stream = ExtResource("3_ee3u4")
+volume_db = -9.0
 autoplay = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

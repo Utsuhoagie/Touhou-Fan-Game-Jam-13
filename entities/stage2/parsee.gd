@@ -83,9 +83,9 @@ func _process(delta: float) -> void:
 						gun.global_rotation_degrees + shot_angle_offset * 1.5
 					)
 					shot.global_position = gun.global_position
-					
+
 					shoot_sfx.play()
-	
+
 
 
 func take_damage(damage: int) -> void:
@@ -101,7 +101,7 @@ func take_damage(damage: int) -> void:
 		alive = false
 		death_sfx.play()
 		defeated.emit()
-	
+
 
 
 func _on_move_timer_timeout() -> void:

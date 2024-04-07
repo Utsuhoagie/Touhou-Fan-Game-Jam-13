@@ -3,9 +3,9 @@
 [ext_resource type="FontFile" uid="uid://q2yhdigwv6d6" path="res://assets/fonts/MagicDecimal-VG4ye.ttf" id="1_gr56i"]
 [ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_isihq"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="2_rvfef"]
-[ext_resource type="AudioStream" uid="uid://tvojaivh08ko" path="res://assets/audio/sfx/Pause_Game.mp3" id="5_rhibj"]
-[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="6_n1jxl"]
-[ext_resource type="AudioStream" uid="uid://brnjyqxc4h5be" path="res://assets/audio/sfx/Collect_Item.mp3" id="7_uyfgk"]
+[ext_resource type="AudioStream" uid="uid://baa1tkllfh0n3" path="res://assets/audio/sfx/new/Pause.wav" id="4_1k6sh"]
+[ext_resource type="AudioStream" uid="uid://bt4puuxcg74dn" path="res://assets/audio/sfx/new/Melee_Slash.wav" id="5_4a5m8"]
+[ext_resource type="AudioStream" uid="uid://2ptquecx4krh" path="res://assets/audio/sfx/new/Player_Shoot.wav" id="6_amigb"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -54,13 +54,13 @@ theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [node name="PauseSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_rhibj")
+stream = ExtResource("4_1k6sh")
 
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_n1jxl")
+stream = ExtResource("5_4a5m8")
 
 [node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_uyfgk")
+stream = ExtResource("6_amigb")
 volume_db = -15.0
 
 [connection signal="focus_entered" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_focus_entered"]

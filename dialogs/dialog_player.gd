@@ -31,40 +31,40 @@ var in_progress: bool = false
 func _ready() -> void:
 	if not FileAccess.file_exists(dialogs_file_path):
 		return print("ERROR: dialogs.json not found")
-	
+
 	var dialogs_file = FileAccess.open(dialogs_file_path, FileAccess.READ)
 	dialogs_dict = JSON.parse_string(dialogs_file.get_as_text())
 	if not dialog_key in dialogs_dict:
 		return print("ERROR: dialog key doesn't exist in dialogs.json")
-	
+
 	if narration_mode:
 		hide()
 		character_name.hide()
 		await transition.fade_from_black()
-		
+
 		show()
 		start_dialog()
-	
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and in_progress:
 		dialog_pointer += 1
 		dialog_sfx.play()
 		display_dialog(dialogs_dict[dialog_key], dialog_pointer)
-	
+
 
 func display_dialog(dialog: Array, pointer: int) -> void:
 	if pointer + 1 > dialog.size():
 		await end_dialog()
 		return
-	
+
 	var	selected_text: Dictionary = dialog[pointer]
 	var current_sprite: TextureRect
-	
+
 	komachi_sprite.hide()
 	mizuchi_sprite.hide()
 	parsee_sprite.hide()
-	
+
 	if not narration_mode:
 		character_name.show()
 		match selected_text["character"]:
@@ -82,37 +82,37 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 				current_sprite = fake_parsee_sprite
 			_:
 				character_name.hide()
-				
-		
+
+
 		if selected_text["sprite"] != -1:
 			current_sprite.texture.region.position.x = selected_text["sprite"] * 128
 			current_sprite.show()
-			
-		
+
+
 	dialog_section.text = selected_text["text"]
 	animation_player.play("show_text")
 	animation_timer.start()
 	await animation_timer.timeout
 	animation_player.play("proceed_flash")
-	
+
 
 func end_dialog() -> void:
 	in_progress = false
 	dialog_pointer = 0
 	transition_sfx.play()
 	await transition.fade_to_black()
-	
+
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)
 	else:
 		get_tree().change_scene_to_file("res://menus/menu.tscn")
-	
+
 
 func start_dialog() -> void:
 	in_progress = true
 	display_dialog(dialogs_dict[dialog_key], dialog_pointer)
 	show()
-	
+
 	match dialog_key:
 		"prologue":
 			pass
@@ -126,4 +126,4 @@ func start_dialog() -> void:
 			pass
 		_:
 			pass
-	
+

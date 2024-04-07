@@ -68,7 +68,7 @@ func _on_graze_area_area_exited(_area: Area2D):
 
 	stage.graze_count += 1
 	stage.score += 1000
-	
+
 
 func handle_movement(input_map: float, delta: float) -> void:
 	position.x += input_map * speed * delta

@@ -9,11 +9,11 @@ const DAMAGE := 20
 
 func _ready() -> void:
 	shoot_sfx.play()
-	
+
 
 func _process(delta) -> void:
 	position.y -= speed * delta
-	
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Parsee:

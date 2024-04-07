@@ -13,26 +13,26 @@ class_name Stage1UI
 
 func update_graze_count(new_graze_count: int) -> void:
 	graze_label.text = "Graze: " + str(new_graze_count)
-	
+
 
 func update_high_score(new_high_score: int) -> void:
 	high_score_label.text = "%07d" % new_high_score
-	
+
 
 func update_score(new_score: int) -> void:
 	score_label.text = "%07d" % new_score
-	
+
 
 func update_combo(new_combo: int) -> void:
 	combo_label.text = "%02d" % new_combo
-	
+
 
 func harry_up() -> void:
 	animation_player.play("harry_up")
 
 func life_down() -> void:
 	life_count_container.get_children()[0].queue_free()
-	
+
 
 func life_init(player_lives: int) -> void:
 	for i in range(player_lives):
@@ -42,8 +42,8 @@ func life_init(player_lives: int) -> void:
 
 func update_max_combo(new_max_combo: int) -> void:
 	max_combo_label.text = "%02d" % new_max_combo
-	
+
 
 func update_time_left(new_time_left: float) -> void:
 	time_left_label.text = "%04d" % round(new_time_left)
-	
+
