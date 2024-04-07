@@ -13,6 +13,7 @@ var speed := 500
 @onready var swing_collision_area: Area2D = $SwingCollisionArea
 @onready var swing_cooldown_timer: Timer = $SwingCooldownTimer
 @onready var yinyang_orb: YinyangOrb = $"../YinyangOrb"
+@onready var death_sfx: AudioStreamPlayer = $DeathSFX
 @onready var swing_sfx: AudioStreamPlayer = $SwingSFX
 
 var shot_preload = preload("res://entities/common/player_1_shot.tscn")
@@ -49,6 +50,7 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
+	death_sfx.play()
 	death_timer.start()
 	await death_timer.timeout
 

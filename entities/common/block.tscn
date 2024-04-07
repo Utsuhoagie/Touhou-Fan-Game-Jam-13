@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cr0xderkkf2qk"]
+[gd_scene load_steps=12 format=3 uid="uid://cr0xderkkf2qk"]
 
 [ext_resource type="Script" path="res://entities/common/block.gd" id="1_lav3a"]
 [ext_resource type="Texture2D" uid="uid://75qejev6mynn" path="res://assets/sprites/Prison_Wall.png" id="2_8m38r"]
+[ext_resource type="AudioStream" uid="uid://ptb0rok6mu6t" path="res://assets/audio/sfx/Boss_Bullet.mp3" id="3_mj8jh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn227"]
 atlas = ExtResource("2_8m38r")
@@ -75,5 +76,10 @@ shape = SubResource("RectangleShape2D_un0y8")
 
 [node name="BreakTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="BreakSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mj8jh")
+volume_db = -10.0
+pitch_scale = 0.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dt7n6dktaf6x1"]
+[gd_scene load_steps=14 format=3 uid="uid://dt7n6dktaf6x1"]
 
 [ext_resource type="Script" path="res://menus/opening.gd" id="1_2lv24"]
 [ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="1_aqh2l"]
 [ext_resource type="PackedScene" uid="uid://c7b5b80wpor1v" path="res://menus/menu.tscn" id="2_vsquv"]
 [ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="3_et88f"]
+[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="5_ic8y5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjut2"]
 atlas = ExtResource("1_aqh2l")
@@ -73,3 +74,7 @@ position = Vector2(640, 480)
 scale = Vector2(1.06667, 1.06667)
 sprite_frames = SubResource("SpriteFrames_6naab")
 animation = &"opening"
+
+[node name="StartSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_ic8y5")

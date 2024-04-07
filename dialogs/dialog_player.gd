@@ -8,7 +8,11 @@ class_name DialogPlayer
 @onready var character_name: Label = %CharacterName
 @onready var dialog_section: Label = %DialogSection
 @onready var proceed_hint: Label = %ProceedHint
-@onready var transition = $"../Transition"
+@onready var transition: Transition = $"../Transition"
+@onready var transition_bgm_1: AudioStreamPlayer = $TransitionBGM1
+@onready var transition_bgm_2: AudioStreamPlayer = $TransitionBGM2
+@onready var transition_sfx: AudioStreamPlayer = $TransitionSFX
+@onready var dialog_sfx: AudioStreamPlayer = $DialogSFX
 
 @onready var mizuchi_sprite = $MizuchiSprite
 @onready var parsee_sprite = $ParseeSprite
@@ -39,6 +43,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and in_progress:
 		dialog_pointer += 1
+		dialog_sfx.play()
 		display_dialog(dialogs_dict[dialog_key], dialog_pointer)
 	
 
@@ -78,6 +83,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 func end_dialog() -> void:
 	in_progress = false
 	dialog_pointer = 0
+	transition_sfx.play()
 	await transition.fade_to_black()
 	get_tree().change_scene_to_packed(next_scene)
 	
@@ -86,4 +92,18 @@ func start_dialog() -> void:
 	in_progress = true
 	display_dialog(dialogs_dict[dialog_key], dialog_pointer)
 	show()
+	
+	match dialog_key:
+		"prologue":
+			pass
+		"post_stage1":
+			transition_bgm_1.play()
+		"post_stage2":
+			transition_bgm_2.play()
+		"post_stage3":
+			pass
+		"ending":
+			pass
+		_:
+			pass
 	

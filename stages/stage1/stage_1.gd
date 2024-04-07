@@ -71,5 +71,7 @@ func stage_complete() -> void:
 	print("stage 1 complete")
 	await get_tree().create_timer(1).timeout
 	get_tree().paused = true
+	
+	bgm.stop()
 	dialog_player.start_dialog()
 	

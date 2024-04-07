@@ -4,6 +4,7 @@ class_name Block
 @export var hp := 1
 
 @onready var break_timer: Timer = $BreakTimer
+@onready var break_sfx: AudioStreamPlayer = $BreakSFX
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var stage = get_tree().current_scene
 
@@ -22,6 +23,7 @@ func _on_area_2d_body_entered(_body: Node2D):
 		stage.add_child(score_label)
 		
 		sprite.play("break")
+		break_sfx.play()
 		break_timer.start()
 		await break_timer.timeout
 		

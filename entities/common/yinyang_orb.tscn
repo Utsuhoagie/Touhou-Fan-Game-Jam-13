@@ -97,3 +97,4 @@ one_shot = true
 
 [node name="BounceSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lcaj6")
+volume_db = 5.0

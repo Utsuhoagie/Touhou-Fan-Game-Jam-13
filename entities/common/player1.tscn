@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://cufr5n30dlusn"]
+[gd_scene load_steps=26 format=3 uid="uid://cufr5n30dlusn"]
 
 [ext_resource type="Script" path="res://entities/common/player1.gd" id="1_1cxu7"]
 [ext_resource type="Texture2D" uid="uid://cgi70rjl1lmwh" path="res://assets/sprites/Character_Combat_Mizuchi.png" id="2_e452u"]
+[ext_resource type="AudioStream" uid="uid://c6jadpthyjlx4" path="res://assets/audio/sfx/Boss_Defeated.mp3" id="3_qlfku"]
 [ext_resource type="AudioStream" uid="uid://ddbvjpb62b7sy" path="res://assets/audio/sfx/Player_Swipe_Attack.mp3" id="4_blfjs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0btq"]
@@ -215,6 +216,11 @@ one_shot = true
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(0, -72)
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qlfku")
+volume_db = -8.0
+pitch_scale = 2.0
 
 [node name="SwingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_blfjs")
