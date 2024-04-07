@@ -22,3 +22,12 @@ func _ready():
 
 func _process(delta):
 	pass
+
+
+func life_down() -> void:
+	player_lives -= 1
+	#stage_1_ui.life_down()
+
+	if player_lives <= 0:
+		get_tree().paused = true
+		#game_over()

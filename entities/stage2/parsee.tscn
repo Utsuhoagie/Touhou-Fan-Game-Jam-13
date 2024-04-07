@@ -53,7 +53,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -64,7 +64,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"left",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -75,7 +75,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"right",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6drwm"]
@@ -89,12 +89,57 @@ script = ExtResource("1_nm35u")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="ParseeBody"]
 sprite_frames = SubResource("SpriteFrames_cb2vj")
-animation = &"idle"
+animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParseeBody"]
 shape = SubResource("CapsuleShape2D_6drwm")
 
-[node name="Blocks" type="Node2D" parent="."]
+[node name="MoveTimer" type="Timer" parent="ParseeBody"]
+wait_time = 2.0
+autostart = true
+
+[node name="Ring Timer" type="Timer" parent="ParseeBody"]
+wait_time = 2.5
+one_shot = true
+
+[node name="Gap Timer" type="Timer" parent="ParseeBody"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Ring Guns" type="Node2D" parent="ParseeBody"]
+
+[node name="Gun1" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(64, 0)
+rotation = -1.5708
+
+[node name="Gun2" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(32, 40)
+rotation = -0.785398
+
+[node name="Gun3" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(0, 64)
+
+[node name="Gun4" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-32, 40)
+rotation = 0.785398
+
+[node name="Gun5" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-64, 0)
+rotation = 1.5708
+
+[node name="Gun6" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(-32, -40)
+rotation = 2.35619
+
+[node name="Gun7" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(0, -64)
+rotation = 3.14159
+
+[node name="Gun8" type="Node2D" parent="ParseeBody/Ring Guns"]
+position = Vector2(32, -40)
+rotation = 3.92699
+
+[node name="Blocks" type="Node2D" parent="ParseeBody"]
 
 [node name="Block" parent="Blocks" instance=ExtResource("2_0tra6")]
 position = Vector2(192, 0)
@@ -127,5 +172,4 @@ rotation = 2.35619
 position = Vector2(135.764, 135.764)
 rotation = -0.785398
 
-[node name="MoveTimer" type="Timer" parent="."]
-one_shot = true
+[connection signal="timeout" from="ParseeBody/MoveTimer" to="ParseeBody" method="_on_move_timer_timeout"]

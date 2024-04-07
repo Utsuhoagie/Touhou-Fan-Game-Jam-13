@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjpmuemlndor3"]
+
+[ext_resource type="Script" path="res://entities/stage2/parsee_st2_shot.gd" id="1_5yw2h"]
+[ext_resource type="Texture2D" uid="uid://dtu8dj62gpa8c" path="res://assets/sprites/Parsee_Bullet_2.png" id="2_uvuxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oa7tl"]
+
+[node name="Parsee St2 Shot" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_5yw2h")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_uvuxn")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oa7tl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
