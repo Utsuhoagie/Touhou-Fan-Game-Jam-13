@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/common/yinyang_orb.gd" id="1_mxsay"]
 [ext_resource type="Texture2D" uid="uid://c32eb3n1h4p7e" path="res://assets/sprites/Ying-Yang_Orb.png" id="2_vmbl0"]
-[ext_resource type="AudioStream" uid="uid://cugitfvy54dc7" path="res://assets/audio/sfx/Boss_Taking_DMG.mp3" id="3_lcaj6"]
+[ext_resource type="AudioStream" uid="uid://bsq72gds2uux6" path="res://assets/audio/sfx/new/Boss_Damage.wav" id="3_q5wno"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c37s3"]
 atlas = ExtResource("2_vmbl0")
@@ -96,5 +96,5 @@ wait_time = 0.15
 one_shot = true
 
 [node name="BounceSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_lcaj6")
+stream = ExtResource("3_q5wno")
 volume_db = 5.0

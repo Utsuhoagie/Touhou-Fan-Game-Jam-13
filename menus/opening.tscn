@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://menus/opening.gd" id="1_2lv24"]
 [ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="1_aqh2l"]
 [ext_resource type="PackedScene" uid="uid://c7b5b80wpor1v" path="res://menus/menu.tscn" id="2_vsquv"]
-[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="3_et88f"]
-[ext_resource type="AudioStream" uid="uid://co87m3irugkbr" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="5_ic8y5"]
+[ext_resource type="PackedScene" path="res://transition.tscn" id="3_et88f"]
+[ext_resource type="AudioStream" uid="uid://bt4puuxcg74dn" path="res://assets/audio/sfx/new/Melee_Slash.wav" id="5_inb35"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjut2"]
 atlas = ExtResource("1_aqh2l")
@@ -77,4 +77,4 @@ animation = &"opening"
 
 [node name="StartSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("5_ic8y5")
+stream = ExtResource("5_inb35")

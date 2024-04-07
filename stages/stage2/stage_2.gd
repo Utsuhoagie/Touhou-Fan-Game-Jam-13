@@ -23,17 +23,17 @@ var blocks_remaining: int
 func _ready():
 	stage_2_ui.update_high_score(high_score)
 	stage_2_ui.life_init(player_lives)
-	
+
 	parsee.defeated.connect(on_defeated)
 	blocks_remaining = $Parsee/ParseeBody/Blocks.get_child_count()
-	
+
 	await transition.fade_from_black()
 	bgm.play()
-	
+
 
 func _process(delta: float):
 	time_left -= 24 * delta
-	
+
 	stage_2_ui.update_graze(graze_count)
 	stage_2_ui.update_score(score)
 	stage_2_ui.update_time_left(time_left)
@@ -52,7 +52,7 @@ func life_down() -> void:
 	if player_lives <= 0:
 		await transition.fade_to_black()
 		get_tree().change_scene_to_file("res://menus/menu.tscn")
-	
+
 
 func on_defeated() -> void:
 	print("stage 2 complete")
@@ -61,4 +61,4 @@ func on_defeated() -> void:
 
 	bgm.stop()
 	dialog_player.start_dialog()
-	
+

@@ -11,7 +11,7 @@ class_name PauseMenu
 
 func _ready() -> void:
 	hide()
-	
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -21,29 +21,29 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 			show()
 			bgm.volume_db = -10
-			
+
 			pause_sfx.play()
 			continue_button.grab_focus()
-	
+
 
 func _on_continue_button_focus_entered() -> void:
 	button_hover_sfx.play()
-	
+
 
 func _on_back_button_focus_entered() -> void:
 	button_hover_sfx.play()
-	
+
 
 func _on_back_button_pressed() -> void:
 	button_sfx.play()
 	await transition.fade_to_black()
 	get_tree().change_scene_to_file("res://menus/menu.tscn")
-	
+
 
 func _on_continue_button_pressed() -> void:
 	button_sfx.play()
 	unpause()
-	
+
 
 func unpause() -> void:
 	bgm.volume_db = 0

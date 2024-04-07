@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7yl7c7lwc57x"]
+[gd_scene load_steps=21 format=3 uid="uid://c7yl7c7lwc57x"]
 
 [ext_resource type="Script" path="res://dialogs/dialog_player.gd" id="1_0vi2j"]
 [ext_resource type="Texture2D" uid="uid://dkjhaqbnbdqnq" path="res://assets/sprites/Character_Dialogue_Mizuchi.png" id="2_b0r6d"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dqnwll23egoiv" path="res://assets/audio/bgm/Stage_2_Intro.ogg" id="6_rj5en"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="7_10ywd"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/Collect_Item.mp3" id="7_q27ub"]
+[ext_resource type="AudioStream" uid="uid://c256roa8wt8ck" path="res://assets/audio/bgm/Stage_3_Intro.ogg" id="8_6mc2j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cst0w"]
 atlas = ExtResource("2_b0r6d")
@@ -191,6 +192,7 @@ stream = ExtResource("6_rj5en")
 
 [node name="TransitionBGM2" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+stream = ExtResource("8_6mc2j")
 
 [node name="TransitionSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3

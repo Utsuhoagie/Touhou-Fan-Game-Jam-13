@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dasil3emafrrv" path="res://menus/options.tscn" id="2_f5p6e"]
 [ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="3_0lci1"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
-[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="5_l8wlq"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/Button_Select_Release.mp3" id="8_5k2il"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/Collect_Item.mp3" id="9_1e75l"]
+[ext_resource type="PackedScene" path="res://transition.tscn" id="5_l8wlq"]
+[ext_resource type="AudioStream" uid="uid://bt4puuxcg74dn" path="res://assets/audio/sfx/new/Melee_Slash.wav" id="8_5v67k"]
+[ext_resource type="AudioStream" uid="uid://2ptquecx4krh" path="res://assets/audio/sfx/new/Player_Shoot.wav" id="9_cmres"]
 
 [sub_resource type="Theme" id="Theme_g0p5h"]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -73,10 +73,10 @@ text = "Quit"
 
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("8_5k2il")
+stream = ExtResource("8_5v67k")
 
 [node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_1e75l")
+stream = ExtResource("9_cmres")
 volume_db = -15.0
 
 [connection signal="focus_entered" from="SelectButtons/PlayButton" to="." method="_on_play_button_focus_entered"]
