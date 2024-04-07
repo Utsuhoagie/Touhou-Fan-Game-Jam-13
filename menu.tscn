@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7b5b80wpor1v"]
+
+[ext_resource type="Texture2D" uid="uid://cr17jlqdx62dr" path="res://assets/sprites/Thumbnail.png" id="1_i118w"]
+[ext_resource type="Script" path="res://menu.gd" id="1_tv4tj"]
+[ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
+[ext_resource type="Texture2D" uid="uid://dratbl4llbgwr" path="res://assets/sprites/Title_Card-Sheet.png" id="3_tqk1w"]
+
+[sub_resource type="Theme" id="Theme_g0p5h"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("3_aeyv7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjut2"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(0, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1kff"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(1200, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4gqk"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(2400, 0, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljlta"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(0, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nnue"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(1200, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rm4t"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(2400, 900, 1200, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goeiy"]
+atlas = ExtResource("3_tqk1w")
+region = Rect2(0, 1800, 1200, 900)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4jlc"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_pjut2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1kff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4gqk")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ljlta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nnue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rm4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goeiy")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_tv4tj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_right = 0.96875
+anchor_bottom = 0.958333
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_i118w")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectButtons" type="VBoxContainer" parent="."]
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 384.0
+offset_bottom = 896.0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="SelectButtons"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+theme = SubResource("Theme_g0p5h")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="SelectButtons"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = SubResource("Theme_g0p5h")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="SelectButtons"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+theme = SubResource("Theme_g0p5h")
+text = "Credits"
+
+[node name="OpeningSequence" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(640, 480)
+scale = Vector2(1.06667, 1.06667)
+sprite_frames = SubResource("SpriteFrames_q4jlc")
+animation = &"opening"
+
+[connection signal="pressed" from="SelectButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SelectButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="SelectButtons/CreditsButton" to="." method="_on_credits_button_pressed"]

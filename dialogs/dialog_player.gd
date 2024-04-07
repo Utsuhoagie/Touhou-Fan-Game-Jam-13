@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("dialog_continue") and in_progress:
+	if Input.is_action_just_pressed("ui_accept") and in_progress:
 		dialog_pointer += 1
 		display_dialog(dialogs_dict[dialog_key], dialog_pointer)
 	

@@ -1,8 +1,10 @@
 extends Node2D
 class_name Stage1
 
+@onready var card_tilemap: CardTileMap = $CardTilemap
 @onready var dialog_player: DialogPlayer = $DialogPlayer
 @onready var stage_1_ui: Stage1UI = $Stage1UI
+@onready var yinyang_orb: YinyangOrb = $YinyangOrb
 
 var player_lives: int = 5
 var high_score: int = 0
@@ -27,6 +29,8 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	card_tilemap.check_overlap(yinyang_orb.position)
+	
 	time_left -= 24 * delta
 	if time_left < 200 and not running_out_of_time:
 		print("harry up!")
