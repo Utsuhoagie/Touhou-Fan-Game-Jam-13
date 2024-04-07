@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://56gnvy4cknct"]
 
-[ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_d7b4m"]
 [ext_resource type="Script" path="res://entities/stage3/player/player3.gd" id="1_x0n5o"]
 [ext_resource type="Texture2D" uid="uid://cpr6hfljkabk2" path="res://assets/sprites/Character_Combat_Parsee.png" id="2_up5ow"]
+[ext_resource type="Texture2D" uid="uid://dr1isargoekkh" path="res://assets/sprites/Focus_Hurtbox.png" id="3_bawt2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fw66b"]
 atlas = ExtResource("2_up5ow")
@@ -119,7 +119,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_d7b4m")
+"texture": ExtResource("3_bawt2")
 }],
 "loop": true,
 "name": &"default",
@@ -127,7 +127,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l1067"]
-radius = 8.0
+radius = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdcms"]
 radius = 24.0
@@ -145,7 +145,6 @@ sprite_frames = SubResource("SpriteFrames_1v6bp")
 
 [node name="ActualHitboxSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7.62939e-06, -9.53674e-07)
-scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_2dqrf")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

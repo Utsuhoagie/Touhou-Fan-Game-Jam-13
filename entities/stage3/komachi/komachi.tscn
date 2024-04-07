@@ -254,7 +254,6 @@ wait_time = 0.6
 one_shot = true
 
 [node name="Coins Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Fan Guns"]
-wait_time = 1.2
 one_shot = true
 
 [node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Fan Guns"]
@@ -262,7 +261,7 @@ one_shot = true
 [node name="Ring Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns"]
 
 [node name="Ring Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]
-wait_time = 2.8
+wait_time = 2.4
 one_shot = true
 
 [node name="Gun" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell3 Guns/Ring Guns"]

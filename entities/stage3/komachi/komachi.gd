@@ -4,9 +4,9 @@ class_name Komachi
 const SPEED := 150
 
 var can_take_damage: bool = true
-const MAX_HP := 1000
-const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.67
-const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.34
+const MAX_HP := 3500
+const HP_THRESHOLD_SPELL_2 := MAX_HP * 0.7
+const HP_THRESHOLD_SPELL_3 := MAX_HP * 0.3
 @export var current_HP := MAX_HP
 var current_spell: float = 1.0
 
@@ -33,7 +33,7 @@ var spell_1_homing_recently_shot: Array[int] = []
 const SPELL_2_CIRCLES_ROTATION_DEGREES := 15.0
 const SPELL_2_MAX_COINS_PER_CIRCLE := 30
 const SPELL_2_MAX_CIRCLES := 3
-const SPELL_2_MAX_CIRCLE_WAVES := 1 + 1	# has to add 1, don't know why
+const SPELL_2_MAX_CIRCLE_WAVES := 3 + 1	# has to add 1, don't know why
 const SPELL_2_MELEE_DISTANCE := 180.0
 @onready var spell_2_guns: Node2D = $"Spell2 Guns"
 @onready var spell_2_circle_timer: Timer = $"Spell2 Guns/Circle Timer"
@@ -46,7 +46,7 @@ var spell_2_melee_is_stopped: bool = false
 var spell_2_melee_finished: bool = false
 
 # Spell 3
-const SPELL_3_RING_COUNT := 6
+const SPELL_3_RING_COUNT := 8
 var spell_3_path: Curve2D = preload("res://entities/stage3/komachi/spell_3_path.tres")
 @onready var spell_3_guns: Node2D = $"Spell3 Guns"
 @onready var spell_3_fan_gun: Node2D = $"Spell3 Guns/Fan Guns/Gun"
@@ -352,7 +352,7 @@ func handle_spell(delta: float) -> void:
 					var coin_big: KomachiShotCoinBig = spell_1_shot_coin_big_preload.instantiate() as KomachiShotCoinBig
 					get_tree().current_scene.add_child(coin_big)
 
-					coin_big.init(0.6, i * (360 / SPELL_3_RING_COUNT), 0.33)
+					coin_big.init(0.5, i * (360 / SPELL_3_RING_COUNT), 0.33)
 					coin_big.global_position = spell_3_ring_gun.global_position
 
 
