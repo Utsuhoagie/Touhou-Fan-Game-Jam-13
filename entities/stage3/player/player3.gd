@@ -4,14 +4,10 @@ class_name Player3
 signal bomb_finished
 signal UI_changed(lives: int, max_lives: int, bombs: int, grazes: int, score: int)
 
-const MAX_LIVES := 3
-var lives := MAX_LIVES
-var bombs := 3
-var grazes := 0
-
 var speed := 27000.0
 var focus_slowdown := 0.45
 
+@onready var stage3: Stage3 = $"../"
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var actual_hitbox_sprite: AnimatedSprite2D = $ActualHitboxSprite
@@ -89,9 +85,9 @@ func handle_shoot(delta: float) -> void:
 	if hitbox.disabled:
 		return
 
-	if Input.is_action_pressed("player_bomb") and bomb_timer.is_stopped() and bombs > 0:
+	if Input.is_action_pressed("player_bomb") and bomb_timer.is_stopped() and stage3.bombs > 0:
 		print("bomb")
-		bombs -= 1
+		stage3.decrease_bombs()
 		is_bombing = true
 		bomb_timer.start()
 		bomb_homing_timer.start()
@@ -132,19 +128,16 @@ func handle_shoot(delta: float) -> void:
 
 func clamp_in_screen() -> void:
 	global_position.x = clampf(global_position.x, 32, get_viewport_rect().size.x - 32)
-	global_position.y = clampf(global_position.y, 32, get_viewport_rect().size.y - 32)
+	global_position.y = clampf(global_position.y, 128, get_viewport_rect().size.y - 112)
 
 
 func die() -> void:
 	if is_bombing:
 		return
 
-	lives -= 1
+	stage3.decrease_lives()
 	sprite.play("die")
 	hitbox.set_deferred("disabled", true)
-
-	if lives == 0:
-		get_tree().paused = true
 
 
 func _on_sprite_animation_finished() -> void:
@@ -160,8 +153,7 @@ func _on_invincible_timer_timeout() -> void:
 
 func _on_graze_hitbox_area_entered(area: Area2D) -> void:
 	if area is KomachiBaseShot and not hitbox.disabled:
-		grazes += 1
-		print(grazes)
+		stage3.increase_grazes()
 
 
 func _on_bomb_timer_timeout() -> void:

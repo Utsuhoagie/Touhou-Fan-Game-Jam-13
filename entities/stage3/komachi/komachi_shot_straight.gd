@@ -1,7 +1,7 @@
 extends KomachiBaseShot
 class_name KomachiShotStraight
 
-const BASE_SPEED := 420.0
+const BASE_SPEED := 450.0
 var speed_multiplier: float = 1.0
 var angle: float = 0.0
 
