@@ -14,6 +14,7 @@ class_name DialogPlayer
 @onready var transition_sfx: AudioStreamPlayer = $TransitionSFX
 @onready var dialog_sfx: AudioStreamPlayer = $DialogSFX
 
+@onready var fake_parsee_sprite = $FakeParseeSprite
 @onready var mizuchi_sprite = $MizuchiSprite
 @onready var parsee_sprite = $ParseeSprite
 @onready var komachi_sprite = $KomachiSprite
@@ -65,6 +66,7 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 	dialog_section.text = selected_text["text"]
 	if narration_mode: return
 	
+	character_name.show()
 	match selected_text["character"]:
 		"0":
 			character_name.text = "Mizuchi"
@@ -77,9 +79,9 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 			current_sprite = komachi_sprite
 		"3":
 			character_name.text = "Parsee?"
-			current_sprite = komachi_sprite
+			current_sprite = fake_parsee_sprite
 		_:
-			character_name.text = "???"
+			character_name.hide()
 			return
 	
 	current_sprite.texture.region.position.x = selected_text["sprite"] * 128

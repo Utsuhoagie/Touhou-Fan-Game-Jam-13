@@ -7,7 +7,7 @@ signal UI_changed(lives: int, max_lives: int, bombs: int, grazes: int, score: in
 var speed := 27000.0
 var focus_slowdown := 0.45
 
-@onready var stage3: Stage3 = $"../"
+@onready var stage3 = get_tree().current_scene
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var actual_hitbox_sprite: AnimatedSprite2D = $ActualHitboxSprite

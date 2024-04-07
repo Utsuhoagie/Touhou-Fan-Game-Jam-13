@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcxq7gxjv5cu8"]
+[gd_scene load_steps=6 format=3 uid="uid://dd5kdi7soajht"]
 
 [ext_resource type="Script" path="res://stages/stage2/stage_2ui.gd" id="1_g2q4q"]
 [ext_resource type="Texture2D" uid="uid://l1ob8ryqty36" path="res://assets/sprites/JAM_UI_Lvl_3.png" id="1_tsnxh"]

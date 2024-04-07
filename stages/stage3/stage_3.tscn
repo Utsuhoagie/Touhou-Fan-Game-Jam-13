@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://x4sy7w1lfar7"]
 
 [ext_resource type="Script" path="res://stages/stage3/stage_3.gd" id="1_t3dqq"]
-[ext_resource type="PackedScene" path="res://transition.tscn" id="2_7iha8"]
+[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="2_7iha8"]
 [ext_resource type="PackedScene" uid="uid://56gnvy4cknct" path="res://entities/stage3/player/player3.tscn" id="2_mn1vv"]
 [ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_n7umt"]
 [ext_resource type="PackedScene" uid="uid://cwo4sjv6kvemh" path="res://entities/stage3/komachi/komachi.tscn" id="3_8tyfg"]

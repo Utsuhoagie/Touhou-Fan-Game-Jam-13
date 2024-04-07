@@ -6,6 +6,50 @@
 	],
 	"post_stage1": [
 		{
+			"character": "0",
+			"sprite": 1,
+			"text": "HAHA! I'm free, im free! Free from that wretched box of a cell! But this place still reeks of confinement."
+		},
+		{
+			"character": "0",
+			"sprite": 0,
+			"text": "Though... I'm not exactly free, I'm still in this hellish pit hole of a prison. The walls seem to mock me with their permanence."
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "I could easily escape however, but... I'm craving chaos. I'll stir up some trouble before I make my grand exit."
+		},
+		{
+			"character": "(narrator)",
+			"text": "(Mizuchi steps out of her cell, the cell that had kept her in for what must have been forever.)"
+		},
+		{
+			"character": "0",
+			"sprite": 1,
+			"text": "Ahh, fresh air! It's invigorating after that suffocating cell."
+		},
+		{
+			"character": "0",
+			"sprite": 0,
+			"text": "Not finished, however. People can still recognize me, and I'll be back in that box again. I need a disguise, a new face."
+		},
+		{
+			"character": "0",
+			"sprite": 3,
+			"text": "Mizuchi: I could possess someone, but who though? Someone unsuspecting and easily manipulated."
+		},
+		{
+			"character": "1",
+			"sprite": 0,
+			"text": "(...)"
+		},
+		{
+			"character": "0",
+			"sprite": 2,
+			"text": "There's my little puppet~ My ticket out of hell."
+		},
+		{
 			"character": "1",
 			"sprite": 2,
 			"text": "(Look at that spirit waltzing by with such rage in her eyes.)"
@@ -83,19 +127,29 @@
 	],
 	"post_stage2": [
 		{
-			"character": "1",
+			"character": "3",
 			"sprite": 0,
-			"text": "You're not supposed to break out of this prison, Mizuchi."
+			"text": "Ahh. We really are one and the same figuratively and now literally, huh?"
 		},
 		{
-			"character": "1",
+			"character": "2",
 			"sprite": 0,
-			"text": "Well I can."
+			"text": "Now to look for a way out."
 		},
 		{
-			"character": "0",
+			"character": "3",
+			"sprite": 5,
+			"text": "Darn, this ascent looks like it will never end."
+		},
+		{
+			"character": "3",
+			"sprite": 4,
+			"text": "Being this tired after the fight, I don't think I can make it out through that."
+		},
+		{
+			"character": "3",
 			"sprite": 0,
-			"text": "Oh really? I'd like to see you try."
+			"text": "How about this river instead? Build a raft, drift away, and hope I end somewhere I want to be."
 		}
 	],
 	"post_stage3": [

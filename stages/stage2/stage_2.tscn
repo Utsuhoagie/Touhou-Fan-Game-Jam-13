@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_worqk"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/common/player1.tscn" id="4_2rb7j"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="4_81t2u"]
-[ext_resource type="PackedScene" uid="uid://dcxq7gxjv5cu8" path="res://stages/stage2/stage_2ui.tscn" id="4_kksee"]
+[ext_resource type="PackedScene" uid="uid://dd5kdi7soajht" path="res://stages/stage2/stage_2ui.tscn" id="4_kksee"]
 [ext_resource type="PackedScene" uid="uid://x4sy7w1lfar7" path="res://stages/stage3/stage_3.tscn" id="5_e3f85"]
 [ext_resource type="PackedScene" uid="uid://fxcx6q1ogitl" path="res://entities/stage2/parsee.tscn" id="5_krn3d"]
 [ext_resource type="AudioStream" uid="uid://dtubrtj4rxtey" path="res://assets/audio/bgm/Stage_2.ogg" id="8_hjjpj"]
