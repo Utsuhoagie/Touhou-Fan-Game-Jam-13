@@ -3,8 +3,9 @@ class_name Stage2
 
 signal blocks_cleared
 
+@onready var bgm = $BGM
 @onready var dialog_player: DialogPlayer = $DialogPlayer
-@onready var parsee: Node2D = $Parsee
+@onready var parsee: Node2D = $Parsee/ParseeBody
 @onready var transition: Transition = $Transition
 
 var player_lives: int = 5
@@ -19,9 +20,12 @@ var blocks_remaining: int
 
 
 func _ready():
+	parsee.defeated.connect(on_defeated)
 	blocks_remaining = $Parsee/ParseeBody/Blocks.get_child_count()
+	
 	await transition.fade_from_black()
-
+	bgm.play()
+	
 
 func _process(delta):
 	pass
@@ -39,5 +43,14 @@ func life_down() -> void:
 	#stage_1_ui.life_down()
 
 	if player_lives <= 0:
-		get_tree().paused = true
+		await transition.fade_to_black()
 		#game_over()
+
+func on_defeated() -> void:
+	print("stage 2 complete")
+	await get_tree().create_timer(2).timeout
+	get_tree().paused = true
+
+	bgm.stop()
+	dialog_player.start_dialog()
+	

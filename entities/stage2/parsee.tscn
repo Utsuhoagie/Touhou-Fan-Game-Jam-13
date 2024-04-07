@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://fxcx6q1ogitl"]
+[gd_scene load_steps=19 format=3 uid="uid://fxcx6q1ogitl"]
 
 [ext_resource type="Texture2D" uid="uid://b6ysdhd1qtsfp" path="res://assets/sprites/Character_Boss_Parsee.png" id="1_0bhla"]
 [ext_resource type="Script" path="res://entities/stage2/parsee.gd" id="1_nm35u"]
 [ext_resource type="PackedScene" uid="uid://cr0xderkkf2qk" path="res://entities/common/block.tscn" id="2_0tra6"]
 [ext_resource type="Texture2D" uid="uid://b5nl1a8romycr" path="res://assets/sprites/Komachi_HP_Over.png" id="4_4o682"]
 [ext_resource type="Texture2D" uid="uid://dy2n5alxc2cpa" path="res://assets/sprites/Komachi_HP_Progress.png" id="5_7mwyp"]
+[ext_resource type="AudioStream" uid="uid://c6jadpthyjlx4" path="res://assets/audio/sfx/Boss_Defeated.mp3" id="6_jhulj"]
+[ext_resource type="AudioStream" uid="uid://cugitfvy54dc7" path="res://assets/audio/sfx/Boss_Taking_DMG.mp3" id="6_pwg20"]
+[ext_resource type="AudioStream" uid="uid://c4lfg1q7nou2w" path="res://assets/audio/sfx/Boss_Swipe_Attack.mp3" id="8_s8pb5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8svbt"]
 atlas = ExtResource("1_0bhla")
@@ -183,5 +186,15 @@ value = 80.0
 fill_mode = 5
 texture_over = ExtResource("4_4o682")
 texture_progress = ExtResource("5_7mwyp")
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pwg20")
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jhulj")
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_s8pb5")
+volume_db = -10.0
 
 [connection signal="timeout" from="ParseeBody/MoveTimer" to="ParseeBody" method="_on_move_timer_timeout"]

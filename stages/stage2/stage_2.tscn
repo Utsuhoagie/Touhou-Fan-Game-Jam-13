@@ -1,12 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg2die0yuvxk6"]
+[gd_scene load_steps=15 format=3 uid="uid://dg2die0yuvxk6"]
 
 [ext_resource type="Script" path="res://stages/stage2/stage_2.gd" id="1_omh63"]
 [ext_resource type="PackedScene" uid="uid://c7yl7c7lwc57x" path="res://dialogs/dialog_player.tscn" id="2_lstlf"]
-[ext_resource type="PackedScene" path="res://transition.tscn" id="2_upx3h"]
+[ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="2_upx3h"]
 [ext_resource type="PackedScene" uid="uid://c82xs8bqsnhfb" path="res://menus/pause_menu.tscn" id="2_worqk"]
 [ext_resource type="PackedScene" uid="uid://cufr5n30dlusn" path="res://entities/common/player1.tscn" id="4_2rb7j"]
 [ext_resource type="PackedScene" uid="uid://xhppmx2i7skx" path="res://entities/common/yinyang_orb.tscn" id="4_81t2u"]
 [ext_resource type="PackedScene" uid="uid://fxcx6q1ogitl" path="res://entities/stage2/parsee.tscn" id="5_krn3d"]
+[ext_resource type="AudioStream" uid="uid://dtubrtj4rxtey" path="res://assets/audio/bgm/Stage_2.ogg" id="8_hjjpj"]
+[ext_resource type="Script" path="res://stages/ParallaxBackground.gd" id="9_r4mk5"]
+[ext_resource type="Texture2D" uid="uid://8p0e05v4eesb" path="res://assets/sprites/BG_2_1.png" id="10_ix6tu"]
+[ext_resource type="Texture2D" uid="uid://bmkojuvs7milo" path="res://assets/sprites/BG_2_2.png" id="11_das6o"]
+[ext_resource type="Texture2D" uid="uid://m4bfos8x6r6i" path="res://assets/sprites/BG_2_3.png" id="12_1il2q"]
+[ext_resource type="Texture2D" uid="uid://dj61673qkqkjd" path="res://assets/sprites/BG_2_4.png" id="13_v7fgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lclte"]
 size = Vector2(1328, 56)
@@ -49,3 +55,51 @@ position = Vector2(648, -36)
 shape = SubResource("RectangleShape2D_lclte")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hjjpj")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("9_r4mk5")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 1800)
+
+[node name="Backgroud" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(640, 3.14713e-05)
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("10_ix6tu")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+script = ExtResource("9_r4mk5")
+scroll_speed = 75.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2(0, 1800)
+
+[node name="Clouds1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+position = Vector2(640, 220)
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("11_das6o")
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
+script = ExtResource("9_r4mk5")
+scroll_speed = 125.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground3"]
+motion_mirroring = Vector2(0, 1800)
+
+[node name="Clouds2" type="Sprite2D" parent="ParallaxBackground3/ParallaxLayer"]
+position = Vector2(640, 20)
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("12_1il2q")
+
+[node name="ParallaxBackground4" type="ParallaxBackground" parent="."]
+script = ExtResource("9_r4mk5")
+scroll_speed = 50.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground4"]
+motion_mirroring = Vector2(0, 1800)
+
+[node name="Clouds3" type="Sprite2D" parent="ParallaxBackground4/ParallaxLayer"]
+position = Vector2(640, -4)
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("13_v7fgw")

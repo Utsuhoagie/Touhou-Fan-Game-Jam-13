@@ -1,7 +1,10 @@
 extends CharacterBody2D
 class_name Parsee
 
+signal defeated
+
 var can_take_damage: bool = false
+var alive: bool = true
 const MAX_HP := 300
 var current_HP := MAX_HP
 
@@ -12,8 +15,11 @@ var x_bounds := [300, 1000]
 var random_position: Vector2
 
 @onready var blocks = $"Blocks"
+@onready var death_sfx = $"../DeathSFX"
+@onready var hit_sfx = $"../HitSFX"
 @onready var sprite = $"Sprite"
 @onready var HP_bar: TextureProgressBar = $"HP Bar"
+@onready var shoot_sfx = $"../ShootSFX"
 
 const SHOT_ANGLE_OFFSET_BASE := 4.5
 @onready var ring_timer: Timer = $"Ring Timer"
@@ -77,6 +83,9 @@ func _process(delta: float) -> void:
 						gun.global_rotation_degrees + shot_angle_offset * 1.5
 					)
 					shot.global_position = gun.global_position
+					
+					shoot_sfx.play()
+	
 
 
 func take_damage(damage: int) -> void:
@@ -85,9 +94,14 @@ func take_damage(damage: int) -> void:
 
 	current_HP -= damage
 	HP_bar.value = current_HP
+	hit_sfx.play()
 
-	if current_HP <= 0:
+	if current_HP <= 0 and alive:
 		print("die")
+		alive = false
+		death_sfx.play()
+		defeated.emit()
+	
 
 
 func _on_move_timer_timeout() -> void:
