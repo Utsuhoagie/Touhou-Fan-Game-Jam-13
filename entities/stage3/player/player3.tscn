@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://56gnvy4cknct"]
+[gd_scene load_steps=21 format=3 uid="uid://56gnvy4cknct"]
 
 [ext_resource type="Texture2D" uid="uid://bpg10gcp7mb6i" path="res://icon.svg" id="1_d7b4m"]
 [ext_resource type="Script" path="res://entities/stage3/player/player3.gd" id="1_x0n5o"]
 [ext_resource type="Texture2D" uid="uid://cpr6hfljkabk2" path="res://assets/sprites/Character_Combat_Parsee.png" id="2_up5ow"]
+[ext_resource type="AudioStream" uid="uid://c6jadpthyjlx4" path="res://assets/audio/sfx/Boss_Defeated.mp3" id="4_1q3hh"]
+[ext_resource type="AudioStream" uid="uid://ddbvjpb62b7sy" path="res://assets/audio/sfx/Player_Swipe_Attack.mp3" id="5_2a2va"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fw66b"]
 atlas = ExtResource("2_up5ow")
@@ -198,6 +200,14 @@ volume_db = -21.0
 
 [node name="Audio Bomb Player" type="AudioStreamPlayer" parent="."]
 volume_db = -9.0
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1q3hh")
+volume_db = -8.0
+pitch_scale = 2.0
+
+[node name="SwingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2a2va")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="Invincible Timer" to="." method="_on_invincible_timer_timeout"]

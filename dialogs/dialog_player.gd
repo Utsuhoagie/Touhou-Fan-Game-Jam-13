@@ -75,6 +75,9 @@ func display_dialog(dialog: Array, pointer: int) -> void:
 		"2":
 			character_name.text = "Komachi"
 			current_sprite = komachi_sprite
+		"3":
+			character_name.text = "Parsee?"
+			current_sprite = komachi_sprite
 		_:
 			character_name.text = "???"
 			return
@@ -88,7 +91,11 @@ func end_dialog() -> void:
 	dialog_pointer = 0
 	transition_sfx.play()
 	await transition.fade_to_black()
-	get_tree().change_scene_to_packed(next_scene)
+	
+	if next_scene:
+		get_tree().change_scene_to_packed(next_scene)
+	else:
+		get_tree().change_scene_to_file("res://menus/menu.tscn")
 	
 
 func start_dialog() -> void:
