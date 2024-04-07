@@ -6,7 +6,7 @@ var shot_bounce := 625
 
 func _process(delta: float) -> void:
 	position.y -= speed * delta
-	
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_name() == "YinyangOrb":
@@ -16,7 +16,7 @@ func _on_body_entered(body: Node2D) -> void:
 			shot_bounce * cos(angle_radians),
 			shot_bounce * sin(angle_radians)
 		)
+		
 		body.bounce_sfx.play()
-	
-	queue_free()
+		queue_free()
 	
