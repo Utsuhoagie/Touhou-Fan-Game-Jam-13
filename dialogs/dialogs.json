@@ -1,52 +1,36 @@
 {
 	"prologue": [
 		{
-			"character": "0",
 			"text": "This is a test."
 		}
 	],
 	"post_stage1": [
 		{
-			"character": "0",
-			"sprite": 0,
-			"text": "The walls are now cleared. \n...who's that in the distance?"
+			"character": "1",
+			"sprite": 2,
+			"text": "(Look at that spirit waltzing by with such rage in her eyes.)"
 		},
 		{
 			"character": "1",
-			"sprite": 0,
-			"text": "You're not supposed to break out of this prison, Mizuchi."
+			"sprite": 5,
+			"text": "(It fills me with a certain kind of rage within myself that I can never be filled with such ire...)"
 		},
 		{
 			"character": "0",
-			"sprite": 1,
-			"text": "Not like this prison can hold me in anyway."
-		},
-		{
-			"character": "1",
-			"sprite": 0,
-			"text": "Well I can."
+			"sprite": 2,
+			"text": "(A Hashihime, huh? I've seen a fair deal of repulsive youkai last time I was out.)"
 		},
 		{
 			"character": "0",
-			"sprite": 0,
-			"text": "Oh really? I'd like to see you try."
+			"sprite": 2,
+			"text": "(But none perplex me like a Hashihime...)"
 		}
 	],
 	"post_stage2": [
 		{
-			"character": "0",
-			"sprite": 0,
-			"text": "The walls are now cleared. \n...who's that in the distance?"
-		},
-		{
 			"character": "1",
 			"sprite": 0,
 			"text": "You're not supposed to break out of this prison, Mizuchi."
-		},
-		{
-			"character": "0",
-			"sprite": 1,
-			"text": "Not like this prison can hold me in anyway."
 		},
 		{
 			"character": "1",
@@ -88,7 +72,6 @@
 	],
 	"ending": [
 		{
-			"character": "0",
 			"text": "This is a test."
 		}
 	]

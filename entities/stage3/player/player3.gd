@@ -14,9 +14,9 @@ var focus_slowdown := 0.45
 
 @onready var audio_shot_player: AudioStreamPlayer = $"Audio Shot Player"
 @onready var audio_bomb_player: AudioStreamPlayer = $"Audio Bomb Player"
-#var player3_shot_sfx := preload("res://assets/audio/Shooting_Bullet_V3.mp3")
-#var player3_bomb_activation_sfx := preload("res://assets/audio/Player_Bomb_Summon.mp3")
-#var player3_bomb_homing_sfx := preload("res://assets/audio/Player_Bomb_FlyToBoss.mp3")
+var player3_shot_sfx := preload("res://assets/audio/sfx/Shooting_Bullet_V3.mp3")
+var player3_bomb_activation_sfx := preload("res://assets/audio/sfx/Player_Bomb_Summon.mp3")
+var player3_bomb_homing_sfx := preload("res://assets/audio/sfx/Player_Bomb_FlyToBoss.mp3")
 
 @onready var gun_timer: Timer = $GunTimer
 @onready var guns: Node2D = $Guns
@@ -92,7 +92,7 @@ func handle_shoot(delta: float) -> void:
 		bomb_timer.start()
 		bomb_homing_timer.start()
 		audio_bomb_player.volume_db = -9.0
-		#audio_bomb_player.stream = player3_bomb_activation_sfx
+		audio_bomb_player.stream = player3_bomb_activation_sfx
 		audio_bomb_player.play()
 		for bomb_gun in bomb_guns.get_children():
 			var bomb: Player3Bomb = player3_bomb_preload.instantiate()
@@ -116,7 +116,7 @@ func handle_shoot(delta: float) -> void:
 
 
 	if Input.is_action_pressed("player_shoot") and gun_timer.is_stopped():
-		#audio_shot_player.stream = player3_shot_sfx
+		audio_shot_player.stream = player3_shot_sfx
 		audio_shot_player.play()
 
 		gun_timer.start()
@@ -163,7 +163,7 @@ func _on_bomb_timer_timeout() -> void:
 
 func _on_bomb_homing_timer_timeout() -> void:
 	for bomb_gun in bomb_guns.get_children():
-		#audio_bomb_player.stream = player3_bomb_homing_sfx
+		audio_bomb_player.stream = player3_bomb_homing_sfx
 		audio_bomb_player.volume_db = 0.0
 		audio_bomb_player.play()
 		var bomb: Player3Bomb = bomb_gun.get_child(0) as Player3Bomb
