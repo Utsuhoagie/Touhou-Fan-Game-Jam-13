@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dasil3emafrrv" path="res://menus/options.tscn" id="2_f5p6e"]
 [ext_resource type="PackedScene" uid="uid://dwqcmlojafmg" path="res://menus/credits.tscn" id="3_0lci1"]
 [ext_resource type="FontFile" uid="uid://bv2i4vi1q1ow2" path="res://assets/fonts/pc-9900-v2.ttf" id="3_aeyv7"]
-[ext_resource type="PackedScene" path="res://transition.tscn" id="5_l8wlq"]
+[ext_resource type="PackedScene" uid="uid://cew7mijkglim0" path="res://transition.tscn" id="5_l8wlq"]
 [ext_resource type="AudioStream" uid="uid://bt4puuxcg74dn" path="res://assets/audio/sfx/new/Melee_Slash.wav" id="8_5v67k"]
 [ext_resource type="AudioStream" uid="uid://2ptquecx4krh" path="res://assets/audio/sfx/new/Player_Shoot.wav" id="9_cmres"]
 

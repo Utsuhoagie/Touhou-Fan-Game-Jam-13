@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bthvgyggoe0un"]
+[gd_scene load_steps=6 format=3 uid="uid://cew7mijkglim0"]
 
 [ext_resource type="Script" path="res://transition.gd" id="1_lfmk2"]
 
-[sub_resource type="Animation" id="Animation_bjsn6"]
-resource_name = "fade_to_black"
-length = 1.25
+[sub_resource type="Animation" id="Animation_4xtrp"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,10 +11,10 @@ tracks/0/path = NodePath("Transition/CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.25098), Color(0, 0, 0, 0.498039), Color(0, 0, 0, 0.752941), Color(0, 0, 0, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_abf6b"]
@@ -34,8 +33,9 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.752941), Color(0, 0, 0, 0.498039), Color(0, 0, 0, 0.25098), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_4xtrp"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_bjsn6"]
+resource_name = "fade_to_black"
+length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,10 +43,10 @@ tracks/0/path = NodePath("Transition/CanvasLayer/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.25098), Color(0, 0, 0, 0.498039), Color(0, 0, 0, 0.752941), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6g7s1"]

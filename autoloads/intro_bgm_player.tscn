@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn7kitw3lrns5"]
+
+[ext_resource type="AudioStream" uid="uid://ben4ca758vam5" path="res://assets/audio/bgm/Stage_1_Intro_and_Main_Menu.ogg" id="1_dfnok"]
+
+[node name="IntroBGMPlayer" type="Node"]
+process_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dfnok")
+volume_db = -9.0
+autoplay = true
