@@ -15,6 +15,10 @@ run/main_scene="res://menus/opening.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+IntroBgmPlayer="*res://menus/intro_bgm_player.tscn"
+
 [display]
 
 window/size/viewport_width=1280

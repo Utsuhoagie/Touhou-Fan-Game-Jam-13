@@ -27,6 +27,7 @@ func _ready() -> void:
 	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
 
 	await transition.fade_from_black()
+	(IntroBgmPlayer.get_child(0) as AudioStreamPlayer).stop()
 	bgm.play()
 
 func _process(delta: float) -> void:

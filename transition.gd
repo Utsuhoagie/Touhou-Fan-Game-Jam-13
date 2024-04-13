@@ -9,7 +9,7 @@ func fade_to_black() -> void:
 	transition_timer.start()
 	await transition_timer.timeout
 	get_tree().paused = false
-	
+
 
 func fade_from_black() -> void:
 	get_tree().paused = true
@@ -17,4 +17,4 @@ func fade_from_black() -> void:
 	transition_timer.start()
 	await transition_timer.timeout
 	get_tree().paused = false
-	
+

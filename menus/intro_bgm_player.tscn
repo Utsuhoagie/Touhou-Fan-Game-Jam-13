@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://nbekrit14lb7"]
+
+[ext_resource type="AudioStream" uid="uid://ben4ca758vam5" path="res://assets/audio/bgm/Stage_1_Intro_and_Main_Menu.ogg" id="1_w3kvy"]
+
+[node name="Intro BGM Player" type="Node"]
+process_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_w3kvy")

@@ -11,6 +11,7 @@ class_name Opening
 func _ready() -> void:
 	await transition.fade_from_black()
 	opening_sequence.play("opening")
+	(IntroBgmPlayer.get_child(0) as AudioStreamPlayer).play()
 
 
 func _process(delta: float) -> void:

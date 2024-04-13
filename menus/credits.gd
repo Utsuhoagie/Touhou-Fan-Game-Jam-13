@@ -9,6 +9,7 @@ class_name Credits
 func _ready() -> void:
 	await transition.fade_from_black()
 	animation_player.play("LabelFlash")
+	(IntroBgmPlayer.get_child(0) as AudioStreamPlayer).play()
 
 
 func _process(_delta: float):
