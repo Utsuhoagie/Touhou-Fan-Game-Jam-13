@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://56gnvy4cknct"]
+[gd_scene load_steps=23 format=3 uid="uid://56gnvy4cknct"]
 
 [ext_resource type="Script" path="res://entities/stage3/player/player3.gd" id="1_x0n5o"]
 [ext_resource type="Texture2D" uid="uid://cpr6hfljkabk2" path="res://assets/sprites/Character_Combat_Parsee.png" id="2_up5ow"]
 [ext_resource type="Texture2D" uid="uid://dr1isargoekkh" path="res://assets/sprites/Focus_Hurtbox.png" id="3_bawt2"]
+[ext_resource type="Texture2D" uid="uid://cd6cgcnb0qpeb" path="res://assets/sprites/KenneyNL Input Prompts.png" id="4_mooqn"]
+[ext_resource type="Script" path="res://entities/stage3/player/Input Prompts.gd" id="4_yw500"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fw66b"]
 atlas = ExtResource("2_up5ow")
@@ -133,6 +135,21 @@ radius = 6.0
 radius = 24.0
 height = 80.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylgcg"]
+atlas = ExtResource("4_mooqn")
+region = Rect2(416, 272, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_od37n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylgcg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player3" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 192
@@ -191,6 +208,49 @@ collision_mask = 128
 
 [node name="Collision" type="CollisionShape2D" parent="Graze Hitbox"]
 shape = SubResource("CapsuleShape2D_kdcms")
+
+[node name="Input Prompts" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_yw500")
+
+[node name="Timer" type="Timer" parent="Input Prompts"]
+wait_time = 3.5
+one_shot = true
+autostart = true
+
+[node name="Flash Timer" type="Timer" parent="Input Prompts"]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="Arrows" type="Node2D" parent="Input Prompts"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Input Prompts/Arrows"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(0, -56)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_od37n")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Input Prompts/Arrows"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(56, 0)
+rotation = 1.5708
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_od37n")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Input Prompts/Arrows"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(0, 56)
+rotation = -3.14159
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_od37n")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Input Prompts/Arrows"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(-56, 0)
+rotation = -1.5708
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_od37n")
 
 [node name="Audio Shot Player" type="AudioStreamPlayer" parent="."]
 volume_db = -21.0

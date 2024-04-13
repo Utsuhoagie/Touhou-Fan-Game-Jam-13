@@ -100,6 +100,9 @@ func take_damage(damage: int, is_bomb: bool = false) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not ($"Wait Prompts Timer" as Timer).is_stopped():
+		return
+
 	handle_spell(delta)
 	detect_player_hit()
 
@@ -109,6 +112,9 @@ func detect_player_hit() -> void:
 
 
 func handle_spell(delta: float) -> void:
+	if current_HP <= 0:
+		return
+
 	match current_spell:
 		# Spell 1
 		# Moves slowly
@@ -369,6 +375,11 @@ func handle_spell(delta: float) -> void:
 
 					coin_big.init(0.5, i * (360 / SPELL_3_RING_COUNT), 0.33)
 					coin_big.global_position = spell_3_ring_gun.global_position
+
+
+func _on_wait_prompts_timer_timeout() -> void:
+	spell_1_waves_timer.start()
+	spell_1_homing_timer.start()
 
 
 func _on_player_kill_hitbox_body_entered(body: Node2D) -> void:

@@ -1,9 +1,9 @@
 extends Node2D
 class_name Stage3
 
-const MAX_LIVES := 3
+const MAX_LIVES := 5
 var lives := MAX_LIVES
-var bombs := 3
+var bombs := 5
 var grazes := 0
 var defeated: bool = false
 

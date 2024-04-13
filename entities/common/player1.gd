@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 		swing_cooldown_timer.start()
 		swing_sfx.play()
 
+	if not swing_cooldown_timer.is_stopped():
 		if swing_collision_area.overlaps_body(yinyang_orb):
 			yinyang_orb.handle_player_swing(position)
 

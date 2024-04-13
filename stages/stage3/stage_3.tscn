@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://x4sy7w1lfar7"]
+[gd_scene load_steps=17 format=3 uid="uid://x4sy7w1lfar7"]
 
 [ext_resource type="Script" path="res://stages/stage3/stage_3.gd" id="1_t3dqq"]
 [ext_resource type="PackedScene" uid="uid://bthvgyggoe0un" path="res://transition.tscn" id="2_7iha8"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cwj5yxc02dv44" path="res://assets/sprites/JAM_UI_Stage_3_HUB.png" id="8_4pweo"]
 [ext_resource type="FontFile" uid="uid://q2yhdigwv6d6" path="res://assets/fonts/MagicDecimal-VG4ye.ttf" id="9_1j88m"]
 [ext_resource type="Texture2D" uid="uid://bc70l1w2vgrlp" path="res://assets/sprites/Stage3_Arrow.png" id="12_bhigj"]
+[ext_resource type="Texture2D" uid="uid://dy2n5alxc2cpa" path="res://assets/sprites/Komachi_HP_Progress.png" id="13_di33j"]
 [ext_resource type="AudioStream" uid="uid://chih7no10n11k" path="res://assets/audio/bgm/Stage_3.ogg" id="13_k7die"]
+[ext_resource type="Script" path="res://stages/stage3/Bombs Prompt.gd" id="13_oimq1"]
 
 [sub_resource type="Theme" id="Theme_g1fd4"]
 Label/font_sizes/font_size = 27
@@ -116,6 +118,26 @@ offset_bottom = 888.0
 theme = SubResource("Theme_g1fd4")
 text = "bombs"
 vertical_alignment = 1
+
+[node name="Bombs Prompt" type="TextureRect" parent="HUD"]
+visible = false
+modulate = Color(1, 1, 1, 0.403922)
+offset_left = 752.0
+offset_top = 792.0
+offset_right = 944.0
+offset_bottom = 984.0
+texture = ExtResource("13_di33j")
+script = ExtResource("13_oimq1")
+
+[node name="Timer" type="Timer" parent="HUD/Bombs Prompt"]
+wait_time = 3.5
+one_shot = true
+autostart = true
+
+[node name="Flash Timer" type="Timer" parent="HUD/Bombs Prompt"]
+wait_time = 0.4
+one_shot = true
+autostart = true
 
 [node name="Arrow" type="TextureRect" parent="HUD"]
 modulate = Color(1, 0.858824, 0.858824, 0.717647)

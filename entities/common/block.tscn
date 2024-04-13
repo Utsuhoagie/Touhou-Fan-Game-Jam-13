@@ -1,8 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr0xderkkf2qk"]
+[gd_scene load_steps=16 format=3 uid="uid://cr0xderkkf2qk"]
 
 [ext_resource type="Script" path="res://entities/common/block.gd" id="1_lav3a"]
 [ext_resource type="Texture2D" uid="uid://75qejev6mynn" path="res://assets/sprites/Prison_Wall.png" id="2_8m38r"]
 [ext_resource type="AudioStream" uid="uid://bskucdlm1nulh" path="res://assets/audio/sfx/new/Big_Coin.wav" id="3_5sjx2"]
+[ext_resource type="Texture2D" uid="uid://cd6cgcnb0qpeb" path="res://assets/sprites/KenneyNL Input Prompts.png" id="4_q4f6f"]
+[ext_resource type="Script" path="res://entities/common/Prompt.gd" id="5_ejfh0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0st76"]
+atlas = ExtResource("4_q4f6f")
+region = Rect2(496, 96, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrs0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0st76")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn227"]
 atlas = ExtResource("2_8m38r")
@@ -58,6 +75,24 @@ collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_lav3a")
 
+[node name="Prompt" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.870588, 0.870588, 0.407843)
+position = Vector2(-2.38419e-07, -4.47035e-07)
+scale = Vector2(2.54167, 2.625)
+sprite_frames = SubResource("SpriteFrames_jrs0w")
+script = ExtResource("5_ejfh0")
+
+[node name="Timer" type="Timer" parent="Prompt"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Flash Timer" type="Timer" parent="Prompt"]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -0.499999)
 scale = Vector2(1, 1.40625)
@@ -65,6 +100,7 @@ sprite_frames = SubResource("SpriteFrames_r0bif")
 animation = &"break"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_cr7ag")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -72,6 +108,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_un0y8")
 
 [node name="BreakTimer" type="Timer" parent="."]

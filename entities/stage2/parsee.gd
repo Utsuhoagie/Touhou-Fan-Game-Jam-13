@@ -11,7 +11,7 @@ var current_HP := MAX_HP
 var rotation_speed_radians: float = 0.5
 
 const SPEED := 30.0
-var x_bounds := [300, 1000]
+var x_bounds := [350, 930]
 var random_position: Vector2
 
 @onready var blocks = $"Blocks"
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if ring_timer.is_stopped():
+	if ring_timer.is_stopped() and alive:
 		ring_timer.start()
 		ring_guns.global_rotation_degrees += 30.0
 

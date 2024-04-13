@@ -26,8 +26,8 @@ func _ready() -> void:
 	stage_1_ui.life_init(player_lives)
 	blocks_remaining = get_tree().get_nodes_in_group("blocks").size()
 
-	await transition.fade_from_black()
 	(IntroBgmPlayer.get_child(0) as AudioStreamPlayer).stop()
+	await transition.fade_from_black()
 	bgm.play()
 
 func _process(delta: float) -> void:

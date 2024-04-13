@@ -145,6 +145,11 @@ shape = SubResource("CircleShape2D_tujep")
 position = Vector2(0, -7.62939e-06)
 sprite_frames = SubResource("SpriteFrames_24vcj")
 
+[node name="Wait Prompts Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [node name="Player Kill Hitbox" type="Area2D" parent="Path/Path Follow/Komachi CharacterBody"]
 collision_layer = 192
 collision_mask = 2
@@ -159,9 +164,8 @@ one_shot = true
 [node name="Spell1 Guns" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody"]
 
 [node name="Waves Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
-wait_time = 1.9
+wait_time = 2.0
 one_shot = true
-autostart = true
 
 [node name="Waves" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
 
@@ -197,9 +201,8 @@ position = Vector2(48, -48)
 rotation = -2.35619
 
 [node name="Homing Timer" type="Timer" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
-wait_time = 2.2
+wait_time = 2.3
 one_shot = true
-autostart = true
 
 [node name="Homing" type="Node2D" parent="Path/Path Follow/Komachi CharacterBody/Spell1 Guns"]
 
@@ -278,5 +281,6 @@ texture_progress = ExtResource("7_sc2lt")
 
 [node name="Audio Player" type="AudioStreamPlayer" parent="Path/Path Follow/Komachi CharacterBody"]
 
+[connection signal="timeout" from="Path/Path Follow/Komachi CharacterBody/Wait Prompts Timer" to="Path/Path Follow/Komachi CharacterBody" method="_on_wait_prompts_timer_timeout"]
 [connection signal="body_entered" from="Path/Path Follow/Komachi CharacterBody/Player Kill Hitbox" to="Path/Path Follow/Komachi CharacterBody" method="_on_player_kill_hitbox_body_entered"]
 [connection signal="timeout" from="Path/Path Follow/Komachi CharacterBody/Bomb Damage Timer" to="Path/Path Follow/Komachi CharacterBody" method="_on_bomb_damage_timer_timeout"]

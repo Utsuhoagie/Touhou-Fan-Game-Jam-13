@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dj61673qkqkjd" path="res://assets/sprites/BG_2_4.png" id="13_v7fgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lclte"]
-size = Vector2(1328, 56)
+size = Vector2(1328, 96)
 
 [node name="Stage2" type="Node2D"]
 script = ExtResource("1_omh63")
@@ -39,11 +39,11 @@ position = Vector2(896, 784)
 enable_bullets = true
 
 [node name="Player1" parent="." instance=ExtResource("4_2rb7j")]
-position = Vector2(472, 920)
+position = Vector2(576, 872)
 clamp_x = 928
 
 [node name="Parsee" parent="." instance=ExtResource("5_krn3d")]
-position = Vector2(640, 256)
+position = Vector2(640, 224)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(-10, 10)
@@ -57,7 +57,7 @@ polygon = PackedVector2Array(-12, -480, -12, 480, 12, 480, 12, -456, 940, -456, 
 position = Vector2(-8, 1024)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(648, -36)
+position = Vector2(648, -56)
 shape = SubResource("RectangleShape2D_lclte")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
@@ -71,7 +71,7 @@ script = ExtResource("9_r4mk5")
 motion_mirroring = Vector2(0, 1800)
 
 [node name="Backgroud" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(640, 3.14713e-05)
+position = Vector2(639.999, 3.14713e-05)
 scale = Vector2(1.06667, 1.06667)
 texture = ExtResource("10_ix6tu")
 
@@ -107,6 +107,6 @@ scroll_speed = 50.0
 motion_mirroring = Vector2(0, 1800)
 
 [node name="Clouds3" type="Sprite2D" parent="ParallaxBackground4/ParallaxLayer"]
-position = Vector2(640, -4)
-scale = Vector2(1.06667, 1.06667)
+position = Vector2(611.999, -4)
+scale = Vector2(1.02, 1.06667)
 texture = ExtResource("13_v7fgw")
